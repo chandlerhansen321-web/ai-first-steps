@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code — First Steps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    // Apply saved theme before page renders to prevent flash
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <style>
+    :root {
+      --cream: #faf8f4;
+      --cream2: #f2efe8;
+      --cream3: #e8e3d8;
+      --ink: #1c1917;
+      --ink2: #44403c;
+      --muted: #78716c;
+      --border: #ddd8cf;
+      --accent: #c2410c;
+      --accent-light: #fff0eb;
+      --blue: #1d4ed8;
+      --blue-light: #eff6ff;
+      --green: #166534;
+      --green-light: #f0fdf4;
+      --yellow: #92400e;
+      --yellow-light: #fffbeb;
+      --purple: #6d28d9;
+      --purple-light: #f5f3ff;
+      --code-bg: #1c1917;
+      --code-text: #e7e5e4;
+      --surface: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --cream: #111110;
+      --cream2: #1c1917;
+      --cream3: #292524;
+      --ink: #fafaf9;
+      --ink2: #d6d3d1;
+      --muted: #a8a29e;
+      --border: #2c2825;
+      --accent: #f97316;
+      --accent-light: #431407;
+      --blue: #60a5fa;
+      --blue-light: rgba(30, 64, 175, 0.18);
+      --green: #4ade80;
+      --green-light: rgba(20, 83, 45, 0.28);
+      --yellow: #fbbf24;
+      --yellow-light: rgba(78, 52, 7, 0.32);
+      --purple: #a78bfa;
+      --purple-light: rgba(76, 29, 149, 0.22);
+      --surface: #1a1917;
+    }
+    [data-theme="dark"] .callout.tip  { border-color: rgba(74, 222, 128, 0.28); }
+    [data-theme="dark"] .callout.warn { border-color: rgba(251, 191, 36, 0.28); }
+    [data-theme="dark"] .callout.info { border-color: rgba(96, 165, 250, 0.28); }
+    [data-theme="dark"] .callout.purple { border-color: rgba(167, 139, 250, 0.28); }
+    [data-theme="dark"] .limits-col.can  .limits-col-header { background: rgba(20, 83, 45, 0.4); }
+    [data-theme="dark"] .limits-col.cant .limits-col-header { background: rgba(127, 29, 29, 0.4); color: #fca5a5; }
+    [data-theme="dark"] .code-top { background: #1c1917; }
+    [data-theme="dark"] .prompt-item:hover { background: var(--cream2); }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent); }
+    a:hover { text-decoration: underline; }
+
+    /* ── TOP NAV ── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-logo {
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .topbar-logo .pill {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .topbar-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .topbar-links a { color: var(--muted); text-decoration: none; }
+    .topbar-links a:hover { color: var(--ink); }
+    .theme-toggle {
+      background: var(--cream2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1;
+      transition: background 0.15s;
+      color: var(--ink);
+    }
+    .theme-toggle:hover { background: var(--cream3); }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 24px 100px;
+      gap: 60px;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      width: 210px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    .sidebar-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+    .sidebar-label:first-child { margin-top: 0; }
+    aside ul { list-style: none; }
+    aside ul li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0 5px 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    aside ul li a:hover { color: var(--ink); border-left-color: var(--cream3); }
+    aside ul li a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+    .step-dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      font-size: 10px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: var(--cream2); color: var(--muted);
+    }
+    aside ul li a.active .step-dot { background: var(--accent); color: white; }
+
+    /* ── MAIN ── */
+    main { flex: 1; min-width: 0; }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 64px; }
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: 52px; font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-size: 19px; color: var(--ink2);
+      max-width: 580px; line-height: 1.65; margin-bottom: 32px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--cream2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 13px; font-weight: 500; color: var(--ink2);
+    }
+
+    /* ── SECTION HEADERS ── */
+    section { margin-bottom: 72px; scroll-margin-top: 80px; }
+
+    .step-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px; }
+    .step-badge {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent); color: white;
+      font-size: 18px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 4px;
+    }
+    .step-title-wrap h2 {
+      font-family: 'Lora', serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--ink); line-height: 1.2; margin-bottom: 6px;
+    }
+    .step-title-wrap .step-sub { font-size: 15px; color: var(--muted); }
+
+    h2.plain {
+      font-family: 'Lora', serif;
+      font-size: 26px; font-weight: 700;
+      color: var(--ink); margin-bottom: 20px;
+    }
+
+    h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin: 28px 0 10px; }
+    p { margin-bottom: 16px; color: var(--ink2); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── DEFINITION CARDS ── */
+    .define {
+      background: var(--blue-light); border: 1px solid #bfdbfe;
+      border-radius: 10px; padding: 16px 22px; margin: 20px 0; font-size: 15px;
+    }
+    .define .define-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+    }
+    .define p { margin: 0; color: var(--ink2); line-height: 1.6; }
+    .define strong { font-weight: 700; color: var(--ink); }
+
+    /* ── CODE BLOCKS ── */
+    .code-wrap {
+      position: relative; margin: 16px 0;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .code-top {
+      background: #292524;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+    }
+    .code-top .dots { display: flex; gap: 6px; }
+    .code-top .dots span { width: 12px; height: 12px; border-radius: 50%; background: #57534e; }
+    .code-top .file-label { font-size: 12px; font-weight: 600; color: #a8a29e; letter-spacing: 0.04em; }
+    .code-wrap pre {
+      background: var(--code-bg); padding: 18px 20px; overflow-x: auto;
+      font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+      font-size: 14px; line-height: 1.7; color: var(--code-text); margin: 0;
+    }
+    .copy-btn {
+      background: #3c3836; border: 1px solid #57534e; border-radius: 5px;
+      color: #a8a29e; font-size: 11px; font-weight: 600; padding: 4px 10px;
+      cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .copy-btn:hover { background: #57534e; color: #e7e5e4; }
+    .copy-btn.copied { color: #86efac; border-color: #86efac; }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+      font-size: 14px; background: var(--cream2); border: 1px solid var(--border);
+      border-radius: 5px; padding: 1px 7px; color: var(--ink);
+    }
+    pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+
+    .s-comment { color: #78716c; font-style: italic; }
+    .s-cmd { color: #93c5fd; }
+    .s-str { color: #86efac; }
+    .s-flag { color: #c4b5fd; }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-radius: 10px; padding: 16px 20px; margin: 20px 0;
+      font-size: 15px; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .callout .icon { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+    .callout .body { flex: 1; }
+    .callout .body strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .callout .body p { font-size: 14px; margin: 0; line-height: 1.55; }
+    .callout.tip { background: var(--green-light); border: 1px solid #bbf7d0; }
+    .callout.tip .body strong { color: var(--green); }
+    .callout.tip .body p { color: #166534; }
+    .callout.warn { background: var(--yellow-light); border: 1px solid #fde68a; }
+    .callout.warn .body strong { color: var(--yellow); }
+    .callout.warn .body p { color: #78350f; }
+    .callout.info { background: var(--blue-light); border: 1px solid #bfdbfe; }
+    .callout.info .body strong { color: var(--blue); }
+    .callout.info .body p { color: #1e40af; }
+    .callout.purple { background: var(--purple-light); border: 1px solid #ddd6fe; }
+    .callout.purple .body strong { color: var(--purple); }
+    .callout.purple .body p { color: #4c1d95; }
+
+    /* ── WHAT IS GRID ── */
+    .what-is-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;
+    }
+    .what-is-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px 22px;
+    }
+    .what-is-item .wi-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+    }
+    .what-is-item .wi-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .what-is-item p { font-size: 13.5px; color: var(--ink2); line-height: 1.55; margin: 0; }
+
+    /* ── ROLE CARDS ── */
+    .roles-intro {
+      font-size: 17px; color: var(--ink2); margin-bottom: 28px; max-width: 600px;
+    }
+    .role-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 4px;
+    }
+    .role-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 20px 18px;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .role-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .role-card .rc-emoji { font-size: 26px; margin-bottom: 10px; }
+    .role-card .rc-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .role-card .rc-dept {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .role-card ul { list-style: none; }
+    .role-card ul li {
+      font-size: 13px; color: var(--ink2); padding: 4px 0;
+      border-bottom: 1px solid var(--border); line-height: 1.4;
+      display: flex; gap: 6px; align-items: flex-start;
+    }
+    .role-card ul li:last-child { border-bottom: none; }
+    .role-card ul li::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 2px; }
+
+    /* ── STEP LIST ── */
+    .step-list { list-style: none; margin: 16px 0; }
+    .step-list li {
+      display: flex; gap: 14px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); font-size: 15px; align-items: flex-start;
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-list .n {
+      width: 26px; height: 26px; border-radius: 50%; background: var(--accent);
+      color: white; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .step-list .content { flex: 1; color: var(--ink2); }
+    .step-list .content strong { color: var(--ink); }
+
+    /* ── COMMAND GRID ── */
+    .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .cmd-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 18px; transition: box-shadow 0.15s;
+    }
+    .cmd-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .cmd-card code {
+      font-size: 15px; font-weight: 700; color: var(--accent);
+      background: none; border: none; padding: 0; display: block; margin-bottom: 6px;
+    }
+    .cmd-card .cmd-what { font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+    .cmd-card .cmd-desc { font-size: 13px; color: var(--ink2); line-height: 1.45; }
+
+    /* ── PERMISSION MODES ── */
+    .mode-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 20px 0; }
+    .mode-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px; text-align: center;
+    }
+    .mode-card .mode-icon { font-size: 28px; margin-bottom: 10px; }
+    .mode-card .mode-name { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 6px; }
+    .mode-card .mode-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+    /* ── CLAUDE.MD VISUAL ── */
+    .claudemd-visual {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden; margin: 20px 0;
+    }
+    .claudemd-top {
+      background: var(--cream2); padding: 12px 18px;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .claudemd-body { padding: 20px 24px; }
+    .claudemd-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 14px;
+    }
+    .claudemd-row:last-child { border-bottom: none; }
+    .claudemd-row .arrow { color: var(--accent); font-weight: 700; flex-shrink: 0; width: 20px; }
+    .claudemd-row .line { font-family: 'SF Mono', monospace; font-size: 13px; color: var(--ink); flex: 1; }
+    .claudemd-row .explain { font-size: 13px; color: var(--muted); flex: 1.5; }
+
+    /* ── EXAMPLE PROMPTS ── */
+    .prompt-cats { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+    .prompt-cat {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .prompt-cat-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; background: var(--cream2);
+      border-bottom: 1px solid var(--border);
+    }
+    .prompt-cat-header .pch-icon { font-size: 20px; }
+    .prompt-cat-header .pch-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+    .prompt-cat-header .pch-sub { font-size: 13px; color: var(--muted); }
+    .prompt-list { padding: 4px 0; }
+    .prompt-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 20px; border-bottom: 1px solid var(--border); cursor: pointer;
+      transition: background 0.12s;
+    }
+    .prompt-item:last-child { border-bottom: none; }
+    .prompt-item:hover { background: var(--cream); }
+    .prompt-item .pi-quote {
+      font-family: 'SF Mono', monospace; font-size: 13px;
+      color: var(--ink); flex: 1; line-height: 1.5;
+    }
+    .prompt-item .pi-quote em { color: var(--muted); font-style: normal; font-size: 12px; }
+    .pi-copy {
+      background: var(--cream2); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--muted); font-size: 11px; font-weight: 600;
+      padding: 3px 8px; cursor: pointer; flex-shrink: 0; margin-top: 2px;
+      transition: all 0.12s; font-family: 'Inter', sans-serif;
+    }
+    .pi-copy:hover { background: var(--border); color: var(--ink); }
+    .pi-copy.copied { color: var(--green); border-color: #86efac; }
+
+    /* ── FIRST WEEK ── */
+    .week-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+    .week-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px;
+    }
+    .week-day {
+      width: 52px; flex-shrink: 0; text-align: center;
+    }
+    .week-day .wd-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .week-day .wd-num {
+      font-family: 'Lora', serif; font-size: 28px; font-weight: 700;
+      color: var(--accent); line-height: 1.1;
+    }
+    .week-content .wc-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .week-content p { font-size: 14px; color: var(--ink2); margin: 0; line-height: 1.55; }
+
+    /* ── CAN / CAN'T ── */
+    .limits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .limits-col { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .limits-col-header {
+      padding: 14px 20px; font-size: 14px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);
+    }
+    .limits-col.can .limits-col-header { background: var(--green-light); color: var(--green); }
+    .limits-col.cant .limits-col-header { background: #fef2f2; color: #991b1b; }
+    .limits-col ul { list-style: none; padding: 8px 0; }
+    .limits-col ul li {
+      font-size: 14px; color: var(--ink2); padding: 9px 20px;
+      border-bottom: 1px solid var(--border); line-height: 1.4;
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .limits-col ul li:last-child { border-bottom: none; }
+    .limits-col.can ul li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .limits-col.cant ul li::before { content: "✗"; color: #ef4444; font-weight: 700; flex-shrink: 0; }
+
+    /* ── AI SCOUT BANNER ── */
+    .scout-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border-radius: 14px; padding: 32px 36px;
+      margin-top: 20px; display: flex; gap: 28px; align-items: center;
+    }
+    .scout-icon { font-size: 48px; flex-shrink: 0; }
+    .scout-body { flex: 1; }
+    .scout-body .sb-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #818cf8; margin-bottom: 8px;
+    }
+    .scout-body h3 {
+      font-family: 'Lora', serif; font-size: 22px; font-weight: 700;
+      color: white; margin: 0 0 10px; line-height: 1.25;
+    }
+    .scout-body p { font-size: 15px; color: #94a3b8; margin: 0 0 18px; line-height: 1.55; }
+    .scout-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #4f46e5; color: white;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .scout-btn:hover { background: #4338ca; text-decoration: none; }
+
+    /* ── TABLES ── */
+    table {
+      width: 100%; border-collapse: collapse; margin: 16px 0;
+      background: var(--surface); border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); font-size: 14.5px;
+    }
+    thead { background: var(--cream2); }
+    th {
+      text-align: left; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); padding: 10px 16px;
+    }
+    td { padding: 12px 16px; border-top: 1px solid var(--border); vertical-align: top; color: var(--ink2); }
+    td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+    td code { background: var(--cream2); border: none; font-size: 13px; }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; margin: 16px 0; }
+    .checklist li {
+      display: flex; gap: 12px; padding: 14px 18px; margin-bottom: 8px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      font-size: 15px; align-items: flex-start;
+    }
+    .checklist .ci { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+    .checklist .ct { flex: 1; color: var(--ink2); line-height: 1.5; }
+    .checklist .ct strong { color: var(--ink); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 64px 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 40px;
+      font-size: 14px; color: var(--muted);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 860px) {
+      aside { display: none; }
+      .layout { gap: 0; padding-top: 32px; }
+      .hero h1 { font-size: 36px; }
+      .what-is-grid, .cmd-grid, .mode-cards, .limits-grid { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr 1fr; }
+      .topbar-links { display: none; }
+      .scout-banner { flex-direction: column; }
+    }
+    @media (max-width: 580px) {
+      .role-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<header class="topbar">
+  <a class="topbar-logo" href="#">
+    Claude Code <span class="pill">First Steps</span>
+  </a>
+  <nav class="topbar-links">
+    <a href="#roles">Use cases</a>
+    <a href="#first-session">First session</a>
+    <a href="#prompts">Example prompts</a>
+    <a href="#scout">Stay current</a>
+    <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Official Docs ↗</a>
+  </nav>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+</header>
+
+<div class="layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside>
+    <div class="sidebar-label">Start here</div>
+    <ul>
+      <li><a href="#roles"><span class="step-dot">★</span> Who is this for?</a></li>
+      <li><a href="#what-is"><span class="step-dot">?</span> Key concepts</a></li>
+    </ul>
+    <div class="sidebar-label">Setup</div>
+    <ul>
+      <li><a href="#homebrew"><span class="step-dot">0</span> Install Homebrew</a></li>
+      <li><a href="#cmux"><span class="step-dot">1</span> Install cmux</a></li>
+      <li><a href="#install"><span class="step-dot">2</span> Install Claude Code</a></li>
+      <li><a href="#auth"><span class="step-dot">3</span> Log in</a></li>
+    </ul>
+    <div class="sidebar-label">Using it</div>
+    <ul>
+      <li><a href="#first-session"><span class="step-dot">4</span> First session</a></li>
+      <li><a href="#permissions"><span class="step-dot">5</span> Letting Claude work</a></li>
+      <li><a href="#commands"><span class="step-dot">6</span> Slash commands</a></li>
+      <li><a href="#claude-md"><span class="step-dot">7</span> CLAUDE.md</a></li>
+    </ul>
+    <div class="sidebar-label">Go deeper</div>
+    <ul>
+      <li><a href="#prompts"><span class="step-dot">→</span> Example prompts</a></li>
+      <li><a href="#first-week"><span class="step-dot">→</span> Your first week</a></li>
+      <li><a href="#limits"><span class="step-dot">→</span> Can / can't do</a></li>
+      <li><a href="#shortcuts"><span class="step-dot">—</span> Shortcuts</a></li>
+      <li><a href="#tips"><span class="step-dot">—</span> Tips & gotchas</a></li>
+      <li><a href="#scout"><span class="step-dot">★</span> Stay current</a></li>
+    </ul>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Getting Started Guide</div>
+      <h1>Claude Code,<br>from scratch.</h1>
+      <p class="hero-desc">No terminal experience? No problem. This guide walks you through everything — from installing the right apps to having your first real conversation with Claude Code.</p>
+      <div class="hero-tags">
+        <span class="tag">macOS</span>
+        <span class="tag">No prior experience needed</span>
+        <span class="tag">~15 minutes to set up</span>
+        <span class="tag">Free to start</span>
+      </div>
+    </div>
+
+    <!-- ── WHO IS THIS FOR ── -->
+    <section id="roles">
+      <div class="step-header">
+        <div class="step-title-wrap">
+          <h2>Who uses Claude Code — and what do they actually do with it?</h2>
+          <div class="step-sub">You don't need to be a developer. Here's what it looks like for different roles.</div>
+        </div>
+      </div>
+
+      <p class="roles-intro">Claude Code can read, write, and edit files. That means anyone who works with documents, data, websites, or workflows can use it — not just engineers. Here's what it looks like across different teams.</p>
+
+      <div class="role-grid">
+
+        <div class="role-card">
+          <div class="rc-emoji">📣</div>
+          <div class="rc-title">Marketing Manager</div>
+          <div class="rc-dept">Marketing</div>
+          <ul>
+            <li>Build a weekly blog pipeline that researches, writes, and publishes automatically</li>
+            <li>Generate 10 email subject line variations from a brief</li>
+            <li>Create a landing page from a design mockup</li>
+            <li>Scrape competitor pricing into a spreadsheet</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">💼</div>
+          <div class="rc-title">Sales Rep / AE</div>
+          <div class="rc-dept">Sales</div>
+          <ul>
+            <li>Auto-generate personalized outreach emails from a prospect list</li>
+            <li>Build a proposal template that pulls in live data</li>
+            <li>Write follow-up sequences based on call notes</li>
+            <li>Create a CRM data cleanup script</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">⚙️</div>
+          <div class="rc-title">Operations Manager</div>
+          <div class="rc-dept">Operations</div>
+          <ul>
+            <li>Build internal tools without waiting on engineering</li>
+            <li>Automate repetitive spreadsheet or reporting tasks</li>
+            <li>Create a dashboard that pulls from multiple sources</li>
+            <li>Write scripts to clean and transform data exports</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">✍️</div>
+          <div class="rc-title">Content Creator</div>
+          <div class="rc-dept">Content / Editorial</div>
+          <ul>
+            <li>Build a pipeline that researches topics and drafts full articles</li>
+            <li>Auto-generate social captions from a blog post</li>
+            <li>Create an SEO brief from a keyword list</li>
+            <li>Resize and reformat content for different platforms</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">📊</div>
+          <div class="rc-title">Data Analyst</div>
+          <div class="rc-dept">Analytics / BI</div>
+          <ul>
+            <li>Write Python or SQL scripts from plain English descriptions</li>
+            <li>Clean and normalize a messy CSV export</li>
+            <li>Build a chart or report from raw data</li>
+            <li>Automate a weekly metrics email</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">🚀</div>
+          <div class="rc-title">Founder / CEO</div>
+          <div class="rc-dept">Leadership</div>
+          <ul>
+            <li>Build a working MVP without hiring a developer</li>
+            <li>Automate manual processes across tools</li>
+            <li>Prototype a new product feature in an afternoon</li>
+            <li>Create internal tools your team actually needs</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">🎯</div>
+          <div class="rc-title">Product Manager</div>
+          <div class="rc-dept">Product</div>
+          <ul>
+            <li>Turn a spec doc into a working prototype</li>
+            <li>Analyze user feedback and surface themes</li>
+            <li>Write and iterate on PRDs with Claude's input</li>
+            <li>Build lightweight internal tools to test hypotheses</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">🤝</div>
+          <div class="rc-title">Customer Success</div>
+          <div class="rc-dept">CS / Support</div>
+          <ul>
+            <li>Build a knowledge base from existing support docs</li>
+            <li>Generate onboarding email sequences</li>
+            <li>Create a FAQ page from a pile of support tickets</li>
+            <li>Automate renewal or check-in workflows</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div class="rc-emoji">👩‍💻</div>
+          <div class="rc-title">Software Engineer</div>
+          <div class="rc-dept">Engineering</div>
+          <ul>
+            <li>Debug a tricky error with full codebase context</li>
+            <li>Refactor a messy file or module</li>
+            <li>Write tests for existing functions</li>
+            <li>Implement a feature end-to-end from a ticket</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── WHAT IS ALL THIS ── -->
+    <section id="what-is">
+      <div class="step-header">
+        <div class="step-title-wrap">
+          <h2>Before we start: what is all of this?</h2>
+          <div class="step-sub">Plain-English definitions for everything you're about to use</div>
+        </div>
+      </div>
+
+      <div class="what-is-grid">
+        <div class="what-is-item">
+          <div class="wi-label">The Terminal</div>
+          <div class="wi-title">A text-based control panel</div>
+          <p>Instead of clicking icons, you type short commands. Think of it like texting your computer instead of tapping its screen. It's intimidating at first, but you only need a handful of commands to get started.</p>
+        </div>
+        <div class="what-is-item">
+          <div class="wi-label">Claude Code</div>
+          <div class="wi-title">An AI assistant that lives in your terminal</div>
+          <p>You describe what you want in plain English — "add a contact form to my website" — and Claude reads your files, writes code, and makes it happen. It's like pair programming with an AI that already knows your project.</p>
+        </div>
+        <div class="what-is-item">
+          <div class="wi-label">cmux</div>
+          <div class="wi-title">A smarter terminal app</div>
+          <p>cmux is the app you'll use to access your terminal. It's built for AI coding tools — with tab notifications that ping you when a task finishes, side-by-side panels, and a built-in browser, so you can walk away while Claude works.</p>
+        </div>
+        <div class="what-is-item">
+          <div class="wi-label">Homebrew</div>
+          <div class="wi-title">An app store for terminal tools</div>
+          <p>Most developer tools aren't on the Mac App Store. Homebrew fills that gap — it's a free tool that lets you install things like cmux and Claude Code with a single command.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 0: HOMEBREW -->
+    <section id="homebrew">
+      <div class="step-header">
+        <div class="step-badge" style="background:#78716c;">0</div>
+        <div class="step-title-wrap">
+          <h2>Install Homebrew</h2>
+          <div class="step-sub">The app store for developer tools — you'll only do this once</div>
+        </div>
+      </div>
+
+      <p>Open your Mac's built-in <strong>Terminal</strong> app (press <strong>⌘ + Space</strong>, type "Terminal", hit Enter). Paste this and press Enter:</p>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">Terminal</div>
+          <button class="copy-btn" onclick="copyText(this, '/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;')">Copy</button>
+        </div>
+        <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+      </div>
+
+      <p>It'll walk you through the rest. When it finishes, type <code>brew --version</code> and press Enter. If you see a version number, you're ready.</p>
+
+      <div class="callout info">
+        <div class="icon">ℹ️</div>
+        <div class="body">
+          <strong>Already have Homebrew?</strong>
+          <p>Skip ahead. To check, type <code>brew --version</code> and press Enter. If it shows a number, you have it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1: CMUX -->
+    <section id="cmux">
+      <div class="step-header">
+        <div class="step-badge">1</div>
+        <div class="step-title-wrap">
+          <h2>Install cmux</h2>
+          <div class="step-sub">Your new home base for Claude Code</div>
+        </div>
+      </div>
+
+      <p><a href="https://cmux.dev" target="_blank">cmux</a> is a macOS terminal built from scratch for AI coding agents. The key feature: notification badges that alert you when a Claude task finishes — so you can hand something off and come back when it's done, instead of watching a progress bar.</p>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">Terminal</div>
+          <button class="copy-btn" onclick="copyText(this, 'brew tap manaflow-ai/cmux')">Copy</button>
+        </div>
+        <pre><code><span class="s-comment"># Tell Homebrew where to find cmux</span>
+brew tap manaflow-ai/cmux</code></pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">Terminal</div>
+          <button class="copy-btn" onclick="copyText(this, 'brew install --cask cmux')">Copy</button>
+        </div>
+        <pre><code><span class="s-comment"># Install cmux</span>
+brew install --cask cmux</code></pre>
+      </div>
+
+      <p>Once installed, open cmux from <strong>Spotlight</strong> (⌘ + Space → type "cmux"). From here on, use cmux instead of the built-in Terminal.</p>
+
+      <div class="callout tip">
+        <div class="icon">💡</div>
+        <div class="body">
+          <strong>Make cmux your default terminal</strong>
+          <p>Go to <strong>System Settings → Desktop &amp; Dock → Default terminal app</strong> and select cmux.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: INSTALL CLAUDE CODE -->
+    <section id="install">
+      <div class="step-header">
+        <div class="step-badge">2</div>
+        <div class="step-title-wrap">
+          <h2>Install Claude Code</h2>
+          <div class="step-sub">One command, ~30 seconds</div>
+        </div>
+      </div>
+
+      <p>Open cmux and run:</p>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">cmux</div>
+          <button class="copy-btn" onclick="copyText(this, 'curl -fsSL https://claude.ai/install.sh | bash')">Copy</button>
+        </div>
+        <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+      </div>
+
+      <p>When it finishes, confirm it worked:</p>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">cmux</div>
+          <button class="copy-btn" onclick="copyText(this, 'claude --version')">Copy</button>
+        </div>
+        <pre><code>claude --version</code></pre>
+      </div>
+
+      <p>You should see something like <code>claude 1.x.x</code>. If so, move on.</p>
+
+      <div class="define">
+        <div class="define-label">What does that command do?</div>
+        <p><strong>curl</strong> downloads a file from the internet. <strong>bash</strong> runs it. Together, it's like clicking "Download" then "Run" in a standard installer — just compressed into one step.</p>
+      </div>
+    </section>
+
+    <!-- STEP 3: LOG IN -->
+    <section id="auth">
+      <div class="step-header">
+        <div class="step-badge">3</div>
+        <div class="step-title-wrap">
+          <h2>Log in</h2>
+          <div class="step-sub">It's just like logging into any other app</div>
+        </div>
+      </div>
+
+      <p>Type <code>claude</code> and press Enter. The first time you run it, a browser window opens and asks you to sign in with your Anthropic account.</p>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">cmux</div>
+          <button class="copy-btn" onclick="copyText(this, 'claude')">Copy</button>
+        </div>
+        <pre><code>claude</code></pre>
+      </div>
+
+      <div class="callout tip">
+        <div class="icon">💡</div>
+        <div class="body">
+          <strong>Browser didn't open?</strong>
+          <p>Press the letter <strong>c</strong> in the terminal — it copies the login link to your clipboard. Paste it into your browser manually.</p>
+        </div>
+      </div>
+
+      <h3>Which plan do you need?</h3>
+      <table>
+        <thead><tr><th>Plan</th><th>Best for</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Claude Pro</td><td>Personal use, getting started</td><td>~$20/mo</td></tr>
+          <tr><td>Claude Max</td><td>Heavy daily use, long sessions</td><td>~$100/mo</td></tr>
+          <tr><td>API (Console)</td><td>Teams, pay-as-you-go, automation at scale</td><td>Usage-based</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="icon">🔐</div>
+        <div class="body">
+          <strong>No API keys to copy and paste</strong>
+          <p>The browser login handles everything. Your credentials are stored securely in your Mac's Keychain — you won't be asked to log in again unless you sign out.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4: FIRST SESSION -->
+    <section id="first-session">
+      <div class="step-header">
+        <div class="step-badge">4</div>
+        <div class="step-title-wrap">
+          <h2>Your first session</h2>
+          <div class="step-sub">Navigate to your project and start talking</div>
+        </div>
+      </div>
+
+      <p>Claude Code works from inside your project folder. Before you type <code>claude</code>, you tell the terminal which folder to look at using the <code>cd</code> command.</p>
+
+      <div class="define">
+        <div class="define-label">What is "cd"?</div>
+        <p><strong>cd</strong> stands for "change directory" — directory is just another word for folder. Typing <code>cd ~/Documents/my-project</code> is the terminal equivalent of double-clicking that folder in Finder.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="file-label">cmux</div>
+          <button class="copy-btn" onclick="copyText(this, 'cd ~/Documents/my-project\nclaude')">Copy</button>
+        </div>
+        <pre><code><span class="s-comment"># Navigate to your project (update this path to match yours)</span>
+cd ~/Documents/my-project
+
+<span class="s-comment"># Start Claude Code</span>
+claude</code></pre>
+      </div>
+
+      <div class="callout tip">
+        <div class="icon">💡</div>
+        <div class="body">
+          <strong>Easy way to get the right path</strong>
+          <p>In Finder, right-click your project folder and hold <strong>Option</strong> — you'll see "Copy [folder] as Pathname." Paste it after <code>cd </code>.</p>
+        </div>
+      </div>
+
+      <h3>Your first three moves inside Claude Code</h3>
+      <ul class="step-list">
+        <li>
+          <span class="n">1</span>
+          <span class="content"><strong>Get oriented:</strong> Type "What does this project do?" and press Enter. Claude will read your files and explain what it's looking at.</span>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <span class="content"><strong>Set up your cheat sheet:</strong> Type <code>/init</code> and press Enter. Claude scans your project and creates a permanent notes file so it can help you better in every future session.</span>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <span class="content"><strong>Ask for real help:</strong> Describe something you want to build or fix. "Add a contact form to my homepage" or "fix the error on the login page" — plain English is fine.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- STEP 5: PERMISSIONS -->
+    <section id="permissions">
+      <div class="step-header">
+        <div class="step-badge">5</div>
+        <div class="step-title-wrap">
+          <h2>Letting Claude work on its own</h2>
+          <div class="step-sub">How much autonomy you give Claude is up to you</div>
+        </div>
+      </div>
+
+      <p>By default, Claude asks for your approval before making any change to your files. You can see exactly what it's about to do before it does it. But if you trust the task, you can give it full freedom.</p>
+
+      <div class="mode-cards">
+        <div class="mode-card">
+          <div class="mode-icon">🙋</div>
+          <div class="mode-name">Ask first</div>
+          <div class="mode-desc">Claude explains each action and waits for you to approve it. <strong>Default.</strong> Best when you're learning or doing something new.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">📋</div>
+          <div class="mode-name">Plan first</div>
+          <div class="mode-desc">Claude shows you the full plan, you approve it once, then it executes everything without interruption. Press <code>Shift+Tab</code> to switch.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">🚀</div>
+          <div class="mode-name">Full auto</div>
+          <div class="mode-desc">Claude works start-to-finish without any prompts. Press <code>Shift+Tab</code> twice to switch into this mode.</div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="icon">💡</div>
+        <div class="body">
+          <strong>Start with "Ask first" while you're learning</strong>
+          <p>Reading Claude's explanations before it acts is a great way to understand what it's doing and build trust in its judgment. Once you're comfortable, switch to Plan or Full auto for faster results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6: SLASH COMMANDS -->
+    <section id="commands">
+      <div class="step-header">
+        <div class="step-badge">6</div>
+        <div class="step-title-wrap">
+          <h2>Slash commands</h2>
+          <div class="step-sub">Special controls you type inside Claude Code</div>
+        </div>
+      </div>
+
+      <p>Any message that starts with <code>/</code> is a command — not something Claude responds to as a question. Think of them as keyboard shortcuts for common actions.</p>
+
+      <div class="cmd-grid">
+        <div class="cmd-card">
+          <code>/init</code>
+          <div class="cmd-what">Do this on every new project</div>
+          <div class="cmd-desc">Claude scans your project and creates a permanent cheat sheet (CLAUDE.md) so it understands your code better going forward.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/clear</code>
+          <div class="cmd-what">Fresh start, keep your files</div>
+          <div class="cmd-desc">Wipes the chat history. Your file changes stay. Use this when Claude seems confused or you want a clean slate.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/compact</code>
+          <div class="cmd-what">Free up "thinking space"</div>
+          <div class="cmd-desc">Like /clear, but smarter. Claude summarizes the conversation instead of erasing it — keeps the key context, drops the noise.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/model</code>
+          <div class="cmd-what">Switch Claude versions</div>
+          <div class="cmd-desc">Opus is the most capable. Haiku is the fastest and cheapest. Switch mid-session based on the task.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/memory</code>
+          <div class="cmd-what">See what Claude remembers</div>
+          <div class="cmd-desc">Shows all the instructions Claude loaded at the start of this session, including your CLAUDE.md files.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/cost</code>
+          <div class="cmd-what">Check your usage</div>
+          <div class="cmd-desc">Shows tokens used and estimated cost. Useful if you're on a usage-based plan and want to keep tabs on spend.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/help</code>
+          <div class="cmd-what">See everything available</div>
+          <div class="cmd-desc">Full list of every command available. A good thing to run on your first session.</div>
+        </div>
+        <div class="cmd-card">
+          <code>/review</code>
+          <div class="cmd-what">Get a code review</div>
+          <div class="cmd-desc">Have Claude review a set of changes and give feedback — like a second pair of eyes on your work.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7: CLAUDE.md -->
+    <section id="claude-md">
+      <div class="step-header">
+        <div class="step-badge">7</div>
+        <div class="step-title-wrap">
+          <h2>CLAUDE.md — your instruction manual</h2>
+          <div class="step-sub">How you give Claude permanent preferences and rules</div>
+        </div>
+      </div>
+
+      <p>Every time you start Claude Code, it looks for a file called <strong>CLAUDE.md</strong> in your project folder. If it finds one, it reads it before doing anything else. This is how you tell Claude things that should always be true — like "never delete files without asking" or "we use TypeScript, not JavaScript."</p>
+
+      <div class="define">
+        <div class="define-label">What's a .md file?</div>
+        <p><strong>Markdown (.md)</strong> is a simple text file where <code>#</code> makes a heading and <code>-</code> makes a bullet point. You don't need to know the format — <code>/init</code> creates the file for you, and you can edit it like a plain text document in any app.</p>
+      </div>
+
+      <div class="claudemd-visual">
+        <div class="claudemd-top"><span class="file-icon">📄</span> CLAUDE.md — example</div>
+        <div class="claudemd-body">
+          <div class="claudemd-row">
+            <div class="arrow">→</div>
+            <div class="line"># My Project</div>
+            <div class="explain">Title — Claude reads this to orient itself</div>
+          </div>
+          <div class="claudemd-row">
+            <div class="arrow">→</div>
+            <div class="line">## How to run it<br>- Start: `npm run dev`<br>- Tests: `npm test`</div>
+            <div class="explain">Claude uses these commands automatically when it needs to run or test your project</div>
+          </div>
+          <div class="claudemd-row">
+            <div class="arrow">→</div>
+            <div class="line">## Style rules<br>- Use TypeScript<br>- 2-space indentation</div>
+            <div class="explain">Claude follows these every time it writes code, without you having to repeat them</div>
+          </div>
+          <div class="claudemd-row">
+            <div class="arrow">→</div>
+            <div class="line">## Never do<br>- Delete files without asking<br>- Push directly to main</div>
+            <div class="explain">Hard rules — Claude treats these as non-negotiable</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Where to put it</h3>
+      <table>
+        <thead><tr><th>Location</th><th>What it's for</th></tr></thead>
+        <tbody>
+          <tr><td>Your project folder <code>./CLAUDE.md</code></td><td>Rules for this project (shared with teammates if you use git)</td></tr>
+          <tr><td>Home folder <code>~/.claude/CLAUDE.md</code></td><td>Personal preferences that apply to every project you work on</td></tr>
+          <tr><td><code>./CLAUDE.local.md</code></td><td>Personal rules for this project only — not shared with others</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout tip">
+        <div class="icon">💡</div>
+        <div class="body">
+          <strong>Don't write it from scratch</strong>
+          <p>Type <code>/init</code> inside a Claude Code session and it auto-generates one from your project. Then open the file and add your own rules on top.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXAMPLE PROMPTS ── -->
+    <section id="prompts">
+      <h2 class="plain">Example prompts to get you started</h2>
+      <p style="color:var(--muted);margin-bottom:4px;">The hardest part of using Claude Code is often just knowing what to ask. Copy any of these to try.</p>
+
+      <div class="prompt-cats">
+
+        <div class="prompt-cat">
+          <div class="prompt-cat-header">
+            <div class="pch-icon">🔍</div>
+            <div>
+              <div class="pch-title">Understanding a project</div>
+              <div class="pch-sub">Start here on anything new</div>
+            </div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-item">
+              <div class="pi-quote">"What does this project do? Walk me through it like I'm new."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'What does this project do? Walk me through it like I\'m new.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"What are the most important files I should know about?"</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'What are the most important files I should know about?')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"How does the login flow work? Trace it from start to finish."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'How does the login flow work? Trace it from start to finish.')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-cat">
+          <div class="prompt-cat-header">
+            <div class="pch-icon">🐛</div>
+            <div>
+              <div class="pch-title">Fixing bugs</div>
+              <div class="pch-sub">Describe what's wrong, not the fix</div>
+            </div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-item">
+              <div class="pi-quote">"The submit button on the contact form throws an error when the email field is empty. Fix it."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'The submit button on the contact form throws an error when the email field is empty. Fix it.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Users are getting logged out randomly. Find out why and fix it."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Users are getting logged out randomly. Find out why and fix it.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Here's an error I'm seeing: [paste error]. What's causing it?"</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Here\'s an error I\'m seeing: [paste error]. What\'s causing it?')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-cat">
+          <div class="prompt-cat-header">
+            <div class="pch-icon">🏗️</div>
+            <div>
+              <div class="pch-title">Building something new</div>
+              <div class="pch-sub">Be specific about what and where</div>
+            </div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-item">
+              <div class="pi-quote">"Add a contact form to the homepage. Fields: name, email, message. Send to hi@example.com."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Add a contact form to the homepage. Fields: name, email, message. Send to hi@example.com.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Build a Python script that reads a CSV of contacts and sends each one a personalized email."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Build a Python script that reads a CSV of contacts and sends each one a personalized email.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Create a dashboard page that pulls the last 30 days of data from our analytics API and shows it in charts."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Create a dashboard page that pulls the last 30 days of data from our analytics API and shows it in charts.')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-cat">
+          <div class="prompt-cat-header">
+            <div class="pch-icon">⚡</div>
+            <div>
+              <div class="pch-title">Automations & workflows</div>
+              <div class="pch-sub">For non-engineers, this is the power move</div>
+            </div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-item">
+              <div class="pi-quote">"Write a script that checks our website for new blog posts every morning and emails me a summary."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Write a script that checks our website for new blog posts every morning and emails me a summary.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Build an automation that takes a list of leads in a CSV and generates a personalized cold email for each one."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Build an automation that takes a list of leads in a CSV and generates a personalized cold email for each one.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"Create a weekly report that pulls our top 5 metrics and sends it to Slack every Monday at 9am."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'Create a weekly report that pulls our top 5 metrics and sends it to Slack every Monday at 9am.')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-cat">
+          <div class="prompt-cat-header">
+            <div class="pch-icon">✨</div>
+            <div>
+              <div class="pch-title">Improving existing work</div>
+              <div class="pch-sub">Claude is great at making things better</div>
+            </div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-item">
+              <div class="pi-quote">"This page loads slowly. Find out what's slowing it down and fix the biggest issues."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'This page loads slowly. Find out what\'s slowing it down and fix the biggest issues.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"The checkout flow has too many steps. Simplify it."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'The checkout flow has too many steps. Simplify it.')">Copy</button>
+            </div>
+            <div class="prompt-item">
+              <div class="pi-quote">"This code is hard to read. Clean it up without changing what it does."</div>
+              <button class="pi-copy" onclick="copyPrompt(this, 'This code is hard to read. Clean it up without changing what it does.')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FIRST WEEK ── -->
+    <section id="first-week">
+      <h2 class="plain">Your first week with Claude Code</h2>
+      <p style="color:var(--muted);margin-bottom:4px;">A simple progression to build the habit and get real results fast.</p>
+
+      <div class="week-grid">
+        <div class="week-item">
+          <div class="week-day"><div class="wd-label">Day</div><div class="wd-num">1</div></div>
+          <div class="week-content">
+            <div class="wc-title">Get set up and explore</div>
+            <p>Install everything, run <code>/init</code> on one project, and ask Claude to explain what the project does. No pressure to build anything — just get comfortable with the back-and-forth.</p>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-day"><div class="wd-label">Day</div><div class="wd-num">2</div></div>
+          <div class="week-content">
+            <div class="wc-title">Fix one real thing</div>
+            <p>Find a bug you've been living with, or something on your list that's been too annoying to tackle. Describe it to Claude and let it fix it. Seeing it work on a real problem builds trust fast.</p>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-day"><div class="wd-label">Day</div><div class="wd-num">3</div></div>
+          <div class="week-content">
+            <div class="wc-title">Write your CLAUDE.md</div>
+            <p>Now that you've had a session or two, you'll know what you want Claude to always do (or never do). Run <code>/init</code> if you haven't, then open CLAUDE.md and add a few personal rules.</p>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-day"><div class="wd-label">Day</div><div class="wd-num">5</div></div>
+          <div class="week-content">
+            <div class="wc-title">Try an automation</div>
+            <p>Pick something you do manually every week — generating a report, sending a summary email, updating a spreadsheet — and ask Claude to automate it. This is where the leverage starts to compound.</p>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-day"><div class="wd-label">Day</div><div class="wd-num">7</div></div>
+          <div class="week-content">
+            <div class="wc-title">Give it a real project</div>
+            <p>Hand Claude something ambitious. A new feature, a full page, a multi-step workflow. Give it a real goal and see how far it can go end-to-end.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CAN / CAN'T ── -->
+    <section id="limits">
+      <h2 class="plain">What Claude Code can and can't do</h2>
+      <p style="color:var(--muted);margin-bottom:4px;">Setting honest expectations saves frustration later.</p>
+
+      <div class="limits-grid">
+        <div class="limits-col can">
+          <div class="limits-col-header">✓ &nbsp;It can</div>
+          <ul>
+            <li>Read and write any file in your project folder</li>
+            <li>Run terminal commands on your behalf</li>
+            <li>Search and understand your entire codebase</li>
+            <li>Build multi-step automations that run on a schedule</li>
+            <li>Call external APIs (Slack, HubSpot, OpenAI, etc.)</li>
+            <li>Remember your preferences via CLAUDE.md and auto-memory</li>
+            <li>Switch between Anthropic models mid-session</li>
+            <li>Work in multiple languages: Python, JavaScript, SQL, and more</li>
+          </ul>
+        </div>
+        <div class="limits-col cant">
+          <div class="limits-col-header">✗ &nbsp;It can't</div>
+          <ul>
+            <li>Browse the web in real-time (it doesn't have live internet access by default)</li>
+            <li>See your screen or interact with your mouse and keyboard</li>
+            <li>Run on a phone or tablet — terminal only</li>
+            <li>Work on files outside the folder you launched it from</li>
+            <li>Guarantee perfect code on the first try — review and iterate</li>
+            <li>Replace your judgment on business decisions or ethics</li>
+            <li>Remember anything between sessions without CLAUDE.md or auto-memory</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SHORTCUTS -->
+    <section id="shortcuts">
+      <h2 class="plain">Keyboard shortcuts</h2>
+      <table>
+        <thead><tr><th>Shortcut</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>Ctrl + C</code></td><td>Stop whatever Claude is doing right now</td></tr>
+          <tr><td><code>Ctrl + D</code></td><td>Exit Claude Code and go back to normal terminal</td></tr>
+          <tr><td><code>Shift + Tab</code></td><td>Switch permission mode (ask → plan → full auto)</td></tr>
+          <tr><td><code>↑ / ↓ arrows</code></td><td>Scroll through commands you've already typed</td></tr>
+          <tr><td><code>Tab</code></td><td>Autocomplete a slash command you've started typing</td></tr>
+          <tr><td><code>Ctrl + G</code></td><td>Open your current message in a text editor (great for long prompts)</td></tr>
+          <tr><td><code>Esc + Esc</code></td><td>Rewind to a previous point in the conversation</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TIPS & GOTCHAS -->
+    <section id="tips">
+      <h2 class="plain">Tips &amp; common hiccups</h2>
+      <ul class="checklist">
+        <li>
+          <span class="ci">🧭</span>
+          <span class="ct"><strong>Always navigate to your project first.</strong> Claude Code only sees files in the folder you started it from. Type <code>cd your-folder</code> before running <code>claude</code>, or it won't find your project.</span>
+        </li>
+        <li>
+          <span class="ci">🔄</span>
+          <span class="ct"><strong>Claude seems off-track?</strong> Type <code>/clear</code>. It resets the conversation but keeps all your file changes exactly as they are.</span>
+        </li>
+        <li>
+          <span class="ci">🎯</span>
+          <span class="ct"><strong>Be specific.</strong> "Fix the bug" is vague. "The submit button on the contact form throws an error when the email field is empty — fix it" gives Claude everything it needs to act precisely.</span>
+        </li>
+        <li>
+          <span class="ci">🧠</span>
+          <span class="ct"><strong>Want Claude to remember something permanently?</strong> Say "remember this across sessions" and it saves it automatically. You can also add rules directly to your CLAUDE.md file.</span>
+        </li>
+        <li>
+          <span class="ci">⏳</span>
+          <span class="ct"><strong>Long sessions can feel slow.</strong> Type <code>/compact</code> — it summarizes the conversation history to free up space, without losing the thread of what you're working on.</span>
+        </li>
+        <li>
+          <span class="ci">🛑</span>
+          <span class="ct"><strong>Claude about to do something wrong?</strong> Press <code>Ctrl + C</code> immediately. Changes aren't finalized until Claude writes to a file, and you can always undo with git.</span>
+        </li>
+        <li>
+          <span class="ci">🚀</span>
+          <span class="ct"><strong>Starting a brand-new project?</strong> Run <code>/init</code> as your very first move. Claude learns your project structure and creates a CLAUDE.md — making every future session smarter from the start.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── AI SCOUT ── -->
+    <section id="scout">
+      <h2 class="plain">Stay current on AI</h2>
+      <p>The AI space moves fast. New models, tools, and workflows emerge every week — and most news sources are either too technical or too hype-driven to be useful. Here's where to keep up:</p>
+
+      <div class="scout-banner">
+        <div class="scout-icon">🔭</div>
+        <div class="scout-body">
+          <div class="sb-eyebrow">Recommended Resource</div>
+          <h3>AI Scout</h3>
+          <p>AI Scout aggregates the latest AI developments from Hacker News, GitHub, and across the web — then uses Claude to score each item for relevance, filter the noise, and surface what actually matters. No hype, no filler.</p>
+          <a class="scout-btn" href="https://ai-scout.xyz" target="_blank">Visit ai-scout.xyz →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span>Built for the AI First Steps project</span>
+  <span>
+    <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Official Docs</a> &nbsp;·&nbsp;
+    <a href="https://cmux.dev" target="_blank">cmux.dev</a> &nbsp;·&nbsp;
+    <a href="https://console.anthropic.com" target="_blank">Anthropic Console</a> &nbsp;·&nbsp;
+    <a href="https://ai-scout.xyz" target="_blank">AI Scout</a>
+  </span>
+</footer>
+
+<script>
+  function toggleTheme() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var next = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.getElementById('theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+  }
+
+  // Set correct icon on load
+  document.addEventListener('DOMContentLoaded', function() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.getElementById('theme-toggle').textContent = isDark ? '☀️' : '🌙';
+  });
+
+  function copyText(btn, text) {
+    const decoded = text
+      .replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    navigator.clipboard.writeText(decoded).then(() => {
+      const prev = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = prev; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+
+  function copyPrompt(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const prev = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = prev; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+
+  // Active sidebar on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('aside a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`aside a[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
