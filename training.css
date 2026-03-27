@@ -1252,6 +1252,133 @@
   border: 1px solid var(--border);
 }
 
+/* =====================================================================
+   PROMPT FORMULA
+   ===================================================================== */
+.t-formula {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.t-formula-part {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.t-formula-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.t-formula-ex {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.t-formula-plus {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* =====================================================================
+   FEEDBACK EXAMPLES
+   ===================================================================== */
+.t-feedback-examples {
+  margin: 12px 0 24px;
+}
+
+.t-feedback-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-feedback-bad, .t-feedback-good {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ink2);
+}
+
+.t-feedback-bad { background: var(--yellow-light); border: 1px solid #fde68a; }
+.t-feedback-good { background: var(--green-light); border: 1px solid #bbf7d0; }
+[data-theme="dark"] .t-feedback-bad { border-color: rgba(251,191,36,0.25); }
+[data-theme="dark"] .t-feedback-good { border-color: rgba(74,222,128,0.25); }
+
+.t-feedback-label {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.t-feedback-bad .t-feedback-label { color: var(--yellow); }
+.t-feedback-good .t-feedback-label { color: var(--green); }
+
+.t-feedback-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* =====================================================================
+   DAILY PROMPTS
+   ===================================================================== */
+.t-daily-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 20px;
+}
+
+.t-daily-prompt {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--code-text);
+  background: var(--code-bg);
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  position: relative;
+}
+
+.t-daily-prompt:hover { opacity: 0.85; }
+
+.t-daily-prompt::after {
+  content: "Click to copy";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(255,255,255,0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
 .t-tool-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1480,6 +1607,10 @@
   .t-calendar { grid-template-columns: 1fr; }
   .t-method-comparison { grid-template-columns: 1fr; }
   .t-install-steps { grid-template-columns: 1fr; }
+  .t-feedback-row { flex-direction: column; }
+  .t-feedback-arrow { transform: rotate(90deg); justify-content: center; }
+  .t-formula { flex-direction: column; }
+  .t-formula-plus { display: none; }
   .t-permission-modes { grid-template-columns: 1fr; }
   .t-first-run-step { flex-direction: column; gap: 4px; }
   .t-first-run-cmd { min-width: auto; }

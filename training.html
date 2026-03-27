@@ -488,6 +488,66 @@
 
         <div class="t-method-card">
           <div class="t-method-num">03</div>
+          <div class="t-method-title">The prompt formula</div>
+          <div class="t-method-body">
+            <p>Every strong prompt has four parts. Memorize this structure and your first-pass output improves immediately.</p>
+            <div class="t-formula">
+              <div class="t-formula-part">
+                <div class="t-formula-label">Role</div>
+                <div class="t-formula-ex">Who Claude is in this context</div>
+              </div>
+              <div class="t-formula-plus">+</div>
+              <div class="t-formula-part">
+                <div class="t-formula-label">Task</div>
+                <div class="t-formula-ex">What you need done</div>
+              </div>
+              <div class="t-formula-plus">+</div>
+              <div class="t-formula-part">
+                <div class="t-formula-label">Constraints</div>
+                <div class="t-formula-ex">Length, audience, tone, scope</div>
+              </div>
+              <div class="t-formula-plus">+</div>
+              <div class="t-formula-part">
+                <div class="t-formula-label">Output</div>
+                <div class="t-formula-ex">File type, format, where to save</div>
+              </div>
+            </div>
+            <p style="margin-top:16px;">Examples — vague vs. specific:</p>
+          </div>
+          <div class="t-method-comparison">
+            <div class="t-method-bad">
+              <div class="t-method-verdict">Vague</div>
+              "Help me with this email"
+            </div>
+            <div class="t-method-good">
+              <div class="t-method-verdict">Specific</div>
+              "Rewrite this follow-up email for a CMO who went dark after a demo. Reference the National Fitness case study. Under 100 words. Casual but direct."
+            </div>
+          </div>
+          <div class="t-method-comparison" style="margin-top:8px;">
+            <div class="t-method-bad">
+              <div class="t-method-verdict">Vague</div>
+              "Analyze this data"
+            </div>
+            <div class="t-method-good">
+              <div class="t-method-verdict">Specific</div>
+              "Read this CSV of Q1 campaign metrics. Find the 3 campaigns with the highest cost-per-acquisition increase. Output a table ranked by severity."
+            </div>
+          </div>
+          <div class="t-method-comparison" style="margin-top:8px;">
+            <div class="t-method-bad">
+              <div class="t-method-verdict">Vague</div>
+              "Make a presentation"
+            </div>
+            <div class="t-method-good">
+              <div class="t-method-verdict">Specific</div>
+              "Write 5 QBR slides for National Fitness Q1. Each slide: headline stat + 3 bullet points. Export as a .docx with clear section breaks."
+            </div>
+          </div>
+        </div>
+
+        <div class="t-method-card">
+          <div class="t-method-num">04</div>
           <div class="t-method-title">Power user commands</div>
           <div class="t-method-body">
             <div class="t-commands-grid">
@@ -520,6 +580,10 @@
                 <div class="t-command-desc">Claude remembers corrections across sessions. When it makes a mistake, tell it — it learns and won't repeat it next time.</div>
               </div>
               <div class="t-command">
+                <div class="t-command-name"><code>claude --continue</code></div>
+                <div class="t-command-desc">Resume your last session with full context. Great for picking up where you left off after a break.</div>
+              </div>
+              <div class="t-command">
                 <div class="t-command-name">75% rule</div>
                 <div class="t-command-desc">Sessions that stay under 75% context produce higher-quality output than those that push to 100%. Run <code>/compact</code> at 50%, not when you're already maxed out.</div>
               </div>
@@ -529,7 +593,7 @@
       </div>
 
         <div class="t-method-card">
-          <div class="t-method-num">04</div>
+          <div class="t-method-num">05</div>
           <div class="t-method-title">Permission modes — how much freedom to give Claude</div>
           <div class="t-method-body">
             <p>You control how much autonomy Claude has. Start cautious, increase as you build trust.</p>
@@ -598,6 +662,46 @@
           <div class="t-avoid-body">
             <strong>Skipping Plan Mode</strong>
             <p>Jumping straight to execution on complex tasks causes 20-30% more token waste from trial-and-error. Press Shift+Tab first. Two minutes of planning saves twenty minutes of rework.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to iterate -->
+      <h3>How to give Claude feedback</h3>
+      <p>Vague feedback wastes rounds. Specific feedback gets fixed in one pass. Point to the problem. Say what you want instead.</p>
+
+      <div class="t-feedback-examples">
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad">
+            <div class="t-feedback-label">Costs 3 rounds</div>
+            "This isn't quite right"
+          </div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good">
+            <div class="t-feedback-label">Costs 1 round</div>
+            "The second paragraph is too long. Cut it to 2 sentences. Keep the stat about 2.2x conversion lift."
+          </div>
+        </div>
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad">
+            <div class="t-feedback-label">Costs 3 rounds</div>
+            "Make it better"
+          </div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good">
+            <div class="t-feedback-label">Costs 1 round</div>
+            "The tone is too formal. Rewrite conversationally, like explaining to a colleague over coffee."
+          </div>
+        </div>
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad">
+            <div class="t-feedback-label">Costs 3 rounds</div>
+            "Try again"
+          </div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good">
+            <div class="t-feedback-label">Costs 1 round</div>
+            "The structure is right but the opening is weak. Start with the $11.2M revenue stat instead of the background."
           </div>
         </div>
       </div>
@@ -793,6 +897,14 @@
           </div>
         </div>
 
+        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <div class="t-daily-prompts">
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this prospect's LinkedIn profile and give me 3 personalized opening lines"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Compare these two proposals and highlight the key differences in a table"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Draft a follow-up email for [prospect] who hasn't responded in 2 weeks. Reference our last conversation about [topic]."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Pull the last 10 blog posts from published_posts.json and tell me which ones are most relevant for a [industry] prospect"</div>
+        </div>
+
         <!-- Sales quiz -->
         <div class="t-quiz" id="quiz-sales">
           <div class="t-quiz-q">You need a case study for a QSR prospect meeting tomorrow. What's the fastest path?</div>
@@ -965,6 +1077,14 @@
           </div>
         </div>
 
+        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <div class="t-daily-prompts">
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this campaign report into 5 bullet points for the client"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read these meeting notes and extract all action items with owners and due dates"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"What are the top 3 risks in this account based on the usage data and support tickets?"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Draft a renewal talking track for [client]. They care about [specific metric]. Reference their Q1 results."</div>
+        </div>
+
         <!-- Strategy quiz -->
         <div class="t-quiz" id="quiz-strategy">
           <div class="t-quiz-q">You're prepping for a client QBR. You need performance data, industry trends, and talking points. Which approach saves the most time?</div>
@@ -1124,6 +1244,14 @@
             <div class="t-prompt-code" onclick="copyPrompt(this)">Build a keyword opportunity evaluator. It takes a list of keywords (from a CSV or pasted), evaluates each for search volume, ranking difficulty, and current SERP competition. Output an .xlsx file with columns: Keyword, Estimated Volume, Difficulty Score, Current Top 3 Results, Opportunity Rating (High/Med/Low), and Suggested Blog Topic. Sort by opportunity rating. Color-code the opportunity column green/yellow/red.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
+        </div>
+
+        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <div class="t-daily-prompts">
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Rewrite this blog intro to hook the reader in the first sentence. Lead with a surprising stat."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Turn this case study into 3 LinkedIn post variants — one data-driven, one storytelling, one contrarian take"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Check this email draft for banned words, brand voice issues, and competitor mentions"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read our last 5 blog posts and suggest 3 topics we haven't covered that match our keyword gaps"</div>
         </div>
 
         <!-- Marketing quiz -->
@@ -1368,6 +1496,16 @@
             <li>Guarantee perfect output every time</li>
             <li>Remember anything without CLAUDE.md</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="t-insight-box" style="margin-top: 24px;">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Integrations (MCP servers)</strong>
+          <p>Claude Code connects to your tools. With integrations called MCP servers, it reads Slack messages, creates HubSpot contacts, checks Google Calendar, pulls Ahrefs data, and more — all from the terminal. Ask your admin to set up the ones relevant to your role. This is how the Agility content engine connects to 10+ services from a single interface.</p>
         </div>
       </div>
 

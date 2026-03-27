@@ -189,13 +189,19 @@ function showQuizFeedback(quiz, correct) {
 // COPY PROMPT
 // =====================================================================
 function copyPrompt(el) {
-  var text = el.textContent.trim();
+  var text = el.textContent.replace('Click to copy', '').trim();
   navigator.clipboard.writeText(text).then(function() {
+    // Check for sibling copied indicator (prompt blocks)
     var copied = el.parentElement.querySelector('.t-prompt-copied');
     if (copied) {
       copied.classList.add('show');
       setTimeout(function() { copied.classList.remove('show'); }, 2000);
     }
+    // Flash the element itself for daily prompts
+    var original = el.style.outline;
+    el.style.outline = '2px solid var(--green)';
+    el.style.outlineOffset = '-2px';
+    setTimeout(function() { el.style.outline = original; el.style.outlineOffset = ''; }, 800);
   });
 }
 
