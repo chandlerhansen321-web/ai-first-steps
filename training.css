@@ -919,11 +919,67 @@
 /* =====================================================================
    TOOL COMPARISON
    ===================================================================== */
+/* Commands grid */
+.t-commands-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.t-command {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.t-command-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-command-name code {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.t-command-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
 .t-tool-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin: 24px 0;
+}
+
+.t-tool-comparison-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.t-tool-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.t-tool-token-note {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .t-tool-card {
@@ -1127,7 +1183,8 @@
   .t-mult-branches { grid-template-columns: repeat(3, 1fr); }
   .t-calendar { grid-template-columns: 1fr; }
   .t-method-comparison { grid-template-columns: 1fr; }
-  .t-tool-comparison { grid-template-columns: 1fr; }
+  .t-tool-comparison, .t-tool-comparison-3 { grid-template-columns: 1fr; }
+  .t-commands-grid { grid-template-columns: 1fr; }
   .t-resources { grid-template-columns: 1fr; }
   .t-dt-options { flex-direction: column; }
   .t-cheatsheet-row { flex-direction: column; gap: 4px; text-align: center; }

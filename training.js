@@ -147,14 +147,40 @@ function checkQuiz(quizId, btn, isCorrect) {
   }
 }
 
+var quizFeedback = {
+  'quiz-2': {
+    correct: 'Two passes beat one. Generate freely, then clean up the output in a second pass.',
+    wrong: 'Negative instructions make Claude hedge. Generate first, clean up second.'
+  },
+  'quiz-sales': {
+    correct: 'The Hub intake form triggers the full pipeline automatically. Research, writing, formatting — done.',
+    wrong: 'The pipeline handles it. Submit client data through the Hub and the case study writes itself.'
+  },
+  'quiz-strategy': {
+    correct: 'Build it once in Claude Code, reuse it every quarter. That\'s the power of automation over manual work.',
+    wrong: 'Manual data pulls don\'t scale. Build a Claude Code automation and reuse it every quarter.'
+  },
+  'quiz-marketing': {
+    correct: 'Two-pass approach: generate the posts, then run a cleanup pass for voice and brand rules.',
+    wrong: 'Listing banned words in the prompt degrades quality. Generate first, then QC.'
+  },
+  'quiz-cc': {
+    correct: 'Claude Code reads the file, processes all 5, and you reuse the script next week. Chat would burn 5x the tokens.',
+    wrong: 'Claude Code handles file-based, repeatable work. Build it once, run it every week.'
+  }
+};
+
 function showQuizFeedback(quiz, correct) {
   var fb = quiz.querySelector('.t-quiz-feedback');
   if (!fb) return;
 
+  var id = quiz.id;
+  var msgs = quizFeedback[id] || { correct: 'Correct.', wrong: 'Not quite. Check the highlighted answer.' };
+
   if (correct) {
-    fb.innerHTML = '<strong style="color:var(--green);">Correct.</strong> That\'s the multiplier effect in action.';
+    fb.innerHTML = '<strong style="color:var(--green);">Correct.</strong> ' + msgs.correct;
   } else {
-    fb.innerHTML = '<strong style="color:var(--yellow);">Not quite.</strong> Check the highlighted answer above.';
+    fb.innerHTML = '<strong style="color:var(--yellow);">Not quite.</strong> ' + msgs.wrong;
   }
   fb.classList.add('show');
 }

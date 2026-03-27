@@ -184,16 +184,6 @@
         </div>
       </div>
 
-      <!-- Quiz 1 -->
-      <div class="t-quiz" id="quiz-1">
-        <div class="t-quiz-q">Quick check: When a blog post publishes at Agility, how many additional content pieces does it generate?</div>
-        <div class="t-quiz-options">
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-1', this, false)">2-3 pieces</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-1', this, true)">10+ pieces across 6 channels</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-1', this, false)">It stays as just a blog post</button>
-        </div>
-        <div class="t-quiz-feedback"></div>
-      </div>
     </section>
 
     <!-- ============================================================
@@ -316,26 +306,68 @@
     </section>
 
     <!-- ============================================================
-         SECTION 3: THE METHOD (compressed philosophy)
+         SECTION 3: THE METHOD
          ============================================================ -->
     <section id="method">
       <div class="step-header">
         <div class="step-badge">3</div>
         <div class="step-title-wrap">
           <h2>The Method</h2>
-          <div class="step-sub">Two rules that make AI output actually good</div>
+          <div class="step-sub">Context beats prompts. Every time.</div>
         </div>
       </div>
 
-      <p>Most people give AI a prompt stuffed with "don't do this, don't do that." The output hedges, second-guesses, and reads like a robot wrote it. Here's what works instead.</p>
+      <p>A good prompt gets you a good answer. Good context gets you a good answer every time, without re-explaining anything. That's the difference between using Claude as a chatbot and using it as a system.</p>
 
       <div class="t-method-cards">
         <div class="t-method-card">
           <div class="t-method-num">01</div>
+          <div class="t-method-title">CLAUDE.md — your persistent instruction file</div>
+          <div class="t-method-body">
+            <p>Claude Code reads a file called <strong>CLAUDE.md</strong> at the start of every session. It's a plain text file where you write who you are, what you're working on, and how Claude should behave. Claude follows these rules automatically, every session, without you saying a word.</p>
+            <p>This is the biggest productivity gain in Claude Code. Browser chat forgets everything when you close the tab. Claude Code remembers.</p>
+          </div>
+          <div class="t-wireframe" style="margin: 16px 0;">
+            <div class="t-wf-titlebar">CLAUDE.md — example for a sales role</div>
+            <div class="t-wf-body" style="font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--ink2);">
+              <div style="color: var(--accent); font-weight: 700;"># My Role</div>
+              <div>Account Executive at Agility Ads. I sell to enterprise CMOs and VPs of Marketing with $5M+ ad budgets.</div>
+              <br>
+              <div style="color: var(--accent); font-weight: 700;"># What I Need Help With</div>
+              <div>- Prospect research briefs before meetings</div>
+              <div>- Personalized outreach emails (cold + follow-up)</div>
+              <div>- Competitive positioning against TTD, DV360, StackAdapt</div>
+              <br>
+              <div style="color: var(--accent); font-weight: 700;"># Rules</div>
+              <div>- Never mention competitor names positively</div>
+              <div>- Lead with data and specific results</div>
+              <div>- Write at a CMO reading level, not a marketer level</div>
+              <div>- Reference our case studies when relevant</div>
+              <br>
+              <div style="color: var(--accent); font-weight: 700;"># Key Stats I Use</div>
+              <div>- $6 ROI per $1 in brand advertising (Binet & Field)</div>
+              <div>- National Fitness: $11.2M incremental revenue</div>
+              <div>- 2.2x conversion lift vs placebo at 6 months</div>
+            </div>
+          </div>
+          <div class="t-insight-box">
+            <div class="t-insight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div class="t-insight-body">
+              <strong>How to create yours</strong>
+              <p>Open Claude Code in your project folder and type <code>/init</code>. Claude analyzes your files and generates a starter CLAUDE.md. Then open the file and add your role, rules, and key context. When Claude makes a mistake, tell it to add the correction to CLAUDE.md — the file improves over time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-method-card">
+          <div class="t-method-num">02</div>
           <div class="t-method-title">Two passes, not one</div>
           <div class="t-method-body">
-            <p><strong>Pass 1:</strong> Tell Claude what you want. Be specific about audience, format, and tone. Don't mention what to avoid.</p>
-            <p><strong>Pass 2:</strong> Review the output. Fix what's wrong. Or ask Claude to fix it in a second pass focused on cleanup.</p>
+            <p><strong>Pass 1:</strong> Tell Claude what you want. Be specific about audience, format, and tone. Don't list what to avoid.</p>
+            <p><strong>Pass 2:</strong> Review the output. Fix what's wrong. Or ask Claude to clean it up in a second pass.</p>
+            <p>Stuffing a prompt with "don't do X" makes the output hedge and second-guess. Negative instructions degrade quality. Generate freely, then clean up.</p>
           </div>
           <div class="t-method-comparison">
             <div class="t-method-bad">
@@ -344,17 +376,41 @@
             </div>
             <div class="t-method-good">
               <div class="t-method-verdict">Strong</div>
-              "Write a 2,000-word article for enterprise CMOs about CTV measurement. Active voice. Lead with data. Then: review this and tighten any section over 3 paragraphs."
+              "Write a 2,000-word article for enterprise CMOs about CTV measurement. Active voice. Lead with data." Then: "Review this and tighten any section over 3 paragraphs."
             </div>
           </div>
         </div>
 
         <div class="t-method-card">
-          <div class="t-method-num">02</div>
-          <div class="t-method-title">Front-load context, not instructions</div>
+          <div class="t-method-num">03</div>
+          <div class="t-method-title">Power user commands</div>
           <div class="t-method-body">
-            <p>Claude Code reads a CLAUDE.md file every time you start a session. Put your role, your preferences, your project details in that file. Claude remembers it all, every session, without you repeating anything.</p>
-            <p>This is why Claude Code beats browser chat for real work. Chat forgets everything. Code remembers.</p>
+            <div class="t-commands-grid">
+              <div class="t-command">
+                <div class="t-command-name"><code>/init</code></div>
+                <div class="t-command-desc">Auto-generates a CLAUDE.md from your project. Run this first.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name"><code>/compact</code></div>
+                <div class="t-command-desc">Compresses conversation history. Use when sessions get long — extends your work by 3-5x.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name"><code>Shift+Tab</code></div>
+                <div class="t-command-desc">Toggles Plan Mode. Claude thinks and plans but doesn't change files. Use before any complex task to prevent solving the wrong problem.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name"><code>/clear</code></div>
+                <div class="t-command-desc">Resets conversation context. Use when switching topics mid-session.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name">Custom skills</div>
+                <div class="t-command-desc">Save repeatable workflows as /slash-commands. A <code>/weekly-report</code> skill runs your exact format every time.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name">Memory</div>
+                <div class="t-command-desc">Claude remembers corrections across sessions. When it makes a mistake, tell it — it learns and won't repeat it.</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -774,36 +830,65 @@
       <div class="step-header">
         <div class="step-badge">5</div>
         <div class="step-title-wrap">
-          <h2>Claude Code vs. Claude Chat</h2>
-          <div class="step-sub">Use the right tool. Stop burning tokens.</div>
+          <h2>Chat vs. Cowork vs. Code</h2>
+          <div class="step-sub">Three tools. Different jobs. Use the right one.</div>
         </div>
       </div>
 
-      <p>Browser chat re-explains context every message. Claude Code reads your project files automatically. That's the difference between burning through your token budget in an hour and getting a full day of work done.</p>
+      <p>Claude comes in three forms. Each one is built for a different type of work. Most of the team uses Chat for everything, which burns tokens fast and loses context between messages. Here's when to use each.</p>
 
-      <div class="t-tool-comparison">
+      <div class="t-tool-comparison t-tool-comparison-3">
         <div class="t-tool-card">
           <div class="t-tool-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
-          <div class="t-tool-name">Claude Chat (Browser)</div>
+          <div class="t-tool-name">Chat</div>
+          <div class="t-tool-subtitle">claude.ai in the browser</div>
           <ul>
             <li>Quick question, no files</li>
             <li>Brainstorming or ideation</li>
             <li>Analyzing text you paste in</li>
+            <li>One-off research questions</li>
           </ul>
+          <div class="t-tool-token-note">Context resets every conversation</div>
+        </div>
+        <div class="t-tool-card">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="20" r="4" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="t-tool-name">Cowork</div>
+          <div class="t-tool-subtitle">Claude Desktop app</div>
+          <ul>
+            <li>Multi-step knowledge work</li>
+            <li>Research across multiple sources</li>
+            <li>Document analysis and writing</li>
+            <li>When you want Code-level depth with a visual interface</li>
+          </ul>
+          <div class="t-tool-token-note">Uses tokens faster than Code</div>
         </div>
         <div class="t-tool-card t-tool-card-highlight">
           <div class="t-tool-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
-          <div class="t-tool-name">Claude Code</div>
+          <div class="t-tool-name">Code</div>
+          <div class="t-tool-subtitle">Terminal or Desktop app</div>
           <ul>
             <li>Working with files or a project</li>
-            <li>Multi-step tasks</li>
+            <li>Multi-step tasks with file context</li>
             <li>Anything you'll do more than once</li>
-            <li>Building automations</li>
+            <li>Building automations and tools</li>
           </ul>
+          <div class="t-tool-token-note">CLAUDE.md gives persistent memory</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Why Cowork burns tokens</strong>
+          <p>Cowork mode is powerful, but it re-sends your entire conversation context with every message. A 30-minute Cowork session can use 5-10x the tokens of the same work in Claude Code, because Code reads your CLAUDE.md file once and holds it in context — you don't re-explain your role, your rules, or your project every message.</p>
         </div>
       </div>
 
