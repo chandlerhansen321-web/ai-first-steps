@@ -956,6 +956,64 @@
   line-height: 1.5;
 }
 
+/* =====================================================================
+   AVOID LIST (Things that hurt output)
+   ===================================================================== */
+.t-avoid-list {
+  margin: 16px 0 24px;
+}
+
+.t-avoid-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-avoid-item:last-child { border-bottom: none; }
+
+.t-avoid-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--yellow-light);
+  color: var(--yellow);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #fde68a;
+}
+
+[data-theme="dark"] .t-avoid-num { border-color: rgba(251,191,36,0.25); }
+
+.t-avoid-body strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-avoid-body p {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.t-avoid-body code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--cream2);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
 .t-tool-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -392,25 +392,73 @@
               </div>
               <div class="t-command">
                 <div class="t-command-name"><code>/compact</code></div>
-                <div class="t-command-desc">Compresses conversation history. Use when sessions get long — extends your work by 3-5x.</div>
+                <div class="t-command-desc">Compresses conversation history. Pro tip: add instructions like <code>/compact Focus on the modified files and key decisions</code> to control what survives compression.</div>
               </div>
               <div class="t-command">
                 <div class="t-command-name"><code>Shift+Tab</code></div>
-                <div class="t-command-desc">Toggles Plan Mode. Claude thinks and plans but doesn't change files. Use before any complex task to prevent solving the wrong problem.</div>
+                <div class="t-command-desc">Toggles Plan Mode. Claude plans but doesn't change files. Use before complex tasks — reduces trial-and-error token waste by 20-30%.</div>
               </div>
               <div class="t-command">
                 <div class="t-command-name"><code>/clear</code></div>
-                <div class="t-command-desc">Resets conversation context. Use when switching topics mid-session.</div>
+                <div class="t-command-desc">Resets conversation context. Use between unrelated tasks — mixing topics in one session degrades output on both.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name"><code>/btw</code></div>
+                <div class="t-command-desc">Ask a side question that never enters conversation history. Zero context cost. Perfect for "wait, what does this term mean?" without polluting your main task.</div>
               </div>
               <div class="t-command">
                 <div class="t-command-name">Custom skills</div>
-                <div class="t-command-desc">Save repeatable workflows as /slash-commands. A <code>/weekly-report</code> skill runs your exact format every time.</div>
+                <div class="t-command-desc">Save repeatable workflows as /slash-commands. Example: a <code>/prospect-brief</code> skill that always runs your exact research + formatting sequence.</div>
               </div>
               <div class="t-command">
                 <div class="t-command-name">Memory</div>
-                <div class="t-command-desc">Claude remembers corrections across sessions. When it makes a mistake, tell it — it learns and won't repeat it.</div>
+                <div class="t-command-desc">Claude remembers corrections across sessions. When it makes a mistake, tell it — it learns and won't repeat it next time.</div>
+              </div>
+              <div class="t-command">
+                <div class="t-command-name">75% rule</div>
+                <div class="t-command-desc">Sessions that stay under 75% context produce higher-quality output than those that push to 100%. Run <code>/compact</code> at 50%, not when you're already maxed out.</div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Things to avoid -->
+      <h3>Five things that hurt your output</h3>
+      <div class="t-avoid-list">
+        <div class="t-avoid-item">
+          <div class="t-avoid-num">1</div>
+          <div class="t-avoid-body">
+            <strong>The kitchen sink session</strong>
+            <p>Mixing prospect research, email drafting, and report analysis in one conversation. Old context about Task A degrades work on Task B. Fix: <code>/clear</code> between unrelated tasks.</p>
+          </div>
+        </div>
+        <div class="t-avoid-item">
+          <div class="t-avoid-num">2</div>
+          <div class="t-avoid-body">
+            <strong>The correction spiral</strong>
+            <p>Correcting Claude 3+ times on the same issue. Each failed attempt stays in context and confuses future attempts. Fix: after 2 corrections, <code>/clear</code> and write a better initial prompt.</p>
+          </div>
+        </div>
+        <div class="t-avoid-item">
+          <div class="t-avoid-num">3</div>
+          <div class="t-avoid-body">
+            <strong>Vague requests</strong>
+            <p>"Make this better" costs 3 rounds of clarification. "Rewrite the intro to lead with the 47% CTV growth stat, keep it under 80 words" costs 1 round. Be specific about audience, format, length, and tone upfront.</p>
+          </div>
+        </div>
+        <div class="t-avoid-item">
+          <div class="t-avoid-num">4</div>
+          <div class="t-avoid-body">
+            <strong>Overstuffed CLAUDE.md</strong>
+            <p>There's a ~150-200 instruction budget before compliance drops. If your CLAUDE.md is too long, important rules get lost. For each line, ask: "Would removing this cause mistakes?" If not, cut it.</p>
+          </div>
+        </div>
+        <div class="t-avoid-item">
+          <div class="t-avoid-num">5</div>
+          <div class="t-avoid-body">
+            <strong>Skipping Plan Mode</strong>
+            <p>Jumping straight to execution on complex tasks causes 20-30% more token waste from trial-and-error. Press Shift+Tab first. Two minutes of planning saves twenty minutes of rework.</p>
           </div>
         </div>
       </div>
@@ -477,7 +525,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build me a prospect research script. It takes a company name as input, searches for their ad spend, tech stack, and recent news using web search, then outputs a one-page brief formatted as markdown with sections: Company Overview, Ad Spend &amp; Channels, Competitive Landscape, and Agility Talking Points. Save the output as a .md file named after the company.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build me a prospect research script. It takes a company name as input, searches for their ad spend, tech stack, and recent news using web search, then outputs a one-page brief as a .docx file with sections: Company Overview, Ad Spend &amp; Channels, Competitive Landscape, and Agility Talking Points. Name the file after the company. I want to attach this directly to emails.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -518,7 +566,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a content finder tool. It should ask for an industry and use case, then search our content library (the published_posts.json file and any case studies) for matching content. Output a table with title, type (blog/case study/PDF), URL, and a one-line summary. Sort by most recent first.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a content finder tool. It should ask for an industry and use case, then search our content library (the published_posts.json file and any case studies) for matching content. Print a formatted table to the terminal with title, type (blog/case study/PDF), URL, and a one-line summary. Sort by most recent first. I want fast lookups, no file output needed.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -552,8 +600,57 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a personalized outreach tool for Agility Ads sales. It takes prospect information (LinkedIn URL, company details, or notes) and generates: 1) A cold email (3-4 sentences, reference their specific challenge, include one relevant Agility stat) and 2) A LinkedIn connection message (under 300 chars). Use our brand context in the CLAUDE.md for positioning. No jargon. No "hope this finds you well." Direct and specific.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a personalized outreach tool for Agility Ads sales. It takes prospect information (LinkedIn URL, company details, or notes) and generates: 1) A cold email as an .html file I can paste into HubSpot (3-4 sentences, reference their specific challenge, include one relevant Agility stat) and 2) A LinkedIn connection message (under 300 chars, printed to terminal for quick copy). Use our brand context in the CLAUDE.md for positioning. No jargon. No "hope this finds you well." Direct and specific.</div>
             <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~25 min</div>
+            <h3>Competitive Battlecard Generator</h3>
+            <p>Enter a competitor name. Get an up-to-date battlecard with their pricing, recent product changes, customer reviews, and Agility's counter-positioning.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">battlecard-generator</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input">
+                <div class="t-wf-label">Competitor</div>
+                <div class="t-wf-field">StackAdapt</div>
+              </div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Their Positioning</div>
+                <div class="t-wf-line w85"></div>
+              </div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Where They Win</div>
+                <div class="t-wf-line w70"></div>
+              </div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Where Agility Wins</div>
+                <div class="t-wf-line w80"></div>
+              </div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Counter-Objections</div>
+                <div class="t-wf-line w75"></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a competitive battlecard tool. It takes a competitor name, searches for their latest pricing, product updates, G2/Gartner reviews, and leadership changes. Generates a one-page .docx battlecard with: Their Positioning, Where They Win, Where Agility Wins, and Counter-Objections (specific responses to their common claims). Reference our brand context for Agility's positioning. Update the card each time I run it so it stays current.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-insight-box">
+          <div class="t-insight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="t-insight-body">
+            <strong>Real result</strong>
+            <p>One SDR increased response rate from 8% to 23% by having Claude reference each prospect's recent posts and career transitions in outreach. Personalization at scale is the highest-ROI use case for sales teams.</p>
           </div>
         </div>
 
@@ -608,7 +705,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a client meeting prep tool. It takes a client name, looks up their recent campaign data and any notes in our files, searches for recent industry trends relevant to their vertical, and generates a one-page prep doc with: Campaign Snapshot (key metrics), Industry Trends (3 bullet points from this week), and Talking Points (3 specific discussion starters). Output as a clean markdown file.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a client meeting prep tool. It takes a client name, looks up their recent campaign data and any notes in our files, searches for recent industry trends relevant to their vertical, and generates a one-page prep doc as a .docx with: Campaign Snapshot (key metrics table), Industry Trends (3 bullet points from this week), and Talking Points (3 specific discussion starters). Format it so I can print it or share it as-is.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -644,7 +741,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a campaign performance summary tool. It takes raw campaign metrics (I'll paste them or point to a CSV) and generates a client-ready summary with: Executive Summary (3 sentences), Key Metrics table, Performance vs. Benchmarks, and 3 Next-Step Recommendations. Write it for a CMO audience — numbers first, plain language, no adtech jargon without explanation. Save as a formatted markdown file.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a campaign performance summary tool. It takes raw campaign metrics (I'll paste them or point to a CSV) and generates two outputs: 1) An .xlsx file with a Key Metrics sheet (formatted table, color-coded by performance vs benchmarks) and 2) A .docx executive memo with: Executive Summary (3 sentences), highlights, and 3 Next-Step Recommendations. Write it for a CMO audience — numbers first, plain language, no adtech jargon without explanation.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -679,8 +776,53 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a QBR section generator. It takes a client name, quarter, and campaign data. Generates three sections: 1) Q1 Performance Review (metrics, highlights, what worked), 2) Strategic Wins (2-3 specific wins with business impact), 3) Q2 Recommendations (actionable next steps with rationale). Write for a C-suite audience. Export each section as a separate markdown file I can paste into our deck template.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a QBR section generator. It takes a client name, quarter, and campaign data. Generates three sections formatted for copy-paste into PowerPoint: 1) Performance Review (metrics, highlights, what worked), 2) Strategic Wins (2-3 specific wins with business impact), 3) Next Quarter Recommendations (actionable next steps with rationale). Write for a C-suite audience. Export as a single .docx with clear section breaks and bullet points — ready to paste into our deck template.</div>
             <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>NPS / Feedback Analyzer</h3>
+            <p>Paste all your NPS responses or client feedback. Get a structured analysis with themes, at-risk accounts, and recommended actions — across hundreds of responses in one pass.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">feedback-analyzer</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input">
+                <div class="t-wf-label">Paste NPS data or point to CSV</div>
+                <div class="t-wf-field t-wf-tall">523 responses from Q1 survey...</div>
+              </div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Top 5 Themes</div>
+                <div class="t-wf-line w80"></div>
+              </div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">At-Risk Accounts</div>
+                <div class="t-wf-line w70"></div>
+              </div>
+              <div class="t-wf-section">
+                <div class="t-wf-heading">Recommended Actions</div>
+                <div class="t-wf-line w85"></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Analyze this NPS data. Read every response (there are 500+). Identify the top 5 themes by frequency, flag any accounts that mention churn risk or competitor evaluation, and generate a .docx report with: Theme Analysis (ranked by frequency with example quotes), At-Risk Accounts (name, score, reason for concern), and Recommended Actions (specific next steps per theme). I need this for a leadership review.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-insight-box">
+          <div class="t-insight-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="t-insight-body">
+            <strong>Why this matters</strong>
+            <p>Claude's 1M context window reads every response in a single pass. It typically surfaces 3-4 at-risk accounts that nobody caught because nobody reads 500 NPS responses in one sitting. This replaces hours of manual triage.</p>
           </div>
         </div>
 
@@ -726,7 +868,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a blog brief submission tool. Create a simple HTML form with fields for: topic, target keyword, audience, angle, and any notes. When submitted, it formats the data as JSON and submits it to our blog pipeline's intake endpoint. Include validation — topic and keyword are required. Style it to match our existing Hub design.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a blog brief submission tool. Create a simple HTML form with fields for: topic, target keyword, audience, angle, and any notes. When submitted, it formats the data as JSON and submits it to our blog pipeline's intake endpoint. Include validation — topic and keyword are required. Output the brief as a JSON file that matches our pipeline's intake format. Style the form to match our existing Hub design.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -767,7 +909,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a social content calendar generator. It takes a month and optional focus pillar (Measurement Science, Persona Strategy, Media Buying, Precision Creative). Generates a full month: LinkedIn posts Mon-Fri, Instagram Mon/Wed/Fri. Each entry has a theme, hook angle, and the pillar it maps to. Rotates pillars so no single one dominates. Export as a formatted markdown table I can share with the team.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a social content calendar generator. It takes a month and optional focus pillar (Measurement Science, Persona Strategy, Media Buying, Precision Creative). Generates a full month: LinkedIn posts Mon-Fri, Instagram Mon/Wed/Fri. Each entry has a theme, hook angle, and the pillar it maps to. Rotates pillars so no single one dominates. Export as an .xlsx file with color-coded cells (blue for LinkedIn, pink for Instagram) and a separate tab for pillar distribution stats.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -805,7 +947,42 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a 3-email nurture sequence generator. It takes a campaign theme and target audience. Generates 3 emails: 1) The Problem (identify the pain point), 2) The Proof (reference a specific Agility result or stat), 3) The Ask (clear CTA to book a demo). Each email has: subject line, preview text, body copy (under 150 words), and CTA button text. Write for busy marketing executives. No fluff. Export as a single markdown file with all 3 emails.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a 3-email nurture sequence generator. It takes a campaign theme and target audience. Generates 3 .html email templates: 1) The Problem (identify the pain point), 2) The Proof (reference a specific Agility result or stat), 3) The Ask (clear CTA to book a demo). Each email has: subject line, preview text, body copy (under 150 words), CTA button, and HubSpot personalization tokens (like {{contact.firstname}}). Write for busy marketing executives. No fluff. Output as separate .html files I can import directly into HubSpot.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>SEO Keyword Opportunity Evaluator</h3>
+            <p>Feed it a list of 50+ keywords. Get them ranked by opportunity (search volume vs. current ranking difficulty) with recommended topics for each.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">keyword-evaluator</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input">
+                <div class="t-wf-label">Paste keywords or point to CSV</div>
+                <div class="t-wf-field t-wf-tall">ctv measurement, brand lift study, incrementality testing, programmatic advertising roi...</div>
+              </div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-result">
+                <div class="t-wf-result-type">High</div>
+                <div class="t-wf-line w85"></div>
+              </div>
+              <div class="t-wf-result">
+                <div class="t-wf-result-type">Med</div>
+                <div class="t-wf-line w70"></div>
+              </div>
+              <div class="t-wf-result">
+                <div class="t-wf-result-type">Low</div>
+                <div class="t-wf-line w55"></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a keyword opportunity evaluator. It takes a list of keywords (from a CSV or pasted), evaluates each for search volume, ranking difficulty, and current SERP competition. Output an .xlsx file with columns: Keyword, Estimated Volume, Difficulty Score, Current Top 3 Results, Opportunity Rating (High/Med/Low), and Suggested Blog Topic. Sort by opportunity rating. Color-code the opportunity column green/yellow/red.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -887,8 +1064,8 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         </div>
         <div class="t-insight-body">
-          <strong>Why Cowork burns tokens</strong>
-          <p>Cowork mode is powerful, but it re-sends your entire conversation context with every message. A 30-minute Cowork session can use 5-10x the tokens of the same work in Claude Code, because Code reads your CLAUDE.md file once and holds it in context — you don't re-explain your role, your rules, or your project every message.</p>
+          <strong>Why Code wins on value per token</strong>
+          <p>Cowork and Code use similar amounts of tokens for similar tasks — both run the full agentic loop. The difference is what you get for those tokens. Code gives you CLAUDE.md (persistent context every session), <code>/compact</code> (compress history mid-session), and reusable automations (build once, run forever). Chat is cheapest per exchange but can't touch your files. Cowork is powerful for one-off deep work. Code is where repeatable value lives.</p>
         </div>
       </div>
 
