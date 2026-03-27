@@ -1,11 +1,9 @@
 /* =====================================================================
-   TRAINING PAGE — JavaScript
-   Role toggle, sidebar scroll tracking, expandables, pipeline flow,
-   decision tree, theme toggle
+   TRAINING PAGE v2 — JavaScript
    ===================================================================== */
 
 // =====================================================================
-// THEME TOGGLE (same as main site)
+// THEME TOGGLE
 // =====================================================================
 function toggleTheme() {
   var html = document.documentElement;
@@ -21,7 +19,6 @@ function toggleTheme() {
   }
 }
 
-// Restore theme on load
 (function() {
   var saved = localStorage.getItem('theme');
   if (saved === 'dark') {
@@ -32,19 +29,35 @@ function toggleTheme() {
 })();
 
 // =====================================================================
+// SCROLL PROGRESS BAR
+// =====================================================================
+(function() {
+  var bar = document.getElementById('progress-bar');
+  if (!bar) return;
+
+  function update() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// =====================================================================
 // ROLE TOGGLE
 // =====================================================================
 function setRole(role) {
   document.body.setAttribute('data-role', role);
   localStorage.setItem('training_role', role);
 
-  // Update all toggle buttons
   document.querySelectorAll('.t-role-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.getAttribute('data-role') === role);
   });
 }
 
-// Restore role on load
 (function() {
   var saved = localStorage.getItem('training_role');
   if (saved && ['sales', 'strategy', 'marketing'].indexOf(saved) !== -1) {
@@ -82,13 +95,8 @@ function setRole(role) {
       }
     }
 
-    sidebarLinks.forEach(function(link) {
-      link.classList.remove('active');
-    });
-
-    if (active) {
-      active.link.classList.add('active');
-    }
+    sidebarLinks.forEach(function(link) { link.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
   }
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -99,53 +107,90 @@ function setRole(role) {
 })();
 
 // =====================================================================
-// EXPANDABLE CARDS
+// CALENDAR DAY TOGGLE
 // =====================================================================
-function toggleExpand(el) {
-  el.classList.toggle('open');
+function toggleCalDay(el) {
+  var wasOpen = el.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.t-cal-day').forEach(function(d) {
+    d.classList.remove('open');
+  });
+  // Toggle clicked
+  if (!wasOpen) el.classList.add('open');
 }
 
 // =====================================================================
-// PIPELINE FLOW (Interactive step-through)
+// QUIZ ENGINE
 // =====================================================================
-var currentPipelineStep = 0;
-var totalPipelineSteps = 8;
+function checkQuiz(quizId, btn, isCorrect) {
+  var quiz = document.getElementById(quizId);
+  if (!quiz) return;
 
-function setPipelineStep(n) {
-  currentPipelineStep = n;
-
-  // Update step highlights
-  document.querySelectorAll('.t-pipeline-step').forEach(function(step) {
-    step.classList.toggle('active', parseInt(step.getAttribute('data-pipeline-step')) === n);
+  // Disable all options
+  quiz.querySelectorAll('.t-quiz-opt').forEach(function(opt) {
+    opt.classList.add('disabled');
   });
 
-  // Update detail panel
-  document.querySelectorAll('.t-pipeline-detail-inner').forEach(function(detail) {
-    detail.style.display = parseInt(detail.getAttribute('data-detail')) === n ? 'block' : 'none';
-  });
-
-  // Update nav buttons
-  var prev = document.getElementById('pipeline-prev');
-  var next = document.getElementById('pipeline-next');
-  var counter = document.getElementById('pipeline-counter');
-
-  if (prev) prev.disabled = n === 0;
-  if (next) next.disabled = n === totalPipelineSteps - 1;
-  if (counter) counter.textContent = (n + 1) + ' of ' + totalPipelineSteps;
-
-  // Scroll the active step into view in the flow
-  var activeStep = document.querySelector('.t-pipeline-step.active');
-  if (activeStep) {
-    activeStep.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  if (isCorrect) {
+    btn.classList.add('correct');
+    showQuizFeedback(quiz, true);
+  } else {
+    btn.classList.add('wrong');
+    // Highlight the correct one
+    quiz.querySelectorAll('.t-quiz-opt').forEach(function(opt) {
+      // Find the correct one by checking its onclick
+      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').indexOf('true') !== -1) {
+        opt.classList.add('correct');
+      }
+    });
+    showQuizFeedback(quiz, false);
   }
 }
 
-function stepPipeline(dir) {
-  var next = currentPipelineStep + dir;
-  if (next >= 0 && next < totalPipelineSteps) {
-    setPipelineStep(next);
+function showQuizFeedback(quiz, correct) {
+  var fb = quiz.querySelector('.t-quiz-feedback');
+  if (!fb) return;
+
+  if (correct) {
+    fb.innerHTML = '<strong style="color:var(--green);">Correct.</strong> That\'s the multiplier effect in action.';
+  } else {
+    fb.innerHTML = '<strong style="color:var(--yellow);">Not quite.</strong> Check the highlighted answer above.';
   }
+  fb.classList.add('show');
 }
+
+// =====================================================================
+// COPY PROMPT
+// =====================================================================
+function copyPrompt(el) {
+  var text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(function() {
+    var copied = el.parentElement.querySelector('.t-prompt-copied');
+    if (copied) {
+      copied.classList.add('show');
+      setTimeout(function() { copied.classList.remove('show'); }, 2000);
+    }
+  });
+}
+
+// =====================================================================
+// MULTIPLIER ANIMATION (IntersectionObserver)
+// =====================================================================
+(function() {
+  var mult = document.getElementById('multiplier-visual');
+  if (!mult) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(mult);
+})();
 
 // =====================================================================
 // DECISION TREE
@@ -153,47 +198,34 @@ function stepPipeline(dir) {
 var dtState = {};
 
 var dtResults = {
-  // files=yes
   'yes-yes': {
-    title: 'Claude Code — absolutely',
-    desc: 'You\'re working with files AND you\'ll do this again. Claude Code reads your project context automatically and can build reusable workflows. Set up a CLAUDE.md file once and every future session starts with full context.'
+    title: 'Claude Code \u2014 100%',
+    desc: 'Files + repeatable = Claude Code territory. Set up a CLAUDE.md with your project context. Build it once, reuse it every time.'
   },
   'yes-no': {
     title: 'Claude Code',
-    desc: 'Even for one-time file-based work, Claude Code is more efficient. It reads the files directly instead of you copy-pasting content into chat. Open it in your project folder and describe what you need.'
+    desc: 'Even one-time file work is faster in Claude Code. It reads the files directly. No copy-pasting into a chat window.'
   },
-  // files=no
   'no-quick': {
     title: 'Claude Chat (Browser)',
-    desc: 'Quick question, no files needed — browser chat is perfect. Keep it focused: one clear question, get your answer, move on. No need to set up a project context for a simple question.'
+    desc: 'Quick question, no files. Browser chat works. Keep it focused: one question, one answer, done.'
   },
   'no-extended': {
     title: 'Consider Claude Code',
-    desc: 'Extended work sessions burn through tokens fast in browser chat because you keep re-explaining context. Even without files, Claude Code with a CLAUDE.md gives Claude persistent memory of your role and preferences. Worth the switch.'
+    desc: 'Extended sessions burn tokens fast in browser chat because you re-explain context every message. Claude Code with a CLAUDE.md file gives Claude persistent memory. Worth the switch even without files.'
   }
 };
 
 function dtAnswer(step, answer) {
   dtState[step] = answer;
-
-  // Hide current question
   document.querySelector('.t-dt-question[data-dt-step="' + step + '"]').classList.remove('active');
 
   if (step === 0 && answer === 'yes') {
-    // Go to question 1 (repeatable?)
     document.querySelector('.t-dt-question[data-dt-step="1"]').classList.add('active');
   } else if (step === 0 && answer === 'no') {
-    // Go to question 2 (quick or extended?)
     document.querySelector('.t-dt-question[data-dt-step="2"]').classList.add('active');
   } else {
-    // Show result
-    var key;
-    if (step === 1) {
-      key = 'yes-' + answer;
-    } else {
-      key = 'no-' + answer;
-    }
-
+    var key = step === 1 ? 'yes-' + answer : 'no-' + answer;
     var result = dtResults[key];
     var el = document.getElementById('dt-result');
     el.innerHTML = '<div class="t-dt-result-card"><h4>' + result.title + '</h4><p>' + result.desc + '</p></div>';
@@ -204,16 +236,8 @@ function dtAnswer(step, answer) {
 
 function dtReset() {
   dtState = {};
-
-  // Reset all questions
-  document.querySelectorAll('.t-dt-question').forEach(function(q) {
-    q.classList.remove('active');
-  });
-
-  // Show first question
+  document.querySelectorAll('.t-dt-question').forEach(function(q) { q.classList.remove('active'); });
   document.querySelector('.t-dt-question[data-dt-step="0"]').classList.add('active');
-
-  // Hide result
   var el = document.getElementById('dt-result');
   el.classList.remove('active');
   el.innerHTML = '';
@@ -221,7 +245,7 @@ function dtReset() {
 }
 
 // =====================================================================
-// SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL
 // =====================================================================
 document.addEventListener('click', function(e) {
   var link = e.target.closest('a[href^="#"]');
