@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Training | Agility Revenue Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="training.css">
+</head>
+<body data-role="sales">
+
+<!-- ============================================================
+     TOPBAR
+     ============================================================ -->
+<header class="topbar">
+  <a class="topbar-logo" href="/training">
+    Agility <span class="pill">AI Training</span>
+  </a>
+  <nav class="topbar-nav-links">
+    <a href="#big-picture">Big Picture</a>
+    <a href="#automation-suite">Automations</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#for-you">For You</a>
+    <a href="#claude-code">Claude Code</a>
+    <a href="#reference">Reference</a>
+  </nav>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">&#x1F319;</button>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="t-hero">
+  <div class="t-hero-bg"></div>
+  <div class="t-hero-content">
+    <div class="t-hero-eyebrow">Revenue Team Training</div>
+    <h1>AI-Powered Content,<br><em>from the inside.</em></h1>
+    <p class="t-hero-desc">What we built, why it works, and how you can leverage the same tools. This is how one marketing person produces 30+ pieces of content per month across 6 channels — without writing any of it manually.</p>
+
+    <div class="t-role-toggle" id="role-toggle-hero">
+      <button class="t-role-btn active" data-role="sales" onclick="setRole('sales')">Sales</button>
+      <button class="t-role-btn" data-role="strategy" onclick="setRole('strategy')">Strategy</button>
+      <button class="t-role-btn" data-role="marketing" onclick="setRole('marketing')">Marketing</button>
+    </div>
+
+    <div class="hero-tags">
+      <span class="hero-tag">30 min read</span>
+      <span class="hero-tag">Reference after training</span>
+      <span class="hero-tag">Role-personalized</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LAYOUT: SIDEBAR + MAIN
+     ============================================================ -->
+<div class="t-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="t-sidebar" id="sidebar">
+    <div class="sidebar-label">Sections</div>
+    <ul>
+      <li><a href="#big-picture" class="active"><span class="step-dot">1</span> The Big Picture</a></li>
+      <li><a href="#automation-suite"><span class="step-dot">2</span> Automation Suite</a></li>
+      <li><a href="#philosophy"><span class="step-dot">3</span> The Philosophy</a></li>
+      <li><a href="#for-you"><span class="step-dot">4</span> What This Means for You</a></li>
+      <li><a href="#claude-code"><span class="step-dot">5</span> Claude Code vs. Chat</a></li>
+      <li><a href="#reference"><span class="step-dot">6</span> Quick Reference</a></li>
+    </ul>
+
+    <div class="sidebar-label">Your Role</div>
+    <div class="t-role-toggle t-role-toggle-sidebar" id="role-toggle-sidebar">
+      <button class="t-role-btn active" data-role="sales" onclick="setRole('sales')">Sales</button>
+      <button class="t-role-btn" data-role="strategy" onclick="setRole('strategy')">Strategy</button>
+      <button class="t-role-btn" data-role="marketing" onclick="setRole('marketing')">Marketing</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="t-main">
+
+    <!-- ============================================================
+         SECTION 1: THE BIG PICTURE
+         ============================================================ -->
+    <section id="big-picture">
+      <div class="step-header">
+        <div class="step-badge">1</div>
+        <div class="step-title-wrap">
+          <h2>The Big Picture</h2>
+          <div class="step-sub">Why we built an AI content engine</div>
+        </div>
+      </div>
+
+      <p>Agility's content needs outpaced what one person could do manually. Weekly blog posts, 7 social posts per week, monthly newsletters, case studies on demand, engagement monitoring, HubSpot nurture emails — all needing to stay on-brand, data-driven, and consistent. Every week. Without fail.</p>
+
+      <p>The answer wasn't hiring a content team. It was building a system — an AI-powered orchestration layer that handles the research, writing, quality checks, formatting, and publishing. The strategic decisions (what to write about, how to position it, what angle to take) stay human. Everything else is automated.</p>
+
+      <div class="t-stat-cards">
+        <div class="t-stat-card">
+          <div class="t-stat-number">1</div>
+          <div class="t-stat-label">Blog per week</div>
+          <div class="t-stat-desc">SEO-optimized, 2,000 words, researched and QC'd automatically</div>
+        </div>
+        <div class="t-stat-card">
+          <div class="t-stat-number">7</div>
+          <div class="t-stat-label">Social posts per week</div>
+          <div class="t-stat-desc">4 LinkedIn + 3 Instagram with branded imagery generated</div>
+        </div>
+        <div class="t-stat-card">
+          <div class="t-stat-number">30+</div>
+          <div class="t-stat-label">Pieces per month</div>
+          <div class="t-stat-desc">Blog, social, newsletter, case studies, engagement, emails</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Key insight</strong>
+          <p>AI is not "write me a blog post." It's an orchestration layer. Research feeds writing, writing feeds QC, QC feeds publishing, publishing feeds analytics, analytics feeds the next cycle. Each step is automated and connected.</p>
+        </div>
+      </div>
+
+      <!-- Role callouts -->
+      <div class="t-role-callout role-sales">
+        <div class="t-role-callout-label">For Sales</div>
+        <p>This means the content you're sharing with prospects is always fresh, keyword-optimized, and published on a consistent cadence. No stale collateral. The blog targets keywords your prospects are actively searching, and every piece goes through brand-safety QC before it goes live.</p>
+      </div>
+      <div class="t-role-callout role-strategy">
+        <div class="t-role-callout-label">For Strategy</div>
+        <p>Client-facing implications: we can produce case studies, thought leadership, and client-specific content at scale. You can request content via the Hub, and the pipeline handles research, writing, and formatting automatically.</p>
+      </div>
+      <div class="t-role-callout role-marketing">
+        <div class="t-role-callout-label">For Marketing</div>
+        <p>This is the system you'll interact with most. Understanding the pipeline means you can request briefs, influence topics through keyword strategy, and leverage the content library. Every pipeline feeds the next one — blog content becomes social posts, social themes become HubSpot emails.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: THE AUTOMATION SUITE
+         ============================================================ -->
+    <section id="automation-suite">
+      <div class="step-header">
+        <div class="step-badge">2</div>
+        <div class="step-title-wrap">
+          <h2>The Automation Suite</h2>
+          <div class="step-sub">What each pipeline does and how they connect</div>
+        </div>
+      </div>
+
+      <p>Here's the full content ecosystem. Each pipeline runs on a schedule, but they all feed into each other. Click any pipeline to see how it works.</p>
+
+      <!-- Blog pipeline interactive flow -->
+      <h3>Blog Pipeline: End-to-End</h3>
+      <p>The blog pipeline is the most complex — 8 stages from keyword research to published article. Step through it to see how each stage works.</p>
+
+      <div class="t-pipeline-flow" id="pipeline-flow">
+        <div class="t-pipeline-step active" data-pipeline-step="0" onclick="setPipelineStep(0)">
+          <div class="t-pipeline-step-num">1</div>
+          <div class="t-pipeline-step-name">Keyword Gap</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="1" onclick="setPipelineStep(1)">
+          <div class="t-pipeline-step-num">2</div>
+          <div class="t-pipeline-step-name">Research</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="2" onclick="setPipelineStep(2)">
+          <div class="t-pipeline-step-num">3</div>
+          <div class="t-pipeline-step-name">Writing</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="3" onclick="setPipelineStep(3)">
+          <div class="t-pipeline-step-num">4</div>
+          <div class="t-pipeline-step-name">Editor QC</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="4" onclick="setPipelineStep(4)">
+          <div class="t-pipeline-step-num">5</div>
+          <div class="t-pipeline-step-name">Safety Check</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="5" onclick="setPipelineStep(5)">
+          <div class="t-pipeline-step-num">6</div>
+          <div class="t-pipeline-step-name">Format</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="6" onclick="setPipelineStep(6)">
+          <div class="t-pipeline-step-num">7</div>
+          <div class="t-pipeline-step-name">Publish</div>
+        </div>
+        <div class="t-pipeline-connector"></div>
+        <div class="t-pipeline-step" data-pipeline-step="7" onclick="setPipelineStep(7)">
+          <div class="t-pipeline-step-num">8</div>
+          <div class="t-pipeline-step-name">Distribute</div>
+        </div>
+      </div>
+
+      <div class="t-pipeline-detail" id="pipeline-detail">
+        <div class="t-pipeline-detail-inner" data-detail="0" style="display:block;">
+          <h4>Keyword Gap Analysis</h4>
+          <p>SimilarWeb data reveals what keywords competitors rank for that we don't. Claude picks the highest-opportunity target keyword, then generates a full content brief and a self-contained research prompt.</p>
+          <div class="t-detail-tag">Automated monthly via SimilarWeb API</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="1">
+          <h4>Deep Research</h4>
+          <p>Perplexity's sonar-deep-research model executes the research prompt — finding current stats, expert opinions, and industry context. This takes 60-120 seconds and produces a comprehensive research brief with citations.</p>
+          <div class="t-detail-tag">Perplexity sonar-deep-research</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="2">
+          <h4>AI Writing</h4>
+          <p>Claude writes a 1,800-2,000 word article using the research, brand guidelines, and voice rules. Includes an Agility brand section and AEO FAQ questions. The generation prompt focuses on what to write — no negative instructions.</p>
+          <div class="t-detail-tag">Claude Sonnet 4 &middot; ~2,000 words</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="3">
+          <h4>Editor QC Pass</h4>
+          <p>A second Claude call acts as an editor — checking banned words, stat accuracy, competitor safety, link integrity, and brand voice. This is the "de-sloppify" cleanup pass (more on this in Section 3).</p>
+          <div class="t-detail-tag">Second Claude pass &middot; Editorial review</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="4">
+          <h4>Content Safety Check</h4>
+          <p>Automated regex and string-matching checks: negation-pivot patterns, missing CTAs, banned words/phrases, and competitor URL filtering. Any competitor domains found in links are automatically removed.</p>
+          <div class="t-detail-tag">Regex + string matching &middot; Zero tolerance</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="5">
+          <h4>Document Formatting</h4>
+          <p>The validated content is built into a properly formatted .docx with headings, hyperlinks, and brand-consistent structure. Ready for review without any manual formatting.</p>
+          <div class="t-detail-tag">Auto-generated .docx</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="6">
+          <h4>Publish to CMS</h4>
+          <p>The document uploads to Google Drive (auto-converted to Google Doc for easy review), then publishes to Framer CMS. Desktop and email notifications let the team know it's ready for final eyes.</p>
+          <div class="t-detail-tag">Google Drive + Framer CMS</div>
+        </div>
+        <div class="t-pipeline-detail-inner" data-detail="7">
+          <h4>Cross-Platform Distribution</h4>
+          <p>Published posts automatically syndicate to Medium (with canonical URLs for SEO), get repurposed into social hooks for LinkedIn and Instagram, and feed into the content library for sales enablement.</p>
+          <div class="t-detail-tag">Medium + Social + Content Library</div>
+        </div>
+      </div>
+
+      <div class="t-pipeline-nav">
+        <button class="btn-secondary" id="pipeline-prev" onclick="stepPipeline(-1)" disabled>Previous</button>
+        <span class="t-pipeline-counter" id="pipeline-counter">1 of 8</span>
+        <button class="btn-primary" id="pipeline-next" onclick="stepPipeline(1)">Next</button>
+      </div>
+
+      <!-- Other pipelines -->
+      <h3>All Pipelines</h3>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Social Weekly</div>
+            <div class="t-expandable-sub">4 LinkedIn + 3 Instagram posts every Monday</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Every Monday, the system fetches performance context from previous posts, runs Perplexity research on trending adtech topics, then Claude generates 4 LinkedIn posts (hook/body/CTA format) and 3 Instagram posts. Branded images are auto-generated using AI backgrounds + the Agility logo. Everything queues in the Hub for review before posting.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Monthly Newsletter</div>
+            <div class="t-expandable-sub">7-section structured format, 1st of each month</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Pulls the latest blog for highlights, researches 4 weeks of industry news via Perplexity, then Claude writes all 7 newsletter sections. The editor QC pass checks everything, and it outputs a formatted .docx matching the HubSpot template. One section (Agility News) is always a manual placeholder — the human touch point.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Reddit &amp; Quora Engagement</div>
+            <div class="t-expandable-sub">Expert comments in relevant industry discussions</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Perplexity discovers 3-5 relevant threads (Reddit) or questions (Quora) where Agility's expertise is relevant. Claude writes expert-level comments — casual on Reddit (100-200 words), authoritative on Quora (200-350 words). Every comment passes QC for banned words, competitor mentions, and promotional language before queuing in the Hub. Natural backlinks to relevant blog posts when appropriate.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Medium Syndication</div>
+            <div class="t-expandable-sub">Auto-republish blogs with canonical URLs for SEO</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>When a blog publishes on agilityads.com, it automatically syndicates to Medium as a draft with a canonical URL footer pointing back to the original. This gives us presence on Medium while ensuring all SEO value flows back to our domain. Deduplication tracking prevents re-publishing.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Case Study Generator</div>
+            <div class="t-expandable-sub">Submit an intake form, get a formatted case study</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Takes a JSON intake with client data (challenge, approach, results, metrics), uses Claude to write a structured case study with headline stats, timeline, halo effects, and a client quote. The poller watches for new form submissions every 30 minutes and auto-generates.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">Content Library</div>
+            <div class="t-expandable-sub">AI-tagged, searchable repository for sales enablement</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Every blog, case study, one-pager, and PDF gets processed by Claude for metadata tagging — industry, use case, business size. The result is a searchable content library where sales can find the right asset for any prospect by filtering on vertical, pain point, or company size.</p>
+        </div>
+      </div>
+
+      <div class="t-expandable" onclick="toggleExpand(this)">
+        <div class="t-expandable-header">
+          <div class="t-expandable-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+          </div>
+          <div>
+            <div class="t-expandable-title">HubSpot Email Automation</div>
+            <div class="t-expandable-sub">Social themes transformed into nurture email drafts</div>
+          </div>
+        </div>
+        <div class="t-expandable-body">
+          <p>Reads the weekly social content, transforms the best-performing themes into 2 B2B email drafts via Claude, and creates them directly in HubSpot Marketing Email API. Supports dry-run mode for local-only preview before pushing to HubSpot.</p>
+        </div>
+      </div>
+
+      <!-- Schedule table -->
+      <h3>Automated Schedule</h3>
+      <div class="t-table-wrap">
+        <table class="t-schedule-table">
+          <thead>
+            <tr><th>Pipeline</th><th>Schedule</th><th>Output</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Blog</td><td>Wednesday 11:00 AM</td><td>.docx + Google Doc + Framer CMS</td></tr>
+            <tr><td>Social Weekly</td><td>Monday 8:00 AM</td><td>.docx + Hub queue + branded images</td></tr>
+            <tr><td>Social Monthly</td><td>1st of month, 9:00 AM</td><td>Full month content calendar .docx</td></tr>
+            <tr><td>Newsletter</td><td>1st of month, 10:00 AM</td><td>.docx matching HubSpot template</td></tr>
+            <tr><td>Reddit Engagement</td><td>Wednesday 10:00 AM</td><td>Hub queue for manual posting</td></tr>
+            <tr><td>Quora Engagement</td><td>Tuesday 9:00 AM</td><td>Hub queue for manual posting</td></tr>
+            <tr><td>Keyword Refresh</td><td>2nd of month, 9:00 AM</td><td>Updated keyword data</td></tr>
+            <tr><td>Case Study Poller</td><td>Every 30 minutes</td><td>Auto-generated case studies</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Role callouts -->
+      <div class="t-role-callout role-sales">
+        <div class="t-role-callout-label">For Sales</div>
+        <p>The <strong>Content Library</strong> is your goldmine. Every piece we produce gets AI-tagged and searchable by industry, use case, and business size. Need a case study about retail measurement? A blog post about CTV incrementality? It's there, and it's always current.</p>
+      </div>
+      <div class="t-role-callout role-strategy">
+        <div class="t-role-callout-label">For Strategy</div>
+        <p><strong>Case studies can be generated from an intake form.</strong> If you have a client win, submit the data and the pipeline handles research, writing, and formatting. The engagement pipelines also surface relevant industry conversations you can share with clients.</p>
+      </div>
+      <div class="t-role-callout role-marketing">
+        <div class="t-role-callout-label">For Marketing</div>
+        <p>Every pipeline runs on a schedule, but you can trigger any of them manually. <strong>The Hub is your control panel</strong> — you can submit blog briefs, review social posts before they go live, and see the full queue of pending content across all channels.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: THE PHILOSOPHY
+         ============================================================ -->
+    <section id="philosophy">
+      <div class="step-header">
+        <div class="step-badge">3</div>
+        <div class="step-title-wrap">
+          <h2>The Philosophy</h2>
+          <div class="step-sub">How to think about AI-powered content</div>
+        </div>
+      </div>
+
+      <p>Three principles drive everything in the system. Understanding these will change how you think about using AI — not just for content, but for any work.</p>
+
+      <!-- De-sloppify -->
+      <h3>Principle 1: The De-Sloppify Pattern</h3>
+      <p>The biggest mistake people make with AI is front-loading prompts with what <em>not</em> to do. "Don't be verbose. Don't use jargon. Don't mention competitors." This actually degrades output quality — the model hedges and second-guesses itself.</p>
+
+      <div class="t-comparison">
+        <div class="t-comparison-col t-comparison-bad">
+          <div class="t-comparison-label">The common approach</div>
+          <div class="t-comparison-content">
+            <p class="t-comparison-prompt">"Write a blog post about CTV measurement. Don't be verbose. Don't use jargon. Don't mention competitors. Don't use em dashes. Don't start with 'In today's...' Avoid cliches. Don't be too salesy..."</p>
+            <div class="t-comparison-result">Result: Hedging, generic, lifeless content that reads like it was written by committee.</div>
+          </div>
+        </div>
+        <div class="t-comparison-col t-comparison-good">
+          <div class="t-comparison-label">The de-sloppify approach</div>
+          <div class="t-comparison-content">
+            <p class="t-comparison-prompt"><strong>Pass 1 — Generate:</strong> "Write a confident, data-driven article about CTV measurement for enterprise CMOs. Active voice, specific examples, trust the reader."</p>
+            <p class="t-comparison-prompt"><strong>Pass 2 — Clean up:</strong> Automated QC catches banned words, removes competitor mentions, tightens verbose passages, enforces voice rules.</p>
+            <div class="t-comparison-result">Result: Natural, authoritative content that passes brand safety checks.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Why this matters for you</strong>
+          <p>This applies to any AI work, not just content pipelines. When you're using Claude for research, writing, or analysis — tell it what you want, not what to avoid. Then review the output and iterate. Two clean passes beat one over-constrained attempt every time.</p>
+        </div>
+      </div>
+
+      <!-- Two-layer QC -->
+      <h3>Principle 2: Two-Layer Quality Control</h3>
+      <p>Quality isn't one check — it's two distinct layers that serve different purposes.</p>
+
+      <div class="t-qc-layers">
+        <div class="t-qc-layer">
+          <div class="t-qc-layer-header">
+            <div class="t-qc-layer-badge">Layer 1</div>
+            <div class="t-qc-layer-title">Content Safety</div>
+          </div>
+          <p>String-matching and list-based checks that enforce absolute rules.</p>
+          <ul>
+            <li>Banned words and phrases (corporate jargon, cliches, hedging language)</li>
+            <li>Competitor name and URL filtering (The Trade Desk, StackAdapt, Criteo, etc.)</li>
+            <li>Promotional language detection in engagement content</li>
+            <li>Banned openers ("In today's landscape..." "Here's the thing...")</li>
+          </ul>
+        </div>
+        <div class="t-qc-layer">
+          <div class="t-qc-layer-header">
+            <div class="t-qc-layer-badge">Layer 2</div>
+            <div class="t-qc-layer-title">Structural QC</div>
+          </div>
+          <p>Pattern-based checks that catch subtle quality issues.</p>
+          <ul>
+            <li>Negation-pivot patterns ("Not X, but Y" — sounds defensive)</li>
+            <li>Missing calls to action</li>
+            <li>Stat and claim accuracy (only pre-approved statistics can be cited)</li>
+            <li>Link integrity and URL validation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Automate the repetitive -->
+      <h3>Principle 3: Automate the Repetitive, Preserve the Strategic</h3>
+      <p>The system has a clear boundary between what's automated and what stays human.</p>
+
+      <div class="t-boundary">
+        <div class="t-boundary-col">
+          <div class="t-boundary-label t-boundary-auto">The system handles</div>
+          <ul>
+            <li>Keyword research and gap analysis</li>
+            <li>Topic research with current data</li>
+            <li>Drafting and formatting</li>
+            <li>Quality checks and safety filters</li>
+            <li>Document creation and publishing</li>
+            <li>Cross-platform distribution</li>
+            <li>Scheduling and notifications</li>
+          </ul>
+        </div>
+        <div class="t-boundary-divider"></div>
+        <div class="t-boundary-col">
+          <div class="t-boundary-label t-boundary-human">Humans decide</div>
+          <ul>
+            <li>Which topics matter this quarter</li>
+            <li>How to position against competitors</li>
+            <li>What angle resonates with each audience</li>
+            <li>Whether a case study is ready to share</li>
+            <li>Final editorial review before publish</li>
+            <li>Strategic pivots based on market shifts</li>
+            <li>Client-specific messaging and tone</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Brain system -->
+      <h3>The Knowledge System</h3>
+      <p>The pipelines don't start from zero each time. A structured knowledge vault stores strategic context — content strategy, audience personas, competitive positioning, channel playbooks, and accumulated learnings from past performance. When Claude writes content, it reads the relevant strategy files first, so every piece is informed by what we know works.</p>
+      <p>This is the compounding advantage: every feedback cycle (what performed well, what got edited, what clients responded to) gets captured and feeds the next generation of content. The system gets smarter over time.</p>
+
+      <!-- Role callouts -->
+      <div class="t-role-callout role-sales">
+        <div class="t-role-callout-label">For Sales</div>
+        <p>Think of this like having a research team that never sleeps. Content is data-backed because the system reads keyword gaps, competitor positioning, and performance data before writing anything. When you share a blog post with a prospect, it was written with their search behavior in mind.</p>
+      </div>
+      <div class="t-role-callout role-strategy">
+        <div class="t-role-callout-label">For Strategy</div>
+        <p>The knowledge system stores client intelligence, meeting insights, and industry trends. When the system writes about a topic, it already knows our positioning and what's worked before. You can contribute to this by flagging client wins and market observations.</p>
+      </div>
+      <div class="t-role-callout role-marketing">
+        <div class="t-role-callout-label">For Marketing</div>
+        <p>Understanding the de-sloppify pattern and QC layers helps you write better prompts for any tool, not just our pipelines. The two-pass approach (generate freely, then clean up) is the single most impactful technique for getting high-quality AI output.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: WHAT THIS MEANS FOR YOU
+         ============================================================ -->
+    <section id="for-you">
+      <div class="step-header">
+        <div class="step-badge">4</div>
+        <div class="step-title-wrap">
+          <h2>What This Means for You</h2>
+          <div class="step-sub">Role-specific takeaways and actions</div>
+        </div>
+      </div>
+
+      <!-- SALES VIEW -->
+      <div class="t-role-section role-sales">
+        <div class="t-section-intro">
+          <p>As someone on the sales team, the automation suite is your content supply chain. Here's how to leverage it.</p>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">1</div>
+          <div class="t-action-body">
+            <h4>Use the Content Library</h4>
+            <p>Every piece of content gets AI-tagged by industry, use case, and business size. Before a prospect meeting, search the library for relevant case studies, blog posts, and one-pagers. Filter by vertical (Retail, QSR, Automotive, Healthcare, etc.) or pain point (Brand Lift, CTV/OTT, Incrementality Testing, etc.).</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">2</div>
+          <div class="t-action-body">
+            <h4>Share blog posts that match prospect intent</h4>
+            <p>The blog pipeline targets keywords your prospects are actively searching. When you see a blog about "CTV measurement" or "incrementality testing," that topic was chosen because SimilarWeb data showed prospects searching for it. Share these — they're designed to address real questions.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">3</div>
+          <div class="t-action-body">
+            <h4>Request case studies for specific verticals</h4>
+            <p>Have a client win? Submit the data through the Hub intake form. The pipeline generates a structured case study — headline stats, challenge, approach, results, timeline — formatted and ready for the sales deck. No waiting on the marketing queue.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">4</div>
+          <div class="t-action-body">
+            <h4>Trust that content is current</h4>
+            <p>Everything on agilityads.com is published through Framer CMS and is always live. The blog publishes weekly, social goes out daily, and the newsletter drops monthly. When you link a prospect to our content, it's fresh — not a PDF from six months ago.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRATEGY VIEW -->
+      <div class="t-role-section role-strategy">
+        <div class="t-section-intro">
+          <p>As a Strategy Consultant, the automation suite gives you content leverage for client relationships and thought leadership.</p>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">1</div>
+          <div class="t-action-body">
+            <h4>Submit case study intake forms</h4>
+            <p>When a campaign delivers strong results, submit the data through the Hub. Include the challenge, approach, key metrics, and timeline. The pipeline handles the writing, formatting, and QC — you'll get a polished case study back that's ready for client presentations.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">2</div>
+          <div class="t-action-body">
+            <h4>Leverage thought leadership for client relationships</h4>
+            <p>The newsletter and blog pipeline produce consistent thought leadership that you can share with clients. When a blog post covers a topic relevant to a client's challenge, forward it. It positions Agility as a strategic partner, not just a vendor.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">3</div>
+          <div class="t-action-body">
+            <h4>Contribute to the knowledge system</h4>
+            <p>The knowledge vault stores client intelligence and market observations. When you learn something in a client meeting — a new competitive dynamic, a shifting budget priority, a successful approach — flag it. It feeds the next cycle of content and makes the system smarter.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">4</div>
+          <div class="t-action-body">
+            <h4>Use engagement monitoring insights</h4>
+            <p>The Reddit and Quora engagement pipelines surface conversations happening in your clients' industries right now. These threads show you what practitioners are asking about, what frustrations they have, and where opportunities exist for Agility's solutions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING VIEW -->
+      <div class="t-role-section role-marketing">
+        <div class="t-section-intro">
+          <p>As a marketing team member, you have the most direct interaction with the automation suite. Here's how to get the most from it.</p>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">1</div>
+          <div class="t-action-body">
+            <h4>Submit blog briefs via the Hub</h4>
+            <p>Have a topic the blog should cover? Submit a brief through the Hub with the topic, target keyword, audience, angle, and any proof points. The pipeline picks it up and runs the full research-to-publish cycle, informed by your strategic direction.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">2</div>
+          <div class="t-action-body">
+            <h4>Influence the content calendar</h4>
+            <p>The keyword refresh runs monthly, but you can steer topic selection by updating the strategy files. If there's a new campaign theme, a product launch, or a market shift — flag it and the next content cycle adapts. The system is flexible, not rigid.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">3</div>
+          <div class="t-action-body">
+            <h4>Review content in the Hub before it goes live</h4>
+            <p>Everything — social posts, engagement comments, blog drafts — queues in the Hub for review before publishing. This is your editorial control point. You can approve, edit, or reject any piece. The automation handles volume; you control quality.</p>
+          </div>
+        </div>
+
+        <div class="t-action-card">
+          <div class="t-action-num">4</div>
+          <div class="t-action-body">
+            <h4>Close the feedback loop</h4>
+            <p>The feedback analysis pipeline compares generated vs. final edited versions to identify patterns. If you consistently edit out a certain phrase or rewrite a certain section, the system learns. Your edits make the next batch of content better.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: CLAUDE CODE VS. CHAT
+         ============================================================ -->
+    <section id="claude-code">
+      <div class="step-header">
+        <div class="step-badge">5</div>
+        <div class="step-title-wrap">
+          <h2>Claude Code vs. Claude Chat</h2>
+          <div class="step-sub">Stop burning tokens — use the right tool</div>
+        </div>
+      </div>
+
+      <p>Right now, most of the team uses Claude in Chrome — either the chat interface or cowork mode. This works, but it's expensive and inefficient. You spend tokens re-explaining context that Claude Code would read automatically from your project files.</p>
+
+      <div class="t-tool-comparison">
+        <div class="t-tool-card">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="t-tool-name">Claude Chat (Browser)</div>
+          <div class="t-tool-desc">Good for quick questions, brainstorming, and conversations where you don't need files or project context.</div>
+          <div class="t-tool-when">
+            <strong>Use when:</strong>
+            <ul>
+              <li>Quick question, no files involved</li>
+              <li>Brainstorming ideas or concepts</li>
+              <li>Analyzing text you paste in</li>
+              <li>One-off research questions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="t-tool-card t-tool-card-highlight">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="t-tool-name">Claude Code (Terminal/Desktop)</div>
+          <div class="t-tool-desc">Reads your project files automatically. Builds, edits, and runs things. Remembers context via CLAUDE.md. Dramatically more efficient for real work.</div>
+          <div class="t-tool-when">
+            <strong>Use when:</strong>
+            <ul>
+              <li>Working with files, documents, or a project</li>
+              <li>Multi-step tasks (research + write + format)</li>
+              <li>Anything you'll do more than once</li>
+              <li>Building automations or workflows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision tree -->
+      <h3>Which tool should I use?</h3>
+      <div class="t-decision-tree" id="decision-tree">
+        <div class="t-dt-question active" data-dt-step="0">
+          <p class="t-dt-q">Does your task involve files, documents, or a project folder?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(0, 'yes')">Yes, I'm working with files</button>
+            <button class="t-dt-option" onclick="dtAnswer(0, 'no')">No, just a question or brainstorm</button>
+          </div>
+        </div>
+        <div class="t-dt-question" data-dt-step="1">
+          <p class="t-dt-q">Will you need to do this task (or something similar) again?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(1, 'yes')">Yes, it's repeatable</button>
+            <button class="t-dt-option" onclick="dtAnswer(1, 'no')">No, it's a one-time thing</button>
+          </div>
+        </div>
+        <div class="t-dt-question" data-dt-step="2">
+          <p class="t-dt-q">Is this a quick question or an extended work session?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(2, 'quick')">Quick question</button>
+            <button class="t-dt-option" onclick="dtAnswer(2, 'extended')">Extended work</button>
+          </div>
+        </div>
+        <div class="t-dt-result" id="dt-result"></div>
+      </div>
+      <button class="btn-secondary t-dt-reset" id="dt-reset" onclick="dtReset()" style="display:none;">Try again</button>
+
+      <!-- 3 rules -->
+      <h3>3 Rules for the Team</h3>
+      <div class="t-rules">
+        <div class="t-rule">
+          <div class="t-rule-num">1</div>
+          <div class="t-rule-body">
+            <h4>Start in Claude Code for any task that involves files or context</h4>
+            <p>If you're working on documents, spreadsheets, presentations, or any project with multiple files, Claude Code reads the project folder automatically. No more copy-pasting context into chat.</p>
+          </div>
+        </div>
+        <div class="t-rule">
+          <div class="t-rule-num">2</div>
+          <div class="t-rule-body">
+            <h4>Use CLAUDE.md to front-load context</h4>
+            <p>Create a CLAUDE.md file in your project folder with your role, preferences, and rules. Claude reads it every time you start a session — no re-explaining. Type <code>/init</code> to auto-generate one from your project.</p>
+          </div>
+        </div>
+        <div class="t-rule">
+          <div class="t-rule-num">3</div>
+          <div class="t-rule-body">
+            <h4>Use <code>/compact</code> when conversations get long</h4>
+            <p>Long conversations eat tokens fast. Type <code>/compact</code> to compress the conversation history while keeping all context. This dramatically extends how much work you can do in a single session.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role-specific examples -->
+      <div class="t-role-callout role-sales">
+        <div class="t-role-callout-label">For Sales</div>
+        <p><strong>Claude Code example:</strong> Need a custom pitch section for a QSR prospect? Open Claude Code in your templates folder — it reads your existing decks and generates a tailored section using our content library data. <strong>Chat example:</strong> Quick objection response or competitive positioning question? Chat is fine for that.</p>
+      </div>
+      <div class="t-role-callout role-strategy">
+        <div class="t-role-callout-label">For Strategy</div>
+        <p><strong>Claude Code example:</strong> Building a client strategy doc? Claude Code reads your project files, past presentations, and client intel to produce a comprehensive document. <strong>Chat example:</strong> Quick brainstorm on campaign positioning or measurement approach? Chat is fine.</p>
+      </div>
+      <div class="t-role-callout role-marketing">
+        <div class="t-role-callout-label">For Marketing</div>
+        <p><strong>Claude Code example:</strong> Editing content pipeline output, adjusting templates, or building a new automation? Always Claude Code — it understands the full project. <strong>Chat example:</strong> Ideating campaign concepts or analyzing a competitor's messaging? Chat works.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6: QUICK REFERENCE
+         ============================================================ -->
+    <section id="reference">
+      <div class="step-header">
+        <div class="step-badge">6</div>
+        <div class="step-title-wrap">
+          <h2>Quick Reference</h2>
+          <div class="step-sub">Bookmark this for after training</div>
+        </div>
+      </div>
+
+      <h3>Pipeline Schedule</h3>
+      <div class="t-table-wrap">
+        <table class="t-schedule-table t-schedule-compact">
+          <thead>
+            <tr><th>Day</th><th>What runs</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Monday</td><td>Social Weekly (4 LinkedIn + 3 Instagram)</td></tr>
+            <tr><td>Tuesday</td><td>Quora Engagement</td></tr>
+            <tr><td>Wednesday</td><td>Blog Pipeline + Reddit Engagement</td></tr>
+            <tr><td>1st of month</td><td>Social Monthly + Newsletter</td></tr>
+            <tr><td>2nd of month</td><td>Keyword Refresh</td></tr>
+            <tr><td>Continuous</td><td>Blog Poller, Case Study Poller (every 30 min)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Key Resources</h3>
+      <div class="t-resources">
+        <a href="https://agility-hub.vercel.app" target="_blank" rel="noopener" class="t-resource-card">
+          <div class="t-resource-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="16" height="16" rx="3"/><path d="M6 7h8M6 10h8M6 13h5"/></svg>
+          </div>
+          <div>
+            <div class="t-resource-name">Agility Hub</div>
+            <div class="t-resource-desc">Review queue for all pending content</div>
+          </div>
+        </a>
+        <a href="https://agilityads.com/blog" target="_blank" rel="noopener" class="t-resource-card">
+          <div class="t-resource-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v12H4z"/><path d="M4 8h12M8 8v8"/></svg>
+          </div>
+          <div>
+            <div class="t-resource-name">Agility Blog</div>
+            <div class="t-resource-desc">Published articles on agilityads.com</div>
+          </div>
+        </a>
+        <a href="/" target="_blank" rel="noopener" class="t-resource-card">
+          <div class="t-resource-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="14" rx="3"/><path d="M6 9l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15h4" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="t-resource-name">Claude Code Guide</div>
+            <div class="t-resource-desc">Interactive tutorial for getting started</div>
+          </div>
+        </a>
+      </div>
+
+      <h3>The De-Sloppify Cheat Sheet</h3>
+      <div class="t-cheatsheet">
+        <div class="t-cheatsheet-row">
+          <div class="t-cheatsheet-do">Tell Claude what you want</div>
+          <div class="t-cheatsheet-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
+          </div>
+          <div class="t-cheatsheet-dont">Don't list what to avoid</div>
+        </div>
+        <div class="t-cheatsheet-row">
+          <div class="t-cheatsheet-do">Use two passes: generate, then clean</div>
+          <div class="t-cheatsheet-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
+          </div>
+          <div class="t-cheatsheet-dont">Don't over-constrain the first pass</div>
+        </div>
+        <div class="t-cheatsheet-row">
+          <div class="t-cheatsheet-do">Front-load context with CLAUDE.md</div>
+          <div class="t-cheatsheet-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
+          </div>
+          <div class="t-cheatsheet-dont">Don't re-explain every session</div>
+        </div>
+        <div class="t-cheatsheet-row">
+          <div class="t-cheatsheet-do">Use Claude Code for file-based work</div>
+          <div class="t-cheatsheet-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
+          </div>
+          <div class="t-cheatsheet-dont">Don't copy-paste into browser chat</div>
+        </div>
+      </div>
+
+      <div class="t-closing">
+        <p>This page will stay up as a reference. Bookmark it, come back when you need a refresher, and use the role toggle to see content specific to your function.</p>
+        <p>Questions? Reach out to Chandler or drop them in Slack.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="t-footer">
+  <p>Agility Ads &middot; AI Revenue Team Training &middot; Built with Claude</p>
+</footer>
+
+<script src="training.js"></script>
+</body>
+</html>

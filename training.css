@@ -1,0 +1,1386 @@
+/* =====================================================================
+   TRAINING PAGE STYLES
+   Inherits design system from styles.css (CSS variables, resets, fonts)
+   ===================================================================== */
+
+/* =====================================================================
+   TOPBAR (training-specific overrides)
+   ===================================================================== */
+.topbar-nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.topbar-nav-links a {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.topbar-nav-links a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.t-hero {
+  position: relative;
+  padding: 100px 32px 80px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(194, 65, 12, 0.04) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(109, 40, 217, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 20%, rgba(194, 65, 12, 0.06) 0%, transparent 60%);
+  z-index: 0;
+}
+
+[data-theme="dark"] .t-hero-bg {
+  background:
+    linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(167, 139, 250, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 60%);
+}
+
+.t-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.t-hero-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.t-hero h1 {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.t-hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.t-hero-desc {
+  font-size: 18px;
+  color: var(--ink2);
+  line-height: 1.65;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.t-hero .hero-tags {
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* =====================================================================
+   ROLE TOGGLE
+   ===================================================================== */
+.t-role-toggle {
+  display: inline-flex;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.t-role-btn {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.t-role-btn:hover {
+  color: var(--ink);
+}
+
+.t-role-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.t-role-toggle-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.t-role-toggle-sidebar .t-role-btn {
+  font-size: 13px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+/* =====================================================================
+   LAYOUT: SIDEBAR + MAIN
+   ===================================================================== */
+.t-layout {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+  gap: 60px;
+}
+
+.t-sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
+}
+
+.t-sidebar ul {
+  list-style: none;
+}
+
+.t-sidebar ul li a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 5px 0 5px 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.t-sidebar ul li a:hover {
+  color: var(--ink);
+  border-left-color: var(--cream3);
+  text-decoration: none;
+}
+
+.t-sidebar ul li a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.t-sidebar ul li a.active .step-dot {
+  background: var(--accent);
+  color: white;
+}
+
+.t-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.t-main section {
+  margin-bottom: 72px;
+  scroll-margin-top: 80px;
+}
+
+.t-main p {
+  margin-bottom: 16px;
+  color: var(--ink2);
+}
+
+.t-main p:last-child {
+  margin-bottom: 0;
+}
+
+.t-main h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 36px 0 12px;
+}
+
+.t-main h3:first-of-type {
+  margin-top: 28px;
+}
+
+.t-main ul {
+  margin: 8px 0 16px 20px;
+  color: var(--ink2);
+}
+
+.t-main ul li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+/* =====================================================================
+   STAT CARDS
+   ===================================================================== */
+.t-stat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.t-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.t-stat-number {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.t-stat-label {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.t-stat-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   INSIGHT BOX
+   ===================================================================== */
+.t-insight-box {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  margin: 24px 0;
+}
+
+[data-theme="dark"] .t-insight-box {
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+.t-insight-icon {
+  flex-shrink: 0;
+  color: var(--blue);
+  margin-top: 2px;
+}
+
+.t-insight-body strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+.t-insight-body p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink2);
+  margin: 0;
+}
+
+/* =====================================================================
+   ROLE CALLOUTS
+   ===================================================================== */
+.t-role-callout {
+  display: none;
+  gap: 0;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.t-role-callout p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Sales = purple */
+.t-role-callout.role-sales {
+  background: var(--purple-light);
+  border: 1px solid #c4b5fd;
+}
+[data-theme="dark"] .t-role-callout.role-sales {
+  border-color: rgba(167, 139, 250, 0.25);
+}
+.t-role-callout.role-sales .t-role-callout-label {
+  color: var(--purple);
+}
+
+/* Strategy = blue */
+.t-role-callout.role-strategy {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+}
+[data-theme="dark"] .t-role-callout.role-strategy {
+  border-color: rgba(96, 165, 250, 0.25);
+}
+.t-role-callout.role-strategy .t-role-callout-label {
+  color: var(--blue);
+}
+
+/* Marketing = green */
+.t-role-callout.role-marketing {
+  background: var(--green-light);
+  border: 1px solid #bbf7d0;
+}
+[data-theme="dark"] .t-role-callout.role-marketing {
+  border-color: rgba(74, 222, 128, 0.25);
+}
+.t-role-callout.role-marketing .t-role-callout-label {
+  color: var(--green);
+}
+
+/* Show active role's callouts */
+[data-role="sales"] .role-sales,
+[data-role="strategy"] .role-strategy,
+[data-role="marketing"] .role-marketing {
+  display: block;
+}
+
+.t-role-callout-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+/* =====================================================================
+   ROLE SECTIONS (Section 4 full-swap)
+   ===================================================================== */
+.t-role-section {
+  display: none;
+}
+
+[data-role="sales"] .t-role-section.role-sales,
+[data-role="strategy"] .t-role-section.role-strategy,
+[data-role="marketing"] .t-role-section.role-marketing {
+  display: block;
+}
+
+.t-section-intro p {
+  font-size: 16px;
+  color: var(--ink2);
+  margin-bottom: 24px;
+}
+
+/* =====================================================================
+   ACTION CARDS (Section 4)
+   ===================================================================== */
+.t-action-card {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-action-card:last-child {
+  border-bottom: none;
+}
+
+.t-action-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cream2);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.t-action-body h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.t-action-body p {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =====================================================================
+   PIPELINE FLOW (Interactive step-through)
+   ===================================================================== */
+.t-pipeline-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  padding: 16px 0;
+  margin: 16px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.t-pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  min-width: 72px;
+}
+
+.t-pipeline-step:hover {
+  background: var(--cream2);
+}
+
+.t-pipeline-step.active {
+  background: var(--accent-light);
+}
+
+.t-pipeline-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cream2);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.t-pipeline-step.active .t-pipeline-step-num {
+  background: var(--accent);
+  color: white;
+}
+
+.t-pipeline-step-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.t-pipeline-step.active .t-pipeline-step-name {
+  color: var(--accent);
+}
+
+.t-pipeline-connector {
+  width: 20px;
+  height: 2px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.t-pipeline-detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 8px 0 16px;
+  min-height: 120px;
+}
+
+.t-pipeline-detail-inner {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.t-pipeline-detail-inner h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.t-pipeline-detail-inner p {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.t-detail-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--cream2);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.t-pipeline-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.t-pipeline-counter {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  min-width: 50px;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================================
+   EXPANDABLE CARDS
+   ===================================================================== */
+.t-expandable {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.t-expandable:hover {
+  border-color: var(--muted);
+}
+
+.t-expandable-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.t-expandable-icon {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+
+.t-expandable.open .t-expandable-icon {
+  transform: rotate(180deg);
+}
+
+.t-expandable-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.t-expandable-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.t-expandable-body {
+  display: none;
+  padding: 0 16px 16px 44px;
+}
+
+.t-expandable.open .t-expandable-body {
+  display: block;
+}
+
+.t-expandable-body p {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =====================================================================
+   SCHEDULE TABLE
+   ===================================================================== */
+.t-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 24px;
+}
+
+.t-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.t-schedule-table thead {
+  background: var(--cream2);
+}
+
+.t-schedule-table th {
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.t-schedule-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+}
+
+.t-schedule-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.t-schedule-compact td:first-child {
+  min-width: 110px;
+}
+
+/* =====================================================================
+   COMPARISON (De-sloppify before/after)
+   ===================================================================== */
+.t-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0 28px;
+}
+
+.t-comparison-col {
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.t-comparison-bad {
+  background: var(--yellow-light);
+  border-color: #fde68a;
+}
+
+[data-theme="dark"] .t-comparison-bad {
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+.t-comparison-good {
+  background: var(--green-light);
+  border-color: #bbf7d0;
+}
+
+[data-theme="dark"] .t-comparison-good {
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.t-comparison-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.t-comparison-bad .t-comparison-label {
+  color: var(--yellow);
+}
+
+.t-comparison-good .t-comparison-label {
+  color: var(--green);
+}
+
+.t-comparison-prompt {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.55;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.t-comparison-prompt strong {
+  font-style: normal;
+  color: var(--ink);
+}
+
+.t-comparison-result {
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.t-comparison-bad .t-comparison-result {
+  color: var(--yellow);
+}
+
+.t-comparison-good .t-comparison-result {
+  color: var(--green);
+}
+
+/* =====================================================================
+   QC LAYERS
+   ===================================================================== */
+.t-qc-layers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+.t-qc-layer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.t-qc-layer-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.t-qc-layer-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: white;
+  background: var(--accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.t-qc-layer-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.t-qc-layer p {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-bottom: 10px;
+}
+
+.t-qc-layer ul {
+  margin: 0 0 0 16px;
+}
+
+.t-qc-layer ul li {
+  font-size: 13px;
+  color: var(--ink2);
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   BOUNDARY DIAGRAM (Automated vs. Human)
+   ===================================================================== */
+.t-boundary {
+  display: flex;
+  gap: 0;
+  margin: 16px 0 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.t-boundary-col {
+  flex: 1;
+  padding: 20px;
+}
+
+.t-boundary-col:first-child {
+  background: var(--cream2);
+}
+
+.t-boundary-divider {
+  width: 1px;
+  background: var(--border);
+}
+
+.t-boundary-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.t-boundary-auto {
+  color: var(--accent);
+}
+
+.t-boundary-human {
+  color: var(--blue);
+}
+
+.t-boundary-col ul {
+  margin: 0 0 0 16px;
+}
+
+.t-boundary-col ul li {
+  font-size: 13px;
+  color: var(--ink2);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* =====================================================================
+   TOOL COMPARISON (Claude Code vs Chat)
+   ===================================================================== */
+.t-tool-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.t-tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.t-tool-card-highlight {
+  border-color: var(--accent);
+  border-width: 2px;
+  position: relative;
+}
+
+.t-tool-card-highlight::before {
+  content: "Recommended";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+.t-tool-icon {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.t-tool-card-highlight .t-tool-icon {
+  color: var(--accent);
+}
+
+.t-tool-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.t-tool-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.t-tool-when strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.t-tool-when ul {
+  margin: 0 0 0 16px;
+}
+
+.t-tool-when ul li {
+  font-size: 13px;
+  color: var(--ink2);
+  margin-bottom: 4px;
+}
+
+/* =====================================================================
+   DECISION TREE
+   ===================================================================== */
+.t-decision-tree {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0 12px;
+}
+
+.t-dt-question {
+  display: none;
+}
+
+.t-dt-question.active {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+.t-dt-q {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.t-dt-options {
+  display: flex;
+  gap: 10px;
+}
+
+.t-dt-option {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink2);
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.t-dt-option:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.t-dt-result {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.t-dt-result.active {
+  display: block;
+}
+
+.t-dt-result-card {
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  background: var(--accent-light);
+}
+
+.t-dt-result-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.t-dt-result-card p {
+  font-size: 14px;
+  color: var(--ink2);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.t-dt-reset {
+  margin-top: 8px;
+}
+
+/* =====================================================================
+   RULES
+   ===================================================================== */
+.t-rules {
+  margin: 16px 0 24px;
+}
+
+.t-rule {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-rule:last-child {
+  border-bottom: none;
+}
+
+.t-rule-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.t-rule-body h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.t-rule-body p {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.t-rule-body code {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--cream2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* =====================================================================
+   RESOURCES (Section 6)
+   ===================================================================== */
+.t-resources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0 24px;
+}
+
+.t-resource-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.t-resource-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.t-resource-icon {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.t-resource-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.t-resource-desc {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =====================================================================
+   CHEAT SHEET (Section 6)
+   ===================================================================== */
+.t-cheatsheet {
+  margin: 12px 0 28px;
+}
+
+.t-cheatsheet-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-cheatsheet-row:last-child {
+  border-bottom: none;
+}
+
+.t-cheatsheet-do {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.t-cheatsheet-arrow {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.t-cheatsheet-dont {
+  flex: 1;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: right;
+  text-decoration: line-through;
+  text-decoration-color: var(--border);
+}
+
+/* =====================================================================
+   CLOSING + FOOTER
+   ===================================================================== */
+.t-closing {
+  background: var(--cream2);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 28px;
+}
+
+.t-closing p {
+  font-size: 15px;
+  color: var(--ink2);
+  margin-bottom: 8px;
+}
+
+.t-closing p:last-child {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.t-footer {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =====================================================================
+   BUTTONS (matching existing system)
+   ===================================================================== */
+.btn-primary {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-secondary {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 20px;
+  background: transparent;
+  color: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* =====================================================================
+   SECTION DIVIDER
+   ===================================================================== */
+.t-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 48px 0;
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media (max-width: 860px) {
+  .t-sidebar {
+    display: none;
+  }
+
+  .t-layout {
+    padding: 32px 20px 80px;
+  }
+
+  .t-hero {
+    padding: 64px 20px 56px;
+  }
+
+  .t-hero h1 {
+    font-size: 36px;
+  }
+
+  .topbar-nav-links {
+    display: none;
+  }
+
+  .t-stat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .t-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .t-qc-layers {
+    grid-template-columns: 1fr;
+  }
+
+  .t-tool-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .t-boundary {
+    flex-direction: column;
+  }
+
+  .t-boundary-divider {
+    width: auto;
+    height: 1px;
+  }
+
+  .t-resources {
+    grid-template-columns: 1fr;
+  }
+
+  .t-dt-options {
+    flex-direction: column;
+  }
+
+  .t-cheatsheet-row {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .t-cheatsheet-dont {
+    text-align: center;
+  }
+
+  .t-cheatsheet-arrow {
+    transform: rotate(90deg);
+  }
+
+  /* Show a mobile role toggle */
+  .t-hero .t-role-toggle {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 580px) {
+  .t-hero h1 {
+    font-size: 28px;
+  }
+
+  .t-hero-desc {
+    font-size: 16px;
+  }
+
+  .t-stat-number {
+    font-size: 36px;
+  }
+
+  .t-pipeline-flow {
+    gap: 0;
+  }
+
+  .t-pipeline-step {
+    min-width: 56px;
+    padding: 8px 4px;
+  }
+
+  .t-pipeline-step-name {
+    font-size: 9px;
+  }
+
+  .t-pipeline-connector {
+    width: 8px;
+  }
+}
