@@ -1014,6 +1014,244 @@
   color: var(--accent);
 }
 
+/* =====================================================================
+   GET STARTED — Install steps, first run, timeline
+   ===================================================================== */
+.t-badge-start {
+  background: var(--green);
+}
+
+.t-dot-start {
+  font-size: 8px;
+}
+
+.t-install-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.t-install-step {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.t-install-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #bbf7d0;
+}
+
+[data-theme="dark"] .t-install-num { border-color: rgba(74,222,128,0.25); }
+
+.t-install-body h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-install-body p {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.5;
+  margin: 0 0 6px;
+}
+
+.t-install-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.t-install-code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 8px 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.t-first-run {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0 24px;
+}
+
+.t-first-run-step {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.t-first-run-cmd {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 280px;
+}
+
+.t-first-run-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Timeline */
+.t-timeline {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 24px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.t-timeline-item {
+  flex: 1;
+  min-width: 120px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.t-timeline-day {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.t-timeline-task {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.4;
+}
+
+.t-timeline-task code {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: var(--cream2);
+  padding: 1px 4px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+/* Permission modes */
+.t-permission-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.t-perm-mode {
+  padding: 14px;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.t-perm-icon { font-size: 24px; margin-bottom: 6px; }
+
+.t-perm-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-perm-default {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+
+.t-perm-shortcut {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  background: var(--surface);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+.t-perm-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+/* Shortcuts */
+.t-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 24px;
+}
+
+.t-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ink2);
+}
+
+.t-shortcut kbd {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--cream2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
 .t-tool-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1241,6 +1479,11 @@
   .t-mult-branches { grid-template-columns: repeat(3, 1fr); }
   .t-calendar { grid-template-columns: 1fr; }
   .t-method-comparison { grid-template-columns: 1fr; }
+  .t-install-steps { grid-template-columns: 1fr; }
+  .t-permission-modes { grid-template-columns: 1fr; }
+  .t-first-run-step { flex-direction: column; gap: 4px; }
+  .t-first-run-cmd { min-width: auto; }
+  .t-timeline { flex-direction: column; }
   .t-tool-comparison, .t-tool-comparison-3 { grid-template-columns: 1fr; }
   .t-commands-grid { grid-template-columns: 1fr; }
   .t-resources { grid-template-columns: 1fr; }

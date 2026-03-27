@@ -21,10 +21,10 @@
     Agility <span class="pill">AI Training</span>
   </a>
   <nav class="topbar-nav-links">
+    <a href="#get-started">Get Started</a>
     <a href="#multiplier">Multiplier</a>
-    <a href="#calendar">Calendar</a>
     <a href="#build">What You Build</a>
-    <a href="#claude-code">Claude Code</a>
+    <a href="#claude-code">Chat/Cowork/Code</a>
     <a href="#reference">Reference</a>
   </nav>
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">&#x1F319;</button>
@@ -67,11 +67,12 @@
   <aside class="t-sidebar" id="sidebar">
     <div class="sidebar-label">Sections</div>
     <ul>
-      <li><a href="#multiplier" class="active"><span class="step-dot">1</span> The Multiplier</a></li>
+      <li><a href="#get-started" class="active"><span class="step-dot t-dot-start">&#x25B6;</span> Get Started</a></li>
+      <li><a href="#multiplier"><span class="step-dot">1</span> The Multiplier</a></li>
       <li><a href="#calendar"><span class="step-dot">2</span> Weekly Calendar</a></li>
       <li><a href="#method"><span class="step-dot">3</span> The Method</a></li>
       <li><a href="#build"><span class="step-dot">4</span> What You Build</a></li>
-      <li><a href="#claude-code"><span class="step-dot">5</span> Claude Code vs. Chat</a></li>
+      <li><a href="#claude-code"><span class="step-dot">5</span> Chat / Cowork / Code</a></li>
       <li><a href="#reference"><span class="step-dot">6</span> Reference</a></li>
     </ul>
 
@@ -85,6 +86,110 @@
 
   <!-- MAIN CONTENT -->
   <main class="t-main">
+
+    <!-- ============================================================
+         GET STARTED
+         ============================================================ -->
+    <section id="get-started">
+      <div class="step-header">
+        <div class="step-badge t-badge-start">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="3" stroke="white" stroke-width="1.5"/><path d="M6 8l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-title-wrap">
+          <h2>Get Claude Code Running</h2>
+          <div class="step-sub">Four steps. Takes about 5 minutes.</div>
+        </div>
+      </div>
+
+      <div class="t-install-steps">
+        <div class="t-install-step">
+          <div class="t-install-num">1</div>
+          <div class="t-install-body">
+            <h4>Install Homebrew</h4>
+            <p>macOS package manager. Check if you have it: <code>brew --version</code></p>
+            <div class="t-install-code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+          </div>
+        </div>
+        <div class="t-install-step">
+          <div class="t-install-num">2</div>
+          <div class="t-install-body">
+            <h4>Install cmux <span class="t-install-tag">Recommended</span></h4>
+            <p>Terminal app built for AI agents. Shows notifications when Claude finishes tasks.</p>
+            <div class="t-install-code">brew install cmux</div>
+          </div>
+        </div>
+        <div class="t-install-step">
+          <div class="t-install-num">3</div>
+          <div class="t-install-body">
+            <h4>Install Claude Code</h4>
+            <p>The CLI itself. One command.</p>
+            <div class="t-install-code">npm install -g @anthropic-ai/claude-code</div>
+          </div>
+        </div>
+        <div class="t-install-step">
+          <div class="t-install-num">4</div>
+          <div class="t-install-body">
+            <h4>Log in</h4>
+            <p>Type <code>claude</code> in your terminal. A browser window opens. Sign in with your Anthropic account. Pick a plan (Pro $20/mo or Max $100/mo recommended).</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Your first session</h3>
+      <div class="t-first-run">
+        <div class="t-first-run-step">
+          <div class="t-first-run-cmd">cd ~/Documents/my-project</div>
+          <div class="t-first-run-desc">Navigate to any project folder</div>
+        </div>
+        <div class="t-first-run-step">
+          <div class="t-first-run-cmd">claude</div>
+          <div class="t-first-run-desc">Start Claude Code</div>
+        </div>
+        <div class="t-first-run-step">
+          <div class="t-first-run-cmd">"What's in this folder? Walk me through it."</div>
+          <div class="t-first-run-desc">Your first prompt — Claude reads everything</div>
+        </div>
+        <div class="t-first-run-step">
+          <div class="t-first-run-cmd">/init</div>
+          <div class="t-first-run-desc">Auto-generate a CLAUDE.md for this project</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Full walkthrough available</strong>
+          <p>This is the quick-start. For a detailed interactive tutorial with hands-on exercises, visit the <a href="/" target="_blank">Claude Code Guide</a>.</p>
+        </div>
+      </div>
+
+      <!-- Your First Week -->
+      <h3>Your first week</h3>
+      <div class="t-timeline">
+        <div class="t-timeline-item">
+          <div class="t-timeline-day">Day 1</div>
+          <div class="t-timeline-task">Install + explore a project folder</div>
+        </div>
+        <div class="t-timeline-item">
+          <div class="t-timeline-day">Day 2</div>
+          <div class="t-timeline-task">Create your CLAUDE.md with <code>/init</code>, customize it with your role</div>
+        </div>
+        <div class="t-timeline-item">
+          <div class="t-timeline-day">Day 3</div>
+          <div class="t-timeline-task">Build one project from Section 4 below</div>
+        </div>
+        <div class="t-timeline-item">
+          <div class="t-timeline-day">Day 5</div>
+          <div class="t-timeline-task">Save a repeatable workflow as a custom skill</div>
+        </div>
+        <div class="t-timeline-item">
+          <div class="t-timeline-day">Day 7</div>
+          <div class="t-timeline-task">Run your first real automation end-to-end</div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================================
          SECTION 1: THE MULTIPLIER EFFECT
@@ -422,6 +527,40 @@
           </div>
         </div>
       </div>
+
+        <div class="t-method-card">
+          <div class="t-method-num">04</div>
+          <div class="t-method-title">Permission modes — how much freedom to give Claude</div>
+          <div class="t-method-body">
+            <p>You control how much autonomy Claude has. Start cautious, increase as you build trust.</p>
+          </div>
+          <div class="t-permission-modes">
+            <div class="t-perm-mode">
+              <div class="t-perm-icon">&#x1F64B;</div>
+              <div class="t-perm-name">Ask first <span class="t-perm-default">Default</span></div>
+              <div class="t-perm-desc">Claude explains each action and waits for your approval. Best while you're learning.</div>
+            </div>
+            <div class="t-perm-mode">
+              <div class="t-perm-icon">&#x1F4CB;</div>
+              <div class="t-perm-name">Plan first <span class="t-perm-shortcut">Shift+Tab</span></div>
+              <div class="t-perm-desc">Claude shows the full plan. You approve once. It runs everything. Best for multi-step tasks.</div>
+            </div>
+            <div class="t-perm-mode">
+              <div class="t-perm-icon">&#x1F680;</div>
+              <div class="t-perm-name">Full auto <span class="t-perm-shortcut">Shift+Tab ×2</span></div>
+              <div class="t-perm-desc">Claude works start to finish with no interruptions. Best when you trust the task completely.</div>
+            </div>
+          </div>
+          <div class="t-insight-box" style="margin-top:16px;">
+            <div class="t-insight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div class="t-insight-body">
+              <strong>Start with Ask First</strong>
+              <p>Watch what Claude does for a few sessions. Reading its explanations builds your understanding of what's happening. Once you're comfortable, switch to Plan or Full Auto for speed.</p>
+            </div>
+          </div>
+        </div>
 
       <!-- Things to avoid -->
       <h3>Five things that hurt your output</h3>
@@ -1176,6 +1315,60 @@
             <div class="t-resource-desc">Full interactive tutorial</div>
           </div>
         </a>
+      </div>
+
+      <h3>Slash commands</h3>
+      <div class="t-table-wrap">
+        <table class="t-schedule-table t-schedule-compact">
+          <thead>
+            <tr><th>Command</th><th>What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/init</code></td><td>Scan your project, generate a CLAUDE.md file</td></tr>
+            <tr><td><code>/compact</code></td><td>Compress conversation history (add instructions: <code>/compact Focus on key decisions</code>)</td></tr>
+            <tr><td><code>/clear</code></td><td>Reset conversation context — use between unrelated tasks</td></tr>
+            <tr><td><code>/btw</code></td><td>Side question that doesn't enter history — zero context cost</td></tr>
+            <tr><td><code>/model</code></td><td>Switch Claude model mid-session</td></tr>
+            <tr><td><code>/cost</code></td><td>Check how many tokens you've used</td></tr>
+            <tr><td><code>/help</code></td><td>Show all available commands</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Keyboard shortcuts</h3>
+      <div class="t-shortcuts">
+        <div class="t-shortcut"><kbd>Shift+Tab</kbd> <span>Toggle Plan Mode</span></div>
+        <div class="t-shortcut"><kbd>Ctrl+C</kbd> <span>Stop current action</span></div>
+        <div class="t-shortcut"><kbd>Esc Esc</kbd> <span>Cancel and go back</span></div>
+        <div class="t-shortcut"><kbd>Tab</kbd> <span>Accept suggestion</span></div>
+      </div>
+
+      <h3>What Claude Code can and can't do</h3>
+      <div class="t-boundary">
+        <div class="t-boundary-col">
+          <div class="t-boundary-label t-boundary-auto">Can</div>
+          <ul>
+            <li>Read and write files on your computer</li>
+            <li>Run terminal commands</li>
+            <li>Search your entire project folder</li>
+            <li>Build automations and scripts</li>
+            <li>Call APIs (HubSpot, Slack, Google, etc.)</li>
+            <li>Remember preferences via CLAUDE.md</li>
+            <li>Generate .docx, .xlsx, .html, .csv, JSON</li>
+          </ul>
+        </div>
+        <div class="t-boundary-divider"></div>
+        <div class="t-boundary-col">
+          <div class="t-boundary-label t-boundary-human">Can't</div>
+          <ul>
+            <li>Browse the web in real-time</li>
+            <li>See your screen</li>
+            <li>Run on your phone</li>
+            <li>Access files outside your project folder</li>
+            <li>Guarantee perfect output every time</li>
+            <li>Remember anything without CLAUDE.md</li>
+          </ul>
+        </div>
       </div>
 
       <h3>The method, in four lines</h3>
