@@ -1102,6 +1102,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin: 20px 0;
+  min-width: 0;
 }
 
 .t-install-step {
@@ -1110,6 +1111,8 @@
   padding: 16px;
   background: var(--surface);
   border: 1px solid var(--border);
+  min-width: 0;
+  overflow: hidden;
   border-radius: 10px;
 }
 
@@ -1130,6 +1133,11 @@
 }
 
 [data-theme="dark"] .t-install-num { border-color: rgba(74,222,128,0.25); }
+
+.t-install-body {
+  min-width: 0;
+  flex: 1;
+}
 
 .t-install-body h4 {
   font-size: 14px;
