@@ -387,16 +387,11 @@
           <div class="t-method-num">02</div>
           <div class="t-method-title">The prompt formula</div>
           <div class="t-method-body">
-            <p>Every strong prompt has four parts.</p>
+            <p>Every strong prompt has three parts.</p>
             <div class="t-formula">
               <div class="t-formula-part">
-                <div class="t-formula-label">Role</div>
-                <div class="t-formula-ex">Who Claude is</div>
-              </div>
-              <div class="t-formula-plus">+</div>
-              <div class="t-formula-part">
                 <div class="t-formula-label">Task</div>
-                <div class="t-formula-ex">What you need</div>
+                <div class="t-formula-ex">What you need done</div>
               </div>
               <div class="t-formula-plus">+</div>
               <div class="t-formula-part">
@@ -409,6 +404,7 @@
                 <div class="t-formula-ex">File type, format</div>
               </div>
             </div>
+            <p class="t-mt-8" style="font-size:13px;color:var(--muted);">You don't need to tell Claude its role — your CLAUDE.md already covers that. Focus your prompt on the task.</p>
           </div>
           <!-- Role-specific prompt examples -->
           <div class="role-sales">
@@ -573,7 +569,7 @@
           </div>
           <div class="t-prompt-block">
             <div class="t-prompt-label">Start with this prompt in Claude Code</div>
-            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a content finder tool. It should ask for an industry and use case, then search our content library (the published_posts.json file and any case studies) for matching content. Print a formatted table to the terminal with title, type (blog/case study/PDF), URL, and a one-line summary. Sort by most recent first. I want fast lookups, no file output needed.</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a content finder for sales. I'll type an industry (like QSR or Automotive) and a use case (like Brand Lift or CTV). Search agilityads.com/blog for matching articles, check our Google Drive for case studies and PDFs, and print a table to the terminal: title, content type, link, and a one-sentence summary of why it's relevant to that prospect. Sort by most recent. I need this before meetings — fast lookups, no file output.</div>
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
@@ -1128,18 +1124,62 @@
         </div>
       </div>
 
-      <!-- Role callouts -->
-      <div class="t-role-callout role-sales">
-        <div class="t-role-callout-label">For Sales</div>
-        <p>The content library updates every time a blog, case study, or PDF publishes. Search by industry or use case to find assets before prospect meetings.</p>
+      <!-- Role-specific multiplier vision -->
+      <h3>Now imagine your version</h3>
+      <p>That's marketing's multiplier. Here's what yours could look like.</p>
+
+      <div class="role-sales">
+        <div class="t-multiplier" style="margin-top:16px;">
+          <div class="t-mult-center">
+            <div class="t-mult-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="t-mult-label">1 Prospect</div>
+          </div>
+          <div class="t-mult-branches">
+            <div class="t-mult-branch t-mult-b1"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Research Brief</span></div></div>
+            <div class="t-mult-branch t-mult-b2"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">3</span><span class="t-mult-type">Email Variants</span></div></div>
+            <div class="t-mult-branch t-mult-b3"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">LinkedIn Msg</span></div></div>
+            <div class="t-mult-branch t-mult-b4"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Battlecard</span></div></div>
+            <div class="t-mult-branch t-mult-b5"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Call Prep</span></div></div>
+            <div class="t-mult-branch t-mult-b6"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Proposal Section</span></div></div>
+          </div>
+        </div>
+        <p>One prospect name triggers a research brief, 3 personalized email variants, a LinkedIn connection message, a competitive battlecard, a call prep sheet, and a custom proposal section. You built each tool once. Now they all run on command.</p>
       </div>
-      <div class="t-role-callout role-strategy">
-        <div class="t-role-callout-label">For Strategy</div>
-        <p>Case study pollers run every 30 minutes. Submit a client win through the Hub and the pipeline delivers a finished case study.</p>
+
+      <div class="role-strategy">
+        <div class="t-multiplier" style="margin-top:16px;">
+          <div class="t-mult-center">
+            <div class="t-mult-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="t-mult-label">1 Client Review</div>
+          </div>
+          <div class="t-mult-branches">
+            <div class="t-mult-branch t-mult-b1"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Performance Summary</span></div></div>
+            <div class="t-mult-branch t-mult-b2"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">5</span><span class="t-mult-type">QBR Slides</span></div></div>
+            <div class="t-mult-branch t-mult-b3"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Health Score</span></div></div>
+            <div class="t-mult-branch t-mult-b4"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Expansion Map</span></div></div>
+            <div class="t-mult-branch t-mult-b5"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Renewal Brief</span></div></div>
+            <div class="t-mult-branch t-mult-b6"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Action Items</span></div></div>
+          </div>
+        </div>
+        <p>One client data pull triggers a performance summary, 5 QBR slides, a health score, an expansion opportunity map, a renewal brief, and extracted action items. Each tool runs from the same data. Build once, reuse every quarter.</p>
       </div>
-      <div class="t-role-callout role-marketing">
-        <div class="t-role-callout-label">For Marketing</div>
-        <p>Every pipeline queues in the Hub before publishing. You approve, edit, or reject. The automation handles volume. You control quality.</p>
+
+      <div class="role-marketing">
+        <div class="t-multiplier" style="margin-top:16px;">
+          <div class="t-mult-center">
+            <div class="t-mult-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <div class="t-mult-label">1 Campaign Theme</div>
+          </div>
+          <div class="t-mult-branches">
+            <div class="t-mult-branch t-mult-b1"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Blog Brief</span></div></div>
+            <div class="t-mult-branch t-mult-b2"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">4</span><span class="t-mult-type">Social Posts</span></div></div>
+            <div class="t-mult-branch t-mult-b3"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">3</span><span class="t-mult-type">Email Sequence</span></div></div>
+            <div class="t-mult-branch t-mult-b4"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Landing Page</span></div></div>
+            <div class="t-mult-branch t-mult-b5"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">SEO Evaluation</span></div></div>
+            <div class="t-mult-branch t-mult-b6"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Performance Report</span></div></div>
+          </div>
+        </div>
+        <p>One campaign theme generates a blog brief, 4 social posts, a 3-email nurture sequence, a landing page draft, an SEO keyword evaluation, and a performance report template. You built each tool from the projects above. Now one input feeds all of them.</p>
       </div>
     </section>
 
