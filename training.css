@@ -148,6 +148,7 @@
 }
 
 .t-hero-desc {
+  display: none;
   font-size: 18px;
   color: var(--ink2);
   line-height: 1.65;
@@ -156,6 +157,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+[data-role="sales"] .t-hero-desc.role-sales,
+[data-role="strategy"] .t-hero-desc.role-strategy,
+[data-role="marketing"] .t-hero-desc.role-marketing { display: block; }
 
 .t-hero .hero-tags {
   justify-content: center;
@@ -1457,6 +1462,21 @@
   color: var(--muted);
   margin-bottom: 12px;
 }
+
+.t-tool-role-ex {
+  display: none;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+[data-role="sales"] .t-tool-role-ex.role-sales,
+[data-role="strategy"] .t-tool-role-ex.role-strategy,
+[data-role="marketing"] .t-tool-role-ex.role-marketing { display: block; }
 
 .t-tool-token-note {
   margin-top: 12px;

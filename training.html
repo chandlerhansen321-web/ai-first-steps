@@ -21,17 +21,17 @@
     Agility <span class="pill">AI Training</span>
   </a>
   <nav class="topbar-nav-links">
-    <a href="#get-started">Get Started</a>
-    <a href="#multiplier">Multiplier</a>
+    <a href="#tools">Your Tools</a>
+    <a href="#method">The Method</a>
     <a href="#build">What You Build</a>
-    <a href="#claude-code">Chat/Cowork/Code</a>
+    <a href="#multiplier">The Multiplier</a>
     <a href="#reference">Reference</a>
   </nav>
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">&#x1F319;</button>
 </header>
 
 <!-- ============================================================
-     HERO
+     HERO — role-specific subtitle
      ============================================================ -->
 <section class="t-hero">
   <div class="t-hero-bg">
@@ -42,7 +42,11 @@
   <div class="t-hero-content">
     <div class="t-hero-eyebrow">Revenue Team Training</div>
     <h1>Your Claude Code<br><em>playbook.</em></h1>
-    <p class="t-hero-desc">Build faster. Automate the repetitive. Ship work that used to take days in 30 minutes. This training shows you exactly what to build for your role and how to build it.</p>
+
+    <!-- Role-specific subtitles -->
+    <p class="t-hero-desc role-sales">Build tools that find prospects, personalize outreach, and prep meetings — in minutes instead of hours.</p>
+    <p class="t-hero-desc role-strategy">Build tools that prep QBRs, analyze client feedback, and generate deliverables — in minutes instead of hours.</p>
+    <p class="t-hero-desc role-marketing">Build tools that generate content calendars, email sequences, and keyword analysis — in minutes instead of hours.</p>
 
     <div class="t-role-toggle" id="role-toggle-hero">
       <button class="t-role-btn active" data-role="sales" onclick="setRole('sales')">Sales</button>
@@ -67,13 +71,13 @@
   <aside class="t-sidebar" id="sidebar">
     <div class="sidebar-label">Sections</div>
     <ul>
-      <li><a href="#get-started" class="active"><span class="step-dot t-dot-start">&#x25B6;</span> Get Started</a></li>
-      <li><a href="#multiplier"><span class="step-dot">1</span> The Multiplier</a></li>
-      <li><a href="#calendar"><span class="step-dot">2</span> Weekly Calendar</a></li>
+      <li><a href="#tools" class="active"><span class="step-dot">1</span> Your Tools</a></li>
+      <li><a href="#setup"><span class="step-dot">2</span> Get Set Up</a></li>
       <li><a href="#method"><span class="step-dot">3</span> The Method</a></li>
       <li><a href="#build"><span class="step-dot">4</span> What You Build</a></li>
-      <li><a href="#claude-code"><span class="step-dot">5</span> Chat / Cowork / Code</a></li>
-      <li><a href="#reference"><span class="step-dot">6</span> Reference</a></li>
+      <li><a href="#multiplier"><span class="step-dot">5</span> The Multiplier</a></li>
+      <li><a href="#levelup"><span class="step-dot">6</span> Level Up</a></li>
+      <li><a href="#reference"><span class="step-dot">7</span> Reference</a></li>
     </ul>
 
     <div class="sidebar-label">Your Role</div>
@@ -88,15 +92,128 @@
   <main class="t-main">
 
     <!-- ============================================================
-         GET STARTED
+         SECTION 1: YOUR TOOLS (Chat vs Cowork vs Code)
          ============================================================ -->
-    <section id="get-started">
+    <section id="tools">
       <div class="step-header">
-        <div class="step-badge t-badge-start">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="3" stroke="white" stroke-width="1.5"/><path d="M6 8l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 14h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
+        <div class="step-badge">1</div>
         <div class="step-title-wrap">
-          <h2>Get Claude Code Running</h2>
+          <h2>Chat, Cowork, and Code</h2>
+          <div class="step-sub">Three tools. Different jobs. Pick the right one.</div>
+        </div>
+      </div>
+
+      <p>You already use Claude in the browser. That's Chat. But Claude comes in three forms, and each one is built for different work. Most of the team uses Chat for everything — that's expensive and slow for the kind of work you do.</p>
+
+      <div class="t-tool-comparison t-tool-comparison-3">
+        <div class="t-tool-card">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="t-tool-name">Chat</div>
+          <div class="t-tool-subtitle">claude.ai in the browser</div>
+          <ul>
+            <li>Quick question, no files</li>
+            <li>Brainstorming or ideation</li>
+            <li>Analyzing text you paste in</li>
+          </ul>
+          <div class="t-tool-role-ex role-sales">"Write me a quick objection response for a prospect who says they already use TTD."</div>
+          <div class="t-tool-role-ex role-strategy">"What are the top 3 QBR talking points for a fitness brand with declining CTV ROI?"</div>
+          <div class="t-tool-role-ex role-marketing">"Brainstorm 5 LinkedIn hook angles about incrementality testing."</div>
+          <div class="t-tool-token-note">Context resets every conversation</div>
+        </div>
+        <div class="t-tool-card">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="20" r="4" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="t-tool-name">Cowork</div>
+          <div class="t-tool-subtitle">Claude Desktop app</div>
+          <ul>
+            <li>Multi-step knowledge work</li>
+            <li>Research across multiple sources</li>
+            <li>Deep document analysis</li>
+          </ul>
+          <div class="t-tool-role-ex role-sales">"Research this prospect's company, pull their SEC filings, and draft a pitch angle."</div>
+          <div class="t-tool-role-ex role-strategy">"Analyze these 3 campaign reports and find the common thread."</div>
+          <div class="t-tool-role-ex role-marketing">"Read our last 10 blog posts and identify gaps in topic coverage."</div>
+          <div class="t-tool-token-note">Powerful for one-off deep work</div>
+        </div>
+        <div class="t-tool-card t-tool-card-highlight">
+          <div class="t-tool-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="t-tool-name">Code</div>
+          <div class="t-tool-subtitle">Terminal or Desktop app</div>
+          <ul>
+            <li>Working with files or a project</li>
+            <li>Anything you'll do more than once</li>
+            <li>Building tools and automations</li>
+          </ul>
+          <div class="t-tool-role-ex role-sales">"Build a prospect research tool I run before every meeting — it pulls company data and drafts talking points."</div>
+          <div class="t-tool-role-ex role-strategy">"Build a QBR generator that takes client data and outputs formatted slides every quarter."</div>
+          <div class="t-tool-role-ex role-marketing">"Build a content calendar generator that maps posts to our 4 pillars and exports to .xlsx."</div>
+          <div class="t-tool-token-note">CLAUDE.md gives persistent memory</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Why Code wins for repeatable work</strong>
+          <p>Chat forgets everything when you close the tab. Cowork is powerful but uses tokens fast on extended sessions. Code reads a CLAUDE.md file that stores your role, rules, and preferences — every session starts with full context. Build something once, reuse it forever.</p>
+        </div>
+      </div>
+
+      <!-- Decision tree -->
+      <h3>Quick decision: which tool?</h3>
+      <div class="t-decision-tree" id="decision-tree">
+        <div class="t-dt-question active" data-dt-step="0">
+          <p class="t-dt-q">Does your task involve files, documents, or a project folder?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(0, 'yes')">Yes, working with files</button>
+            <button class="t-dt-option" onclick="dtAnswer(0, 'no')">No, just a question</button>
+          </div>
+        </div>
+        <div class="t-dt-question" data-dt-step="1">
+          <p class="t-dt-q">Will you do this task (or something similar) again?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(1, 'yes')">Yes, it's repeatable</button>
+            <button class="t-dt-option" onclick="dtAnswer(1, 'no')">No, one-time thing</button>
+          </div>
+        </div>
+        <div class="t-dt-question" data-dt-step="2">
+          <p class="t-dt-q">Quick question or extended work session?</p>
+          <div class="t-dt-options">
+            <button class="t-dt-option" onclick="dtAnswer(2, 'quick')">Quick question</button>
+            <button class="t-dt-option" onclick="dtAnswer(2, 'extended')">Extended work</button>
+          </div>
+        </div>
+        <div class="t-dt-result" id="dt-result"></div>
+      </div>
+      <button class="btn-secondary t-dt-reset t-hidden" id="dt-reset" onclick="dtReset()">Try again</button>
+
+      <!-- Quiz -->
+      <div class="t-quiz" id="quiz-cc">
+        <div class="t-quiz-q">You need to write a personalized pitch for 5 different prospects. Each one needs company-specific research. Which tool?</div>
+        <div class="t-quiz-options">
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Claude Chat — paste each prospect's info one at a time</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, true)" data-correct>Claude Code — build a script that processes all 5 from a file, reuse it next week</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Write them manually</button>
+        </div>
+        <div class="t-quiz-feedback"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: GET SET UP
+         ============================================================ -->
+    <section id="setup">
+      <div class="step-header">
+        <div class="step-badge">2</div>
+        <div class="step-title-wrap">
+          <h2>Get Set Up</h2>
           <div class="step-sub">Four steps. Takes about 5 minutes.</div>
         </div>
       </div>
@@ -164,277 +281,33 @@
           <p>This is the quick-start. For a detailed interactive tutorial with hands-on exercises, visit the <a href="/" target="_blank">Claude Code Guide</a>.</p>
         </div>
       </div>
-
-      <!-- Your First Week -->
-      <h3>Your first week</h3>
-      <div class="t-timeline">
-        <div class="t-timeline-item">
-          <div class="t-timeline-day">Day 1</div>
-          <div class="t-timeline-task">Install + explore a project folder</div>
-        </div>
-        <div class="t-timeline-item">
-          <div class="t-timeline-day">Day 2</div>
-          <div class="t-timeline-task">Create your CLAUDE.md with <code>/init</code>, customize it with your role</div>
-        </div>
-        <div class="t-timeline-item">
-          <div class="t-timeline-day">Day 3</div>
-          <div class="t-timeline-task">Build one project from Section 4 below</div>
-        </div>
-        <div class="t-timeline-item">
-          <div class="t-timeline-day">Day 5</div>
-          <div class="t-timeline-task">Save a repeatable workflow as a custom skill</div>
-        </div>
-        <div class="t-timeline-item">
-          <div class="t-timeline-day">Day 7</div>
-          <div class="t-timeline-task">Run your first real automation end-to-end</div>
-        </div>
-      </div>
     </section>
 
     <!-- ============================================================
-         SECTION 1: THE MULTIPLIER EFFECT
-         ============================================================ -->
-    <section id="multiplier">
-      <div class="step-header">
-        <div class="step-badge">1</div>
-        <div class="step-title-wrap">
-          <h2>The Multiplier Effect</h2>
-          <div class="step-sub">One click. Content everywhere.</div>
-        </div>
-      </div>
-
-      <p>One marketing person runs Agility's entire content operation. Not by writing more. By building a system where one piece of content creates ten.</p>
-
-      <p>A single blog post triggers a chain: the post publishes on agilityads.com, syndicates to Medium with SEO backlinks, generates 4 LinkedIn hooks and 3 Instagram cards with branded images, feeds the monthly newsletter, and drops into the content library tagged by industry and use case. One click starts the whole chain.</p>
-
-      <!-- Content Multiplier Visual -->
-      <div class="t-multiplier" id="multiplier-visual">
-        <div class="t-mult-center">
-          <div class="t-mult-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <div class="t-mult-label">1 Blog Post</div>
-        </div>
-        <div class="t-mult-branches">
-          <div class="t-mult-branch t-mult-b1">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">4</span>
-              <span class="t-mult-type">LinkedIn Posts</span>
-            </div>
-          </div>
-          <div class="t-mult-branch t-mult-b2">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">3</span>
-              <span class="t-mult-type">Instagram Cards</span>
-            </div>
-          </div>
-          <div class="t-mult-branch t-mult-b3">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">1</span>
-              <span class="t-mult-type">Medium Article</span>
-            </div>
-          </div>
-          <div class="t-mult-branch t-mult-b4">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">1</span>
-              <span class="t-mult-type">Newsletter Section</span>
-            </div>
-          </div>
-          <div class="t-mult-branch t-mult-b5">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">2</span>
-              <span class="t-mult-type">HubSpot Emails</span>
-            </div>
-          </div>
-          <div class="t-mult-branch t-mult-b6">
-            <div class="t-mult-line"></div>
-            <div class="t-mult-node">
-              <span class="t-mult-count">3-5</span>
-              <span class="t-mult-type">Engagement Comments</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-stat-cards">
-        <div class="t-stat-card">
-          <div class="t-stat-number">3+</div>
-          <div class="t-stat-label">Blogs per week</div>
-          <div class="t-stat-desc">Researched, written, QC'd, published. One click each.</div>
-        </div>
-        <div class="t-stat-card">
-          <div class="t-stat-number">7</div>
-          <div class="t-stat-label">Social posts per week</div>
-          <div class="t-stat-desc">4 LinkedIn + 3 Instagram with branded imagery.</div>
-        </div>
-        <div class="t-stat-card">
-          <div class="t-stat-number">30+</div>
-          <div class="t-stat-label">Total pieces per month</div>
-          <div class="t-stat-desc">Blog, social, newsletter, case studies, engagement, email.</div>
-        </div>
-      </div>
-
-      <div class="t-insight-box">
-        <div class="t-insight-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        </div>
-        <div class="t-insight-body">
-          <strong>Why this matters for you</strong>
-          <p>This isn't a content team. It's one person with Claude Code. The same approach works for sales decks, client deliverables, competitive research, campaign reports. Anything you do more than once, you can automate.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ============================================================
-         SECTION 2: WEEKLY CALENDAR
-         ============================================================ -->
-    <section id="calendar">
-      <div class="step-header">
-        <div class="step-badge">2</div>
-        <div class="step-title-wrap">
-          <h2>The Weekly Calendar</h2>
-          <div class="step-sub">What runs and when. Click any day for details.</div>
-        </div>
-      </div>
-
-      <p>Every pipeline runs on a schedule. Most of them fire automatically. Click a day to see what happens.</p>
-
-      <div class="t-calendar">
-        <div class="t-cal-day" onclick="toggleCalDay(this)">
-          <div class="t-cal-day-header">
-            <div class="t-cal-day-name">Monday</div>
-            <div class="t-cal-day-count">2 pipelines</div>
-          </div>
-          <div class="t-cal-day-items">
-            <div class="t-cal-item t-cal-social">
-              <div class="t-cal-item-time">8:00 AM</div>
-              <div class="t-cal-item-name">Social Weekly</div>
-              <div class="t-cal-item-desc">Generates 4 LinkedIn + 3 Instagram posts. Fetches performance data from last week, researches trending topics, writes posts, generates branded images. Queues in Hub for review.</div>
-            </div>
-            <div class="t-cal-item t-cal-engagement">
-              <div class="t-cal-item-time">10:00 AM</div>
-              <div class="t-cal-item-name">LinkedIn Engagement</div>
-              <div class="t-cal-item-desc">Finds relevant LinkedIn discussions. Drafts expert comments. Queues for review.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-cal-day" onclick="toggleCalDay(this)">
-          <div class="t-cal-day-header">
-            <div class="t-cal-day-name">Tuesday</div>
-            <div class="t-cal-day-count">1 pipeline</div>
-          </div>
-          <div class="t-cal-day-items">
-            <div class="t-cal-item t-cal-engagement">
-              <div class="t-cal-item-time">9:00 AM</div>
-              <div class="t-cal-item-name">Quora Engagement</div>
-              <div class="t-cal-item-desc">Finds 3-5 Quora questions with weak or missing answers. Writes authoritative expert responses (200-350 words). Queues for review with backlinks to relevant blog posts.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-cal-day" onclick="toggleCalDay(this)">
-          <div class="t-cal-day-header">
-            <div class="t-cal-day-name">Wednesday</div>
-            <div class="t-cal-day-count">2 pipelines</div>
-          </div>
-          <div class="t-cal-day-items">
-            <div class="t-cal-item t-cal-blog">
-              <div class="t-cal-item-time">11:00 AM</div>
-              <div class="t-cal-item-name">Blog Pipeline</div>
-              <div class="t-cal-item-desc">The big one. Keyword gap analysis picks the topic. Perplexity researches for 60-120 seconds. Claude writes 2,000 words. Editor QC catches banned words and competitor mentions. Formats .docx. Uploads to Google Drive. Publishes to Framer CMS. Triggers the whole multiplier chain.</div>
-            </div>
-            <div class="t-cal-item t-cal-engagement">
-              <div class="t-cal-item-time">10:00 AM</div>
-              <div class="t-cal-item-name">Reddit Engagement</div>
-              <div class="t-cal-item-desc">Finds 3-5 relevant threads in r/adtech, r/programmatic, r/PPC. Writes expert-level comments (100-200 words, casual Reddit tone). Queues for review.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-cal-day" onclick="toggleCalDay(this)">
-          <div class="t-cal-day-header">
-            <div class="t-cal-day-name">Thursday</div>
-            <div class="t-cal-day-count">Pollers only</div>
-          </div>
-          <div class="t-cal-day-items">
-            <div class="t-cal-item t-cal-other">
-              <div class="t-cal-item-time">Every 30 min</div>
-              <div class="t-cal-item-name">Blog + Case Study Pollers</div>
-              <div class="t-cal-item-desc">Background pollers watch for new blog briefs submitted via Hub and new case study intake forms. When they find one, they trigger the full pipeline automatically.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-cal-day" onclick="toggleCalDay(this)">
-          <div class="t-cal-day-header">
-            <div class="t-cal-day-name">Friday</div>
-            <div class="t-cal-day-count">Distribution</div>
-          </div>
-          <div class="t-cal-day-items">
-            <div class="t-cal-item t-cal-other">
-              <div class="t-cal-item-time">Automated</div>
-              <div class="t-cal-item-name">Medium Syndication + Content Library</div>
-              <div class="t-cal-item-desc">Published blog posts syndicate to Medium with canonical URLs (SEO credit flows back to agilityads.com). Content library gets updated with new AI-tagged assets for sales.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t-cal-monthly">
-        <div class="t-cal-monthly-label">Monthly</div>
-        <div class="t-cal-monthly-items">
-          <span class="t-cal-monthly-tag">1st: Newsletter + Social Calendar</span>
-          <span class="t-cal-monthly-tag">2nd: Keyword Refresh (SimilarWeb)</span>
-        </div>
-      </div>
-
-      <!-- Role callouts -->
-      <div class="t-role-callout role-sales">
-        <div class="t-role-callout-label">For Sales</div>
-        <p>The content library updates every time a blog, case study, or PDF publishes. Search by industry (Retail, QSR, Automotive) or use case (Brand Lift, CTV, Incrementality) to find the right asset before a prospect meeting.</p>
-      </div>
-      <div class="t-role-callout role-strategy">
-        <div class="t-role-callout-label">For Strategy</div>
-        <p>Case study pollers run every 30 minutes. Submit a client win through the Hub intake form and the pipeline writes, formats, and delivers a finished case study. No waiting on the marketing queue.</p>
-      </div>
-      <div class="t-role-callout role-marketing">
-        <div class="t-role-callout-label">For Marketing</div>
-        <p>Every pipeline queues output in the Hub before publishing. You approve, edit, or reject. The automation handles volume. You control quality.</p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         SECTION 3: THE METHOD
+         SECTION 3: THE METHOD (compressed — 3 cards only)
          ============================================================ -->
     <section id="method">
       <div class="step-header">
         <div class="step-badge">3</div>
         <div class="step-title-wrap">
           <h2>The Method</h2>
-          <div class="step-sub">Context beats prompts. Every time.</div>
+          <div class="step-sub">Three things that make AI output actually good.</div>
         </div>
       </div>
 
-      <p>A good prompt gets you a good answer. Good context gets you a good answer every time, without re-explaining anything. That's the difference between using Claude as a chatbot and using it as a system.</p>
+      <p>Good context beats a good prompt. Every time. These three techniques are the difference between using Claude as a chatbot and using it as a system.</p>
 
       <div class="t-method-cards">
         <div class="t-method-card">
           <div class="t-method-num">01</div>
           <div class="t-method-title">CLAUDE.md — your persistent instruction file</div>
           <div class="t-method-body">
-            <p>Claude Code reads a file called <strong>CLAUDE.md</strong> at the start of every session. It's a plain text file where you write who you are, what you're working on, and how Claude should behave. Claude follows these rules automatically, every session, without you saying a word.</p>
-            <p>This is the biggest productivity gain in Claude Code. Browser chat forgets everything when you close the tab. Claude Code remembers.</p>
+            <p>Claude Code reads a file called <strong>CLAUDE.md</strong> at the start of every session. Write who you are, what you're working on, and how Claude should behave. Claude follows these rules automatically, every session, without you saying a word.</p>
           </div>
-          <div class="t-wireframe" style="margin: 16px 0;">
-            <div class="t-wf-titlebar">CLAUDE.md — example for a sales role</div>
-            <div class="t-wf-body" class="t-wf-body-code">
+          <!-- Role-specific CLAUDE.md examples -->
+          <div class="t-wireframe role-sales" style="margin: 16px 0;">
+            <div class="t-wf-titlebar">CLAUDE.md — example for sales</div>
+            <div class="t-wf-body t-wf-body-code">
               <div class="t-wf-md-heading"># My Role</div>
               <div>Account Executive at Agility Ads. I sell to enterprise CMOs and VPs of Marketing with $5M+ ad budgets.</div>
               <br>
@@ -443,16 +316,42 @@
               <div>- Personalized outreach emails (cold + follow-up)</div>
               <div>- Competitive positioning against TTD, DV360, StackAdapt</div>
               <br>
-              <div class="t-wf-md-heading"># Rules</div>
-              <div>- Never mention competitor names positively</div>
-              <div>- Lead with data and specific results</div>
-              <div>- Write at a CMO reading level, not a marketer level</div>
-              <div>- Reference our case studies when relevant</div>
-              <br>
               <div class="t-wf-md-heading"># Key Stats I Use</div>
               <div>- $6 ROI per $1 in brand advertising (Binet & Field)</div>
               <div>- National Fitness: $11.2M incremental revenue</div>
-              <div>- 2.2x conversion lift vs placebo at 6 months</div>
+            </div>
+          </div>
+          <div class="t-wireframe role-strategy" style="margin: 16px 0;">
+            <div class="t-wf-titlebar">CLAUDE.md — example for strategy</div>
+            <div class="t-wf-body t-wf-body-code">
+              <div class="t-wf-md-heading"># My Role</div>
+              <div>Precision Strategy Consultant at Agility Ads. I manage client relationships and campaign strategy for enterprise accounts.</div>
+              <br>
+              <div class="t-wf-md-heading"># What I Need Help With</div>
+              <div>- Client meeting prep docs</div>
+              <div>- QBR section drafts</div>
+              <div>- Campaign performance summaries for client-facing delivery</div>
+              <br>
+              <div class="t-wf-md-heading"># Rules</div>
+              <div>- Write for C-suite audience. Numbers first, plain language.</div>
+              <div>- Reference specific client results, not generic claims.</div>
+            </div>
+          </div>
+          <div class="t-wireframe role-marketing" style="margin: 16px 0;">
+            <div class="t-wf-titlebar">CLAUDE.md — example for marketing</div>
+            <div class="t-wf-body t-wf-body-code">
+              <div class="t-wf-md-heading"># My Role</div>
+              <div>Marketing at Agility Ads. I manage the blog, social, email, and newsletter content across all channels.</div>
+              <br>
+              <div class="t-wf-md-heading"># What I Need Help With</div>
+              <div>- Blog briefs and social content calendars</div>
+              <div>- Email nurture sequences for HubSpot</div>
+              <div>- Brand voice compliance checks</div>
+              <br>
+              <div class="t-wf-md-heading"># Voice Rules</div>
+              <div>- Active voice, human subjects. No em dashes.</div>
+              <div>- Never mention competitors positively.</div>
+              <div>- Data-driven, not jargon-heavy.</div>
             </div>
           </div>
           <div class="t-insight-box">
@@ -461,58 +360,37 @@
             </div>
             <div class="t-insight-body">
               <strong>How to create yours</strong>
-              <p>Open Claude Code in your project folder and type <code>/init</code>. Claude analyzes your files and generates a starter CLAUDE.md. Then open the file and add your role, rules, and key context. When Claude makes a mistake, tell it to add the correction to CLAUDE.md — the file improves over time.</p>
+              <p>Type <code>/init</code> in Claude Code. It generates a starter file. Then add your role, rules, and key context. When Claude makes a mistake, tell it to update CLAUDE.md — the file improves over time.</p>
             </div>
           </div>
         </div>
 
         <div class="t-method-card">
           <div class="t-method-num">02</div>
-          <div class="t-method-title">Two passes, not one</div>
-          <div class="t-method-body">
-            <p><strong>Pass 1:</strong> Tell Claude what you want. Be specific about audience, format, and tone. Don't list what to avoid.</p>
-            <p><strong>Pass 2:</strong> Review the output. Fix what's wrong. Or ask Claude to clean it up in a second pass.</p>
-            <p>Stuffing a prompt with "don't do X" makes the output hedge and second-guess. Negative instructions degrade quality. Generate freely, then clean up.</p>
-          </div>
-          <div class="t-method-comparison">
-            <div class="t-method-bad">
-              <div class="t-method-verdict">Weak</div>
-              "Write a blog post. Don't be verbose. Don't use jargon. Don't mention competitors. Avoid cliches..."
-            </div>
-            <div class="t-method-good">
-              <div class="t-method-verdict">Strong</div>
-              "Write a 2,000-word article for enterprise CMOs about CTV measurement. Active voice. Lead with data." Then: "Review this and tighten any section over 3 paragraphs."
-            </div>
-          </div>
-        </div>
-
-        <div class="t-method-card">
-          <div class="t-method-num">03</div>
           <div class="t-method-title">The prompt formula</div>
           <div class="t-method-body">
-            <p>Every strong prompt has four parts. Memorize this structure and your first-pass output improves immediately.</p>
+            <p>Every strong prompt has four parts.</p>
             <div class="t-formula">
               <div class="t-formula-part">
                 <div class="t-formula-label">Role</div>
-                <div class="t-formula-ex">Who Claude is in this context</div>
+                <div class="t-formula-ex">Who Claude is</div>
               </div>
               <div class="t-formula-plus">+</div>
               <div class="t-formula-part">
                 <div class="t-formula-label">Task</div>
-                <div class="t-formula-ex">What you need done</div>
+                <div class="t-formula-ex">What you need</div>
               </div>
               <div class="t-formula-plus">+</div>
               <div class="t-formula-part">
                 <div class="t-formula-label">Constraints</div>
-                <div class="t-formula-ex">Length, audience, tone, scope</div>
+                <div class="t-formula-ex">Length, audience, tone</div>
               </div>
               <div class="t-formula-plus">+</div>
               <div class="t-formula-part">
                 <div class="t-formula-label">Output</div>
-                <div class="t-formula-ex">File type, format, where to save</div>
+                <div class="t-formula-ex">File type, format</div>
               </div>
             </div>
-            <p class="t-mt-16">Examples — vague vs. specific:</p>
           </div>
           <div class="t-method-comparison">
             <div class="t-method-bad">
@@ -521,7 +399,7 @@
             </div>
             <div class="t-method-good">
               <div class="t-method-verdict">Specific</div>
-              "Rewrite this follow-up email for a CMO who went dark after a demo. Reference the National Fitness case study. Under 100 words. Casual but direct."
+              "Rewrite this follow-up for a CMO who went dark after a demo. Reference the National Fitness case. Under 100 words. Direct."
             </div>
           </div>
           <div class="t-method-comparison">
@@ -531,187 +409,38 @@
             </div>
             <div class="t-method-good">
               <div class="t-method-verdict">Specific</div>
-              "Read this CSV of Q1 campaign metrics. Find the 3 campaigns with the highest cost-per-acquisition increase. Output a table ranked by severity."
+              "Read this CSV. Find the 3 campaigns with the highest CPA increase. Output a table ranked by severity."
             </div>
+          </div>
+        </div>
+
+        <div class="t-method-card">
+          <div class="t-method-num">03</div>
+          <div class="t-method-title">Two passes, not one</div>
+          <div class="t-method-body">
+            <p><strong>Pass 1:</strong> Tell Claude what you want. Be specific about audience, format, and tone. Don't list what to avoid.</p>
+            <p><strong>Pass 2:</strong> Review the output. Fix what's wrong. Or ask Claude to clean it up in a second pass.</p>
+            <p>Stuffing a prompt with "don't do X" degrades quality. Generate freely, then clean up.</p>
           </div>
           <div class="t-method-comparison">
             <div class="t-method-bad">
-              <div class="t-method-verdict">Vague</div>
-              "Make a presentation"
+              <div class="t-method-verdict">Weak</div>
+              "Write a blog post. Don't be verbose. Don't use jargon. Don't mention competitors. Avoid cliches..."
             </div>
             <div class="t-method-good">
-              <div class="t-method-verdict">Specific</div>
-              "Write 5 QBR slides for National Fitness Q1. Each slide: headline stat + 3 bullet points. Export as a .docx with clear section breaks."
-            </div>
-          </div>
-        </div>
-
-        <div class="t-method-card">
-          <div class="t-method-num">04</div>
-          <div class="t-method-title">Power user commands</div>
-          <div class="t-method-body">
-            <div class="t-commands-grid">
-              <div class="t-command">
-                <div class="t-command-name"><code>/init</code></div>
-                <div class="t-command-desc">Auto-generates a CLAUDE.md from your project. Run this first.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name"><code>/compact</code></div>
-                <div class="t-command-desc">Compresses conversation history. Pro tip: add instructions like <code>/compact Focus on the modified files and key decisions</code> to control what survives compression.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name"><code>Shift+Tab</code></div>
-                <div class="t-command-desc">Toggles Plan Mode. Claude plans but doesn't change files. Use before complex tasks — reduces trial-and-error token waste by 20-30%.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name"><code>/clear</code></div>
-                <div class="t-command-desc">Resets conversation context. Use between unrelated tasks — mixing topics in one session degrades output on both.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name"><code>/btw</code></div>
-                <div class="t-command-desc">Ask a side question that never enters conversation history. Zero context cost. Perfect for "wait, what does this term mean?" without polluting your main task.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name">Custom skills</div>
-                <div class="t-command-desc">Save repeatable workflows as /slash-commands. Example: a <code>/prospect-brief</code> skill that always runs your exact research + formatting sequence.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name">Memory</div>
-                <div class="t-command-desc">Claude remembers corrections across sessions. When it makes a mistake, tell it — it learns and won't repeat it next time.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name"><code>claude --continue</code></div>
-                <div class="t-command-desc">Resume your last session with full context. Great for picking up where you left off after a break.</div>
-              </div>
-              <div class="t-command">
-                <div class="t-command-name">75% rule</div>
-                <div class="t-command-desc">Sessions that stay under 75% context produce higher-quality output than those that push to 100%. Run <code>/compact</code> at 50%, not when you're already maxed out.</div>
-              </div>
+              <div class="t-method-verdict">Strong</div>
+              "Write a 2,000-word article for CMOs about CTV measurement. Active voice. Lead with data." Then: "Tighten any section over 3 paragraphs."
             </div>
           </div>
         </div>
       </div>
 
-        <div class="t-method-card">
-          <div class="t-method-num">05</div>
-          <div class="t-method-title">Permission modes — how much freedom to give Claude</div>
-          <div class="t-method-body">
-            <p>You control how much autonomy Claude has. Start cautious, increase as you build trust.</p>
-          </div>
-          <div class="t-permission-modes">
-            <div class="t-perm-mode">
-              <div class="t-perm-icon">&#x1F64B;</div>
-              <div class="t-perm-name">Ask first <span class="t-perm-default">Default</span></div>
-              <div class="t-perm-desc">Claude explains each action and waits for your approval. Best while you're learning.</div>
-            </div>
-            <div class="t-perm-mode">
-              <div class="t-perm-icon">&#x1F4CB;</div>
-              <div class="t-perm-name">Plan first <span class="t-perm-shortcut">Shift+Tab</span></div>
-              <div class="t-perm-desc">Claude shows the full plan. You approve once. It runs everything. Best for multi-step tasks.</div>
-            </div>
-            <div class="t-perm-mode">
-              <div class="t-perm-icon">&#x1F680;</div>
-              <div class="t-perm-name">Full auto <span class="t-perm-shortcut">Shift+Tab ×2</span></div>
-              <div class="t-perm-desc">Claude works start to finish with no interruptions. Best when you trust the task completely.</div>
-            </div>
-          </div>
-          <div class="t-insight-box" class="t-mt-16">
-            <div class="t-insight-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            </div>
-            <div class="t-insight-body">
-              <strong>Start with Ask First</strong>
-              <p>Watch what Claude does for a few sessions. Reading its explanations builds your understanding of what's happening. Once you're comfortable, switch to Plan or Full Auto for speed.</p>
-            </div>
-          </div>
-        </div>
-
-      <!-- Things to avoid -->
-      <h3>Five things that hurt your output</h3>
-      <div class="t-avoid-list">
-        <div class="t-avoid-item">
-          <div class="t-avoid-num">1</div>
-          <div class="t-avoid-body">
-            <strong>The kitchen sink session</strong>
-            <p>Mixing prospect research, email drafting, and report analysis in one conversation. Old context about Task A degrades work on Task B. Fix: <code>/clear</code> between unrelated tasks.</p>
-          </div>
-        </div>
-        <div class="t-avoid-item">
-          <div class="t-avoid-num">2</div>
-          <div class="t-avoid-body">
-            <strong>The correction spiral</strong>
-            <p>Correcting Claude 3+ times on the same issue. Each failed attempt stays in context and confuses future attempts. Fix: after 2 corrections, <code>/clear</code> and write a better initial prompt.</p>
-          </div>
-        </div>
-        <div class="t-avoid-item">
-          <div class="t-avoid-num">3</div>
-          <div class="t-avoid-body">
-            <strong>Vague requests</strong>
-            <p>"Make this better" costs 3 rounds of clarification. "Rewrite the intro to lead with the 47% CTV growth stat, keep it under 80 words" costs 1 round. Be specific about audience, format, length, and tone upfront.</p>
-          </div>
-        </div>
-        <div class="t-avoid-item">
-          <div class="t-avoid-num">4</div>
-          <div class="t-avoid-body">
-            <strong>Overstuffed CLAUDE.md</strong>
-            <p>There's a ~150-200 instruction budget before compliance drops. If your CLAUDE.md is too long, important rules get lost. For each line, ask: "Would removing this cause mistakes?" If not, cut it.</p>
-          </div>
-        </div>
-        <div class="t-avoid-item">
-          <div class="t-avoid-num">5</div>
-          <div class="t-avoid-body">
-            <strong>Skipping Plan Mode</strong>
-            <p>Jumping straight to execution on complex tasks causes 20-30% more token waste from trial-and-error. Press Shift+Tab first. Two minutes of planning saves twenty minutes of rework.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- How to iterate -->
-      <h3>How to give Claude feedback</h3>
-      <p>Vague feedback wastes rounds. Specific feedback gets fixed in one pass. Point to the problem. Say what you want instead.</p>
-
-      <div class="t-feedback-examples">
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad">
-            <div class="t-feedback-label">Costs 3 rounds</div>
-            "This isn't quite right"
-          </div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good">
-            <div class="t-feedback-label">Costs 1 round</div>
-            "The second paragraph is too long. Cut it to 2 sentences. Keep the stat about 2.2x conversion lift."
-          </div>
-        </div>
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad">
-            <div class="t-feedback-label">Costs 3 rounds</div>
-            "Make it better"
-          </div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good">
-            <div class="t-feedback-label">Costs 1 round</div>
-            "The tone is too formal. Rewrite conversationally, like explaining to a colleague over coffee."
-          </div>
-        </div>
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad">
-            <div class="t-feedback-label">Costs 3 rounds</div>
-            "Try again"
-          </div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good">
-            <div class="t-feedback-label">Costs 1 round</div>
-            "The structure is right but the opening is weak. Start with the $11.2M revenue stat instead of the background."
-          </div>
-        </div>
-      </div>
-
-      <!-- Quiz 2 -->
+      <!-- Quiz -->
       <div class="t-quiz" id="quiz-2">
         <div class="t-quiz-q">You want Claude to write a client summary without jargon. Which approach produces better output?</div>
         <div class="t-quiz-options">
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, false)">Add "don't use jargon" to the prompt</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, true)" data-correct">Write it, then ask Claude to replace any industry terms with plain language</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, true)" data-correct>Write it, then ask Claude to replace any industry terms with plain language</button>
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, false)">List every jargon word to avoid</button>
         </div>
         <div class="t-quiz-feedback"></div>
@@ -719,7 +448,7 @@
     </section>
 
     <!-- ============================================================
-         SECTION 4: WHAT YOU CAN BUILD
+         SECTION 4: WHAT YOU CAN BUILD (role-specific projects)
          ============================================================ -->
     <section id="build">
       <div class="step-header">
@@ -730,7 +459,16 @@
         </div>
       </div>
 
-      <p>These aren't hypothetical. Each project below includes a wireframe of what you'd build, a starter prompt you can copy into Claude Code, and a time estimate. Pick one and try it this week.</p>
+      <!-- Role-specific intro -->
+      <div class="t-role-section role-sales">
+        <p>You know CLAUDE.md and the prompt formula. Here's what you build with them. Each project has a wireframe, a starter prompt, and a time estimate. Pick one and try it this week.</p>
+      </div>
+      <div class="t-role-section role-strategy">
+        <p>You know CLAUDE.md and the prompt formula. Here's what you build with them. Each project has a wireframe, a starter prompt, and a time estimate. Pick one and try it this week.</p>
+      </div>
+      <div class="t-role-section role-marketing">
+        <p>You know CLAUDE.md and the prompt formula. Here's what you build with them. Each project has a wireframe, a starter prompt, and a time estimate. Pick one and try it this week.</p>
+      </div>
 
       <!-- ==================== SALES PROJECTS ==================== -->
       <div class="t-role-section role-sales">
@@ -749,21 +487,9 @@
                 <div class="t-wf-field">National Fitness</div>
               </div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Company Overview</div>
-                <div class="t-wf-line w80"></div>
-                <div class="t-wf-line w60"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Ad Spend &amp; Channels</div>
-                <div class="t-wf-line w70"></div>
-                <div class="t-wf-line w50"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Agility Talking Points</div>
-                <div class="t-wf-line w90"></div>
-                <div class="t-wf-line w75"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Company Overview</div><div class="t-wf-line w80"></div><div class="t-wf-line w60"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Ad Spend &amp; Channels</div><div class="t-wf-line w70"></div><div class="t-wf-line w50"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Agility Talking Points</div><div class="t-wf-line w90"></div><div class="t-wf-line w75"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -783,28 +509,13 @@
             <div class="t-wf-titlebar">content-finder</div>
             <div class="t-wf-body">
               <div class="t-wf-row">
-                <div class="t-wf-input t-wf-half">
-                  <div class="t-wf-label">Industry</div>
-                  <div class="t-wf-field">QSR / Restaurant</div>
-                </div>
-                <div class="t-wf-input t-wf-half">
-                  <div class="t-wf-label">Use case</div>
-                  <div class="t-wf-field">Brand Lift</div>
-                </div>
+                <div class="t-wf-input t-wf-half"><div class="t-wf-label">Industry</div><div class="t-wf-field">QSR / Restaurant</div></div>
+                <div class="t-wf-input t-wf-half"><div class="t-wf-label">Use case</div><div class="t-wf-field">Brand Lift</div></div>
               </div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">Blog</div>
-                <div class="t-wf-line w85"></div>
-              </div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">Case Study</div>
-                <div class="t-wf-line w75"></div>
-              </div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">PDF</div>
-                <div class="t-wf-line w65"></div>
-              </div>
+              <div class="t-wf-result"><div class="t-wf-result-type">Blog</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type">Case Study</div><div class="t-wf-line w75"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type">PDF</div><div class="t-wf-line w65"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -818,27 +529,15 @@
           <div class="t-build-header">
             <div class="t-build-time">~25 min</div>
             <h3>Personalized Outreach Drafter</h3>
-            <p>Paste a prospect's LinkedIn profile or company info. Get a personalized cold email and LinkedIn message draft that references their specific challenges.</p>
+            <p>Paste a prospect's LinkedIn profile or company info. Get a personalized cold email and LinkedIn message draft.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">outreach-drafter</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Prospect info (paste LinkedIn URL or notes)</div>
-                <div class="t-wf-field t-wf-tall">VP Marketing at regional QSR chain, 200 locations, running CTV + programmatic display...</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Prospect info</div><div class="t-wf-field t-wf-tall">VP Marketing at regional QSR chain, 200 locations...</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Email Draft</div>
-                <div class="t-wf-line w90"></div>
-                <div class="t-wf-line w80"></div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">LinkedIn Message</div>
-                <div class="t-wf-line w85"></div>
-                <div class="t-wf-line w60"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Email Draft</div><div class="t-wf-line w90"></div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">LinkedIn Message</div><div class="t-wf-line w85"></div><div class="t-wf-line w60"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -852,32 +551,17 @@
           <div class="t-build-header">
             <div class="t-build-time">~25 min</div>
             <h3>Competitive Battlecard Generator</h3>
-            <p>Enter a competitor name. Get an up-to-date battlecard with their pricing, recent product changes, customer reviews, and Agility's counter-positioning.</p>
+            <p>Enter a competitor name. Get an up-to-date battlecard with pricing, product changes, and counter-positioning.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">battlecard-generator</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Competitor</div>
-                <div class="t-wf-field">StackAdapt</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Competitor</div><div class="t-wf-field">StackAdapt</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Their Positioning</div>
-                <div class="t-wf-line w85"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Where They Win</div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Where Agility Wins</div>
-                <div class="t-wf-line w80"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Counter-Objections</div>
-                <div class="t-wf-line w75"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Their Positioning</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Where They Win</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Where Agility Wins</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Counter-Objections</div><div class="t-wf-line w75"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -888,12 +572,10 @@
         </div>
 
         <div class="t-insight-box">
-          <div class="t-insight-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          </div>
+          <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
             <strong>Real result</strong>
-            <p>One SDR increased response rate from 8% to 23% by having Claude reference each prospect's recent posts and career transitions in outreach. Personalization at scale is the highest-ROI use case for sales teams.</p>
+            <p>One SDR increased response rate from 8% to 23% by having Claude reference each prospect's recent posts and career transitions in outreach.</p>
           </div>
         </div>
 
@@ -905,12 +587,11 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Pull the last 10 blog posts from published_posts.json and tell me which ones are most relevant for a [industry] prospect"</div>
         </div>
 
-        <!-- Sales quiz -->
         <div class="t-quiz" id="quiz-sales">
           <div class="t-quiz-q">You need a case study for a QSR prospect meeting tomorrow. What's the fastest path?</div>
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, false)">Ask marketing to write one</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, true)" data-correct">Submit the client win data through the Hub intake form — the pipeline writes it automatically</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, true)" data-correct>Submit the client win data through the Hub intake form — the pipeline writes it automatically</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, false)">Search Google Docs for an old one</button>
           </div>
           <div class="t-quiz-feedback"></div>
@@ -924,34 +605,22 @@
           <div class="t-build-header">
             <div class="t-build-time">~25 min</div>
             <h3>Client Meeting Prep Doc</h3>
-            <p>Enter a client name. Get a one-pager with their recent campaign performance, industry trends, and three talking points for your next meeting.</p>
+            <p>Enter a client name. Get a one-pager with their recent campaign performance, industry trends, and three talking points.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">meeting-prep</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Client name</div>
-                <div class="t-wf-field">National Fitness</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Client name</div><div class="t-wf-field">National Fitness</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Campaign Snapshot</div>
+              <div class="t-wf-section"><div class="t-wf-heading">Campaign Snapshot</div>
                 <div class="t-wf-metrics">
                   <div class="t-wf-metric"><div class="t-wf-metric-val">$11.2M</div><div class="t-wf-metric-label">Incremental Rev</div></div>
                   <div class="t-wf-metric"><div class="t-wf-metric-val">2.2x</div><div class="t-wf-metric-label">Conversion Lift</div></div>
                   <div class="t-wf-metric"><div class="t-wf-metric-val">+250%</div><div class="t-wf-metric-label">High-Intent Traffic</div></div>
                 </div>
               </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Industry Trends</div>
-                <div class="t-wf-line w80"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Talking Points</div>
-                <div class="t-wf-line w85"></div>
-                <div class="t-wf-line w70"></div>
-                <div class="t-wf-line w75"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Industry Trends</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Talking Points</div><div class="t-wf-line w85"></div><div class="t-wf-line w70"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -965,29 +634,16 @@
           <div class="t-build-header">
             <div class="t-build-time">~20 min</div>
             <h3>Campaign Performance Summary</h3>
-            <p>Turn raw campaign data into a polished client-facing summary with charts context and next-step recommendations.</p>
+            <p>Turn raw campaign data into a polished client-facing summary with metrics and next-step recommendations.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">performance-summary</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Paste campaign data or CSV path</div>
-                <div class="t-wf-field t-wf-tall">Impressions: 2.4M | Clicks: 38K | Conv: 1,200 | Lift: 2.1x...</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Paste campaign data or CSV path</div><div class="t-wf-field t-wf-tall">Impressions: 2.4M | Clicks: 38K | Conv: 1,200 | Lift: 2.1x...</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Executive Summary</div>
-                <div class="t-wf-line w80"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Key Metrics</div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Recommendations</div>
-                <div class="t-wf-line w85"></div>
-                <div class="t-wf-line w60"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Executive Summary</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Key Metrics</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Recommendations</div><div class="t-wf-line w85"></div><div class="t-wf-line w60"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -1001,28 +657,16 @@
           <div class="t-build-header">
             <div class="t-build-time">~30 min</div>
             <h3>QBR Deck Section Generator</h3>
-            <p>Feed it a quarter's worth of client data. Get draft QBR sections — performance review, strategic recommendations, next quarter plan.</p>
+            <p>Feed it a quarter's data. Get draft QBR sections — performance review, strategic recommendations, next quarter plan.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">qbr-generator</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Client + quarter</div>
-                <div class="t-wf-field">National Fitness — Q1 2026</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Client + quarter</div><div class="t-wf-field">National Fitness — Q1 2026</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Q1 Performance Review</div>
-                <div class="t-wf-line w85"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Strategic Wins</div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Q2 Recommendations</div>
-                <div class="t-wf-line w90"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Q1 Performance Review</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Strategic Wins</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Q2 Recommendations</div><div class="t-wf-line w90"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -1036,28 +680,16 @@
           <div class="t-build-header">
             <div class="t-build-time">~20 min</div>
             <h3>NPS / Feedback Analyzer</h3>
-            <p>Paste all your NPS responses or client feedback. Get a structured analysis with themes, at-risk accounts, and recommended actions — across hundreds of responses in one pass.</p>
+            <p>Paste all your NPS responses. Get themes, at-risk accounts, and recommended actions — across hundreds of responses in one pass.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">feedback-analyzer</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Paste NPS data or point to CSV</div>
-                <div class="t-wf-field t-wf-tall">523 responses from Q1 survey...</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Paste NPS data or point to CSV</div><div class="t-wf-field t-wf-tall">523 responses from Q1 survey...</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Top 5 Themes</div>
-                <div class="t-wf-line w80"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">At-Risk Accounts</div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Recommended Actions</div>
-                <div class="t-wf-line w85"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Top 5 Themes</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">At-Risk Accounts</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Recommended Actions</div><div class="t-wf-line w85"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -1068,12 +700,10 @@
         </div>
 
         <div class="t-insight-box">
-          <div class="t-insight-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          </div>
+          <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
             <strong>Why this matters</strong>
-            <p>Claude's 1M context window reads every response in a single pass. It typically surfaces 3-4 at-risk accounts that nobody caught because nobody reads 500 NPS responses in one sitting. This replaces hours of manual triage.</p>
+            <p>Claude's 1M context window reads every response in a single pass. It typically surfaces 3-4 at-risk accounts that nobody caught because nobody reads 500 NPS responses in one sitting.</p>
           </div>
         </div>
 
@@ -1085,13 +715,12 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Draft a renewal talking track for [client]. They care about [specific metric]. Reference their Q1 results."</div>
         </div>
 
-        <!-- Strategy quiz -->
         <div class="t-quiz" id="quiz-strategy">
-          <div class="t-quiz-q">You're prepping for a client QBR. You need performance data, industry trends, and talking points. Which approach saves the most time?</div>
+          <div class="t-quiz-q">You're prepping for a client QBR. You need performance data, industry trends, and talking points. What saves the most time?</div>
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, false)">Pull data from 4 different dashboards, write slides manually</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, false)">Ask an analyst to compile a report</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, true)" data-correct">Build a Claude Code automation that pulls the data and drafts the sections — then reuse it every quarter</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, true)" data-correct>Build a Claude Code automation that pulls the data and drafts the sections — reuse it every quarter</button>
           </div>
           <div class="t-quiz-feedback"></div>
         </div>
@@ -1104,23 +733,14 @@
           <div class="t-build-header">
             <div class="t-build-time">~20 min</div>
             <h3>Blog Brief Submitter</h3>
-            <p>Build a simple form that takes a topic, keyword, and angle — then submits a formatted brief to the blog pipeline. One click to trigger a full blog post.</p>
+            <p>Build a form that takes a topic, keyword, and angle — then submits a formatted brief to the blog pipeline. One click to trigger a full blog post.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">blog-brief</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Topic</div>
-                <div class="t-wf-field">CTV measurement for franchise brands</div>
-              </div>
-              <div class="t-wf-input">
-                <div class="t-wf-label">Target keyword</div>
-                <div class="t-wf-field">ctv measurement franchise</div>
-              </div>
-              <div class="t-wf-input">
-                <div class="t-wf-label">Angle / audience</div>
-                <div class="t-wf-field">VP Marketing at multi-location franchise</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Topic</div><div class="t-wf-field">CTV measurement for franchise brands</div></div>
+              <div class="t-wf-input"><div class="t-wf-label">Target keyword</div><div class="t-wf-field">ctv measurement franchise</div></div>
+              <div class="t-wf-input"><div class="t-wf-label">Angle / audience</div><div class="t-wf-field">VP Marketing at multi-location franchise</div></div>
               <div class="t-wf-divider"></div>
               <div class="t-wf-button">Submit to Pipeline</div>
             </div>
@@ -1136,32 +756,20 @@
           <div class="t-build-header">
             <div class="t-build-time">~25 min</div>
             <h3>Social Content Calendar Builder</h3>
-            <p>Generate a month of social content themes mapped to the four content pillars. Export as a shareable calendar doc.</p>
+            <p>Generate a month of social content themes mapped to the four content pillars. Export as a shareable calendar.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">social-calendar</div>
             <div class="t-wf-body">
               <div class="t-wf-row">
-                <div class="t-wf-input t-wf-half">
-                  <div class="t-wf-label">Month</div>
-                  <div class="t-wf-field">April 2026</div>
-                </div>
-                <div class="t-wf-input t-wf-half">
-                  <div class="t-wf-label">Focus pillar</div>
-                  <div class="t-wf-field">Measurement Science</div>
-                </div>
+                <div class="t-wf-input t-wf-half"><div class="t-wf-label">Month</div><div class="t-wf-field">April 2026</div></div>
+                <div class="t-wf-input t-wf-half"><div class="t-wf-label">Focus pillar</div><div class="t-wf-field">Measurement Science</div></div>
               </div>
               <div class="t-wf-divider"></div>
               <div class="t-wf-calendar-mini">
-                <div class="t-wf-cal-header">
-                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
-                </div>
+                <div class="t-wf-cal-header"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div>
                 <div class="t-wf-cal-row">
-                  <div class="t-wf-cal-cell t-wf-cal-li"></div>
-                  <div class="t-wf-cal-cell t-wf-cal-li"></div>
-                  <div class="t-wf-cal-cell t-wf-cal-ig"></div>
-                  <div class="t-wf-cal-cell t-wf-cal-li"></div>
-                  <div class="t-wf-cal-cell t-wf-cal-ig"></div>
+                  <div class="t-wf-cal-cell t-wf-cal-li"></div><div class="t-wf-cal-cell t-wf-cal-li"></div><div class="t-wf-cal-cell t-wf-cal-ig"></div><div class="t-wf-cal-cell t-wf-cal-li"></div><div class="t-wf-cal-cell t-wf-cal-ig"></div>
                 </div>
               </div>
             </div>
@@ -1182,26 +790,11 @@
           <div class="t-wireframe">
             <div class="t-wf-titlebar">email-sequence</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Campaign theme</div>
-                <div class="t-wf-field">CTV incrementality for retail brands</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Campaign theme</div><div class="t-wf-field">CTV incrementality for retail brands</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Email 1: The Problem</div>
-                <div class="t-wf-line w60"></div>
-                <div class="t-wf-line w80"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Email 2: The Proof</div>
-                <div class="t-wf-line w70"></div>
-                <div class="t-wf-line w65"></div>
-              </div>
-              <div class="t-wf-section">
-                <div class="t-wf-heading">Email 3: The Ask</div>
-                <div class="t-wf-line w55"></div>
-                <div class="t-wf-line w75"></div>
-              </div>
+              <div class="t-wf-section"><div class="t-wf-heading">Email 1: The Problem</div><div class="t-wf-line w60"></div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Email 2: The Proof</div><div class="t-wf-line w70"></div><div class="t-wf-line w65"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Email 3: The Ask</div><div class="t-wf-line w55"></div><div class="t-wf-line w75"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -1215,28 +808,16 @@
           <div class="t-build-header">
             <div class="t-build-time">~20 min</div>
             <h3>SEO Keyword Opportunity Evaluator</h3>
-            <p>Feed it a list of 50+ keywords. Get them ranked by opportunity (search volume vs. current ranking difficulty) with recommended topics for each.</p>
+            <p>Feed it 50+ keywords. Get them ranked by opportunity with recommended topics.</p>
           </div>
           <div class="t-wireframe">
             <div class="t-wf-titlebar">keyword-evaluator</div>
             <div class="t-wf-body">
-              <div class="t-wf-input">
-                <div class="t-wf-label">Paste keywords or point to CSV</div>
-                <div class="t-wf-field t-wf-tall">ctv measurement, brand lift study, incrementality testing, programmatic advertising roi...</div>
-              </div>
+              <div class="t-wf-input"><div class="t-wf-label">Paste keywords or point to CSV</div><div class="t-wf-field t-wf-tall">ctv measurement, brand lift study, incrementality testing...</div></div>
               <div class="t-wf-divider"></div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">High</div>
-                <div class="t-wf-line w85"></div>
-              </div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">Med</div>
-                <div class="t-wf-line w70"></div>
-              </div>
-              <div class="t-wf-result">
-                <div class="t-wf-result-type">Low</div>
-                <div class="t-wf-line w55"></div>
-              </div>
+              <div class="t-wf-result"><div class="t-wf-result-type">High</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type">Med</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type">Low</div><div class="t-wf-line w55"></div></div>
             </div>
           </div>
           <div class="t-prompt-block">
@@ -1254,12 +835,11 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read our last 5 blog posts and suggest 3 topics we haven't covered that match our keyword gaps"</div>
         </div>
 
-        <!-- Marketing quiz -->
         <div class="t-quiz" id="quiz-marketing">
           <div class="t-quiz-q">You want to generate social posts that match Agility's voice rules. What's the right approach?</div>
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, false)">List every word Claude shouldn't use in the prompt</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, true)" data-correct">Write the posts, then run a second pass to check for banned patterns and tighten the copy</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, true)" data-correct>Write the posts, then run a second pass to check for banned patterns and tighten the copy</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, false)">Copy posts from last week and change the topic</button>
           </div>
           <div class="t-quiz-feedback"></div>
@@ -1268,146 +848,190 @@
     </section>
 
     <!-- ============================================================
-         SECTION 5: CLAUDE CODE VS. CHAT
+         SECTION 5: THE MULTIPLIER (inspiration — what one person built)
          ============================================================ -->
-    <section id="claude-code">
+    <section id="multiplier">
       <div class="step-header">
         <div class="step-badge">5</div>
         <div class="step-title-wrap">
-          <h2>Chat vs. Cowork vs. Code</h2>
-          <div class="step-sub">Three tools. Different jobs. Use the right one.</div>
+          <h2>The Multiplier Effect</h2>
+          <div class="step-sub">What one person built with these exact techniques.</div>
         </div>
       </div>
 
-      <p>Claude comes in three forms. Each one is built for a different type of work. Most of the team uses Chat for everything, which burns tokens fast and loses context between messages. Here's when to use each.</p>
+      <p>One marketing person runs Agility's entire content operation using Claude Code. Not by writing more — by building a system where one piece of content creates ten. Every technique you learned in this training powers this engine.</p>
 
-      <div class="t-tool-comparison t-tool-comparison-3">
-        <div class="t-tool-card">
-          <div class="t-tool-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="t-tool-name">Chat</div>
-          <div class="t-tool-subtitle">claude.ai in the browser</div>
-          <ul>
-            <li>Quick question, no files</li>
-            <li>Brainstorming or ideation</li>
-            <li>Analyzing text you paste in</li>
-            <li>One-off research questions</li>
-          </ul>
-          <div class="t-tool-token-note">Context resets every conversation</div>
+      <!-- Content Multiplier Visual -->
+      <div class="t-multiplier" id="multiplier-visual">
+        <div class="t-mult-center">
+          <div class="t-mult-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="t-mult-label">1 Blog Post</div>
         </div>
-        <div class="t-tool-card">
-          <div class="t-tool-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12h16M8 16h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="20" r="4" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <div class="t-tool-name">Cowork</div>
-          <div class="t-tool-subtitle">Claude Desktop app</div>
-          <ul>
-            <li>Multi-step knowledge work</li>
-            <li>Research across multiple sources</li>
-            <li>Document analysis and writing</li>
-            <li>When you want Code-level depth with a visual interface</li>
-          </ul>
-          <div class="t-tool-token-note">Uses tokens faster than Code</div>
-        </div>
-        <div class="t-tool-card t-tool-card-highlight">
-          <div class="t-tool-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="28" height="24" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 12l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="t-tool-name">Code</div>
-          <div class="t-tool-subtitle">Terminal or Desktop app</div>
-          <ul>
-            <li>Working with files or a project</li>
-            <li>Multi-step tasks with file context</li>
-            <li>Anything you'll do more than once</li>
-            <li>Building automations and tools</li>
-          </ul>
-          <div class="t-tool-token-note">CLAUDE.md gives persistent memory</div>
+        <div class="t-mult-branches">
+          <div class="t-mult-branch t-mult-b1"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">4</span><span class="t-mult-type">LinkedIn Posts</span></div></div>
+          <div class="t-mult-branch t-mult-b2"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">3</span><span class="t-mult-type">Instagram Cards</span></div></div>
+          <div class="t-mult-branch t-mult-b3"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Medium Article</span></div></div>
+          <div class="t-mult-branch t-mult-b4"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">1</span><span class="t-mult-type">Newsletter</span></div></div>
+          <div class="t-mult-branch t-mult-b5"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">2</span><span class="t-mult-type">HubSpot Emails</span></div></div>
+          <div class="t-mult-branch t-mult-b6"><div class="t-mult-line"></div><div class="t-mult-node"><span class="t-mult-count">3-5</span><span class="t-mult-type">Engagement</span></div></div>
         </div>
       </div>
 
-      <div class="t-insight-box">
-        <div class="t-insight-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        </div>
-        <div class="t-insight-body">
-          <strong>Why Code wins on value per token</strong>
-          <p>Cowork and Code use similar amounts of tokens for similar tasks — both run the full agentic loop. The difference is what you get for those tokens. Code gives you CLAUDE.md (persistent context every session), <code>/compact</code> (compress history mid-session), and reusable automations (build once, run forever). Chat is cheapest per exchange but can't touch your files. Cowork is powerful for one-off deep work. Code is where repeatable value lives.</p>
-        </div>
+      <div class="t-stat-cards">
+        <div class="t-stat-card"><div class="t-stat-number">3+</div><div class="t-stat-label">Blogs per week</div><div class="t-stat-desc">Researched, written, QC'd, published. One click each.</div></div>
+        <div class="t-stat-card"><div class="t-stat-number">7</div><div class="t-stat-label">Social posts per week</div><div class="t-stat-desc">4 LinkedIn + 3 Instagram with branded imagery.</div></div>
+        <div class="t-stat-card"><div class="t-stat-number">30+</div><div class="t-stat-label">Total per month</div><div class="t-stat-desc">Blog, social, newsletter, case studies, email.</div></div>
       </div>
 
-      <!-- Decision tree -->
-      <h3>Quick decision: which tool?</h3>
-      <div class="t-decision-tree" id="decision-tree">
-        <div class="t-dt-question active" data-dt-step="0">
-          <p class="t-dt-q">Does your task involve files, documents, or a project folder?</p>
-          <div class="t-dt-options">
-            <button class="t-dt-option" onclick="dtAnswer(0, 'yes')">Yes, working with files</button>
-            <button class="t-dt-option" onclick="dtAnswer(0, 'no')">No, just a question</button>
-          </div>
-        </div>
-        <div class="t-dt-question" data-dt-step="1">
-          <p class="t-dt-q">Will you do this task (or something similar) again?</p>
-          <div class="t-dt-options">
-            <button class="t-dt-option" onclick="dtAnswer(1, 'yes')">Yes, it's repeatable</button>
-            <button class="t-dt-option" onclick="dtAnswer(1, 'no')">No, one-time thing</button>
-          </div>
-        </div>
-        <div class="t-dt-question" data-dt-step="2">
-          <p class="t-dt-q">Quick question or extended work session?</p>
-          <div class="t-dt-options">
-            <button class="t-dt-option" onclick="dtAnswer(2, 'quick')">Quick question</button>
-            <button class="t-dt-option" onclick="dtAnswer(2, 'extended')">Extended work</button>
-          </div>
-        </div>
-        <div class="t-dt-result" id="dt-result"></div>
-      </div>
-      <button class="btn-secondary t-dt-reset t-hidden" id="dt-reset" onclick="dtReset()">Try again</button>
+      <!-- Weekly calendar -->
+      <h3>The weekly calendar</h3>
+      <p>Every pipeline runs on a schedule. Click a day to see what happens.</p>
 
-      <!-- 3 rules -->
-      <h3>Three rules</h3>
-      <div class="t-rules">
-        <div class="t-rule">
-          <div class="t-rule-num">1</div>
-          <div class="t-rule-body">
-            <h4>Files or context? Open Claude Code.</h4>
-            <p>It reads your project folder. No copy-pasting. No re-explaining.</p>
+      <div class="t-calendar">
+        <div class="t-cal-day" onclick="toggleCalDay(this)">
+          <div class="t-cal-day-header"><div class="t-cal-day-name">Monday</div><div class="t-cal-day-count">2 pipelines</div></div>
+          <div class="t-cal-day-items">
+            <div class="t-cal-item t-cal-social"><div class="t-cal-item-time">8:00 AM</div><div class="t-cal-item-name">Social Weekly</div><div class="t-cal-item-desc">Generates 4 LinkedIn + 3 Instagram posts with branded images. Queues in Hub.</div></div>
+            <div class="t-cal-item t-cal-engagement"><div class="t-cal-item-time">10:00 AM</div><div class="t-cal-item-name">LinkedIn Engagement</div><div class="t-cal-item-desc">Finds relevant discussions. Drafts expert comments. Queues for review.</div></div>
           </div>
         </div>
-        <div class="t-rule">
-          <div class="t-rule-num">2</div>
-          <div class="t-rule-body">
-            <h4>Create a CLAUDE.md file.</h4>
-            <p>Your role, your preferences, your project rules. Claude reads it every session. Type <code>/init</code> to generate one automatically.</p>
+        <div class="t-cal-day" onclick="toggleCalDay(this)">
+          <div class="t-cal-day-header"><div class="t-cal-day-name">Tuesday</div><div class="t-cal-day-count">1 pipeline</div></div>
+          <div class="t-cal-day-items">
+            <div class="t-cal-item t-cal-engagement"><div class="t-cal-item-time">9:00 AM</div><div class="t-cal-item-name">Quora Engagement</div><div class="t-cal-item-desc">Finds questions with weak answers. Writes expert responses. Queues for review.</div></div>
           </div>
         </div>
-        <div class="t-rule">
-          <div class="t-rule-num">3</div>
-          <div class="t-rule-body">
-            <h4>Type <code>/compact</code> when conversations get long.</h4>
-            <p>Compresses history, keeps context. Extends your session by 3-5x.</p>
+        <div class="t-cal-day" onclick="toggleCalDay(this)">
+          <div class="t-cal-day-header"><div class="t-cal-day-name">Wednesday</div><div class="t-cal-day-count">2 pipelines</div></div>
+          <div class="t-cal-day-items">
+            <div class="t-cal-item t-cal-blog"><div class="t-cal-item-time">11:00 AM</div><div class="t-cal-item-name">Blog Pipeline</div><div class="t-cal-item-desc">Keyword analysis, Perplexity research, Claude writes 2,000 words, editor QC, publishes to Framer CMS. Triggers the whole multiplier chain.</div></div>
+            <div class="t-cal-item t-cal-engagement"><div class="t-cal-item-time">10:00 AM</div><div class="t-cal-item-name">Reddit Engagement</div><div class="t-cal-item-desc">Finds relevant threads. Writes expert comments. Queues for review.</div></div>
+          </div>
+        </div>
+        <div class="t-cal-day" onclick="toggleCalDay(this)">
+          <div class="t-cal-day-header"><div class="t-cal-day-name">Thursday</div><div class="t-cal-day-count">Pollers</div></div>
+          <div class="t-cal-day-items">
+            <div class="t-cal-item t-cal-other"><div class="t-cal-item-time">Every 30 min</div><div class="t-cal-item-name">Blog + Case Study Pollers</div><div class="t-cal-item-desc">Watches for new briefs and intake forms. Triggers pipelines automatically.</div></div>
+          </div>
+        </div>
+        <div class="t-cal-day" onclick="toggleCalDay(this)">
+          <div class="t-cal-day-header"><div class="t-cal-day-name">Friday</div><div class="t-cal-day-count">Distribution</div></div>
+          <div class="t-cal-day-items">
+            <div class="t-cal-item t-cal-other"><div class="t-cal-item-time">Automated</div><div class="t-cal-item-name">Medium + Content Library</div><div class="t-cal-item-desc">Blog posts syndicate to Medium. Content library updated with AI-tagged assets.</div></div>
           </div>
         </div>
       </div>
-
-      <!-- Quiz -->
-      <div class="t-quiz" id="quiz-cc">
-        <div class="t-quiz-q">You need to write a personalized pitch for 5 different prospects. Each one needs company-specific research. Which tool?</div>
-        <div class="t-quiz-options">
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Claude Chat — paste each prospect's info one at a time</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, true)" data-correct">Claude Code — build a script that processes all 5 from a file, reuse it next week</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Write them manually</button>
+      <div class="t-cal-monthly">
+        <div class="t-cal-monthly-label">Monthly</div>
+        <div class="t-cal-monthly-items">
+          <span class="t-cal-monthly-tag">1st: Newsletter + Social Calendar</span>
+          <span class="t-cal-monthly-tag">2nd: Keyword Refresh</span>
         </div>
-        <div class="t-quiz-feedback"></div>
+      </div>
+
+      <!-- Role callouts -->
+      <div class="t-role-callout role-sales">
+        <div class="t-role-callout-label">For Sales</div>
+        <p>The content library updates every time a blog, case study, or PDF publishes. Search by industry or use case to find assets before prospect meetings.</p>
+      </div>
+      <div class="t-role-callout role-strategy">
+        <div class="t-role-callout-label">For Strategy</div>
+        <p>Case study pollers run every 30 minutes. Submit a client win through the Hub and the pipeline delivers a finished case study.</p>
+      </div>
+      <div class="t-role-callout role-marketing">
+        <div class="t-role-callout-label">For Marketing</div>
+        <p>Every pipeline queues in the Hub before publishing. You approve, edit, or reject. The automation handles volume. You control quality.</p>
       </div>
     </section>
 
     <!-- ============================================================
-         SECTION 6: QUICK REFERENCE
+         SECTION 6: LEVEL UP (advanced tips)
+         ============================================================ -->
+    <section id="levelup">
+      <div class="step-header">
+        <div class="step-badge">6</div>
+        <div class="step-title-wrap">
+          <h2>Level Up</h2>
+          <div class="step-sub">Once you're comfortable, these make you faster.</div>
+        </div>
+      </div>
+
+      <h3>Power user commands</h3>
+      <div class="t-commands-grid">
+        <div class="t-command"><div class="t-command-name"><code>/init</code></div><div class="t-command-desc">Auto-generates a CLAUDE.md from your project. Run this first.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>/compact</code></div><div class="t-command-desc">Compresses conversation history. Add instructions: <code>/compact Focus on key decisions</code></div></div>
+        <div class="t-command"><div class="t-command-name"><code>Shift+Tab</code></div><div class="t-command-desc">Plan Mode. Claude plans but doesn't change files. Reduces trial-and-error waste by 20-30%.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>/clear</code></div><div class="t-command-desc">Resets context. Use between unrelated tasks.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>/btw</code></div><div class="t-command-desc">Side question that never enters history. Zero context cost.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>claude --continue</code></div><div class="t-command-desc">Resume your last session with full context.</div></div>
+        <div class="t-command"><div class="t-command-name">Custom skills</div><div class="t-command-desc">Save workflows as /slash-commands. A <code>/prospect-brief</code> skill runs your exact sequence every time.</div></div>
+        <div class="t-command"><div class="t-command-name">75% rule</div><div class="t-command-desc">Sessions under 75% context produce better output. Run <code>/compact</code> at 50%, not when maxed.</div></div>
+      </div>
+
+      <h3>Permission modes</h3>
+      <div class="t-permission-modes">
+        <div class="t-perm-mode">
+          <div class="t-perm-icon">&#x1F64B;</div>
+          <div class="t-perm-name">Ask first <span class="t-perm-default">Default</span></div>
+          <div class="t-perm-desc">Claude explains each action and waits for approval. Best while learning.</div>
+        </div>
+        <div class="t-perm-mode">
+          <div class="t-perm-icon">&#x1F4CB;</div>
+          <div class="t-perm-name">Plan first <span class="t-perm-shortcut">Shift+Tab</span></div>
+          <div class="t-perm-desc">Shows the full plan. You approve once. It runs. Best for multi-step tasks.</div>
+        </div>
+        <div class="t-perm-mode">
+          <div class="t-perm-icon">&#x1F680;</div>
+          <div class="t-perm-name">Full auto <span class="t-perm-shortcut">Shift+Tab ×2</span></div>
+          <div class="t-perm-desc">No interruptions. Best when you trust the task completely.</div>
+        </div>
+      </div>
+
+      <h3>Five things that hurt your output</h3>
+      <div class="t-avoid-list">
+        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>The kitchen sink session</strong><p>Mixing unrelated tasks in one conversation. Fix: <code>/clear</code> between topics.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>The correction spiral</strong><p>3+ corrections on the same issue. Fix: <code>/clear</code> and rewrite the prompt.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Vague requests</strong><p>"Make this better" costs 3 rounds. "Rewrite the intro with the 47% stat, under 80 words" costs 1.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Overstuffed CLAUDE.md</strong><p>~150-200 instruction budget. If it's too long, rules get lost. Cut anything that doesn't prevent mistakes.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">5</div><div class="t-avoid-body"><strong>Skipping Plan Mode</strong><p>Jumping to execution causes 20-30% more token waste. Press Shift+Tab first.</p></div></div>
+      </div>
+
+      <h3>How to give Claude feedback</h3>
+      <p>Specific feedback gets fixed in one pass. Point to the problem. Say what you want instead.</p>
+      <div class="t-feedback-examples">
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"This isn't quite right"</div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Second paragraph too long. Cut to 2 sentences. Keep the 2.2x stat."</div>
+        </div>
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Make it better"</div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Too formal. Rewrite conversationally, like explaining to a colleague over coffee."</div>
+        </div>
+        <div class="t-feedback-row">
+          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Try again"</div>
+          <div class="t-feedback-arrow">&#x2192;</div>
+          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Structure is right but opening is weak. Lead with the $11.2M revenue stat."</div>
+        </div>
+      </div>
+
+      <h3>Your first week</h3>
+      <div class="t-timeline">
+        <div class="t-timeline-item"><div class="t-timeline-day">Day 1</div><div class="t-timeline-task">Install + explore a project folder</div></div>
+        <div class="t-timeline-item"><div class="t-timeline-day">Day 2</div><div class="t-timeline-task">Create CLAUDE.md with <code>/init</code>, customize it</div></div>
+        <div class="t-timeline-item"><div class="t-timeline-day">Day 3</div><div class="t-timeline-task">Build one project from Section 4</div></div>
+        <div class="t-timeline-item"><div class="t-timeline-day">Day 5</div><div class="t-timeline-task">Save a workflow as a custom skill</div></div>
+        <div class="t-timeline-item"><div class="t-timeline-day">Day 7</div><div class="t-timeline-task">Run your first automation end-to-end</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7: REFERENCE
          ============================================================ -->
     <section id="reference">
       <div class="step-header">
-        <div class="step-badge">6</div>
+        <div class="step-badge">7</div>
         <div class="step-title-wrap">
           <h2>Quick Reference</h2>
           <div class="step-sub">Bookmark this section.</div>
@@ -1417,48 +1041,31 @@
       <h3>Key Resources</h3>
       <div class="t-resources">
         <a href="https://agility-hub.vercel.app" target="_blank" rel="noopener" class="t-resource-card">
-          <div class="t-resource-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="16" height="16" rx="3"/><path d="M6 7h8M6 10h8M6 13h5"/></svg>
-          </div>
-          <div>
-            <div class="t-resource-name">Agility Hub</div>
-            <div class="t-resource-desc">Review queue for all pending content</div>
-          </div>
+          <div class="t-resource-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="16" height="16" rx="3"/><path d="M6 7h8M6 10h8M6 13h5"/></svg></div>
+          <div><div class="t-resource-name">Agility Hub</div><div class="t-resource-desc">Review queue for all pending content</div></div>
         </a>
         <a href="https://agilityads.com/blog" target="_blank" rel="noopener" class="t-resource-card">
-          <div class="t-resource-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v12H4z"/><path d="M4 8h12M8 8v8"/></svg>
-          </div>
-          <div>
-            <div class="t-resource-name">Agility Blog</div>
-            <div class="t-resource-desc">Published articles on agilityads.com</div>
-          </div>
+          <div class="t-resource-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v12H4z"/><path d="M4 8h12M8 8v8"/></svg></div>
+          <div><div class="t-resource-name">Agility Blog</div><div class="t-resource-desc">Published articles on agilityads.com</div></div>
         </a>
         <a href="/" target="_blank" rel="noopener" class="t-resource-card">
-          <div class="t-resource-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="14" rx="3"/><path d="M6 9l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15h4" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <div class="t-resource-name">Claude Code Guide</div>
-            <div class="t-resource-desc">Full interactive tutorial</div>
-          </div>
+          <div class="t-resource-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="14" rx="3"/><path d="M6 9l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15h4" stroke-linecap="round"/></svg></div>
+          <div><div class="t-resource-name">Claude Code Guide</div><div class="t-resource-desc">Full interactive tutorial</div></div>
         </a>
       </div>
 
       <h3>Slash commands</h3>
       <div class="t-table-wrap">
         <table class="t-schedule-table t-schedule-compact">
-          <thead>
-            <tr><th>Command</th><th>What it does</th></tr>
-          </thead>
+          <thead><tr><th>Command</th><th>What it does</th></tr></thead>
           <tbody>
             <tr><td><code>/init</code></td><td>Scan your project, generate a CLAUDE.md file</td></tr>
-            <tr><td><code>/compact</code></td><td>Compress conversation history (add instructions: <code>/compact Focus on key decisions</code>)</td></tr>
-            <tr><td><code>/clear</code></td><td>Reset conversation context — use between unrelated tasks</td></tr>
-            <tr><td><code>/btw</code></td><td>Side question that doesn't enter history — zero context cost</td></tr>
+            <tr><td><code>/compact</code></td><td>Compress conversation history</td></tr>
+            <tr><td><code>/clear</code></td><td>Reset conversation context</td></tr>
+            <tr><td><code>/btw</code></td><td>Side question — zero context cost</td></tr>
             <tr><td><code>/model</code></td><td>Switch Claude model mid-session</td></tr>
-            <tr><td><code>/cost</code></td><td>Check how many tokens you've used</td></tr>
-            <tr><td><code>/help</code></td><td>Show all available commands</td></tr>
+            <tr><td><code>/cost</code></td><td>Check token usage</td></tr>
+            <tr><td><code>/help</code></td><td>Show all commands</td></tr>
           </tbody>
         </table>
       </div>
@@ -1499,50 +1106,24 @@
         </div>
       </div>
 
-      <div class="t-insight-box" style="margin-top: 24px;">
-        <div class="t-insight-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        </div>
+      <div class="t-insight-box t-mt-16">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
         <div class="t-insight-body">
           <strong>Integrations (MCP servers)</strong>
-          <p>Claude Code connects to your tools. With integrations called MCP servers, it reads Slack messages, creates HubSpot contacts, checks Google Calendar, pulls Ahrefs data, and more — all from the terminal. Ask your admin to set up the ones relevant to your role. This is how the Agility content engine connects to 10+ services from a single interface.</p>
+          <p>Claude Code connects to Slack, HubSpot, Google Calendar, Ahrefs, and more via integrations called MCP servers. Ask your admin to set up the ones relevant to your role.</p>
         </div>
       </div>
 
       <h3>The method, in four lines</h3>
       <div class="t-cheatsheet">
-        <div class="t-cheatsheet-row">
-          <div class="t-cheatsheet-do">Tell Claude what you want</div>
-          <div class="t-cheatsheet-arrow">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
-          </div>
-          <div class="t-cheatsheet-dont">Don't list what to avoid</div>
-        </div>
-        <div class="t-cheatsheet-row">
-          <div class="t-cheatsheet-do">Generate, then clean up in a second pass</div>
-          <div class="t-cheatsheet-arrow">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
-          </div>
-          <div class="t-cheatsheet-dont">Don't over-constrain pass one</div>
-        </div>
-        <div class="t-cheatsheet-row">
-          <div class="t-cheatsheet-do">Use CLAUDE.md for persistent context</div>
-          <div class="t-cheatsheet-arrow">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
-          </div>
-          <div class="t-cheatsheet-dont">Don't re-explain every session</div>
-        </div>
-        <div class="t-cheatsheet-row">
-          <div class="t-cheatsheet-do">Claude Code for file-based work</div>
-          <div class="t-cheatsheet-arrow">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg>
-          </div>
-          <div class="t-cheatsheet-dont">Don't copy-paste into browser chat</div>
-        </div>
+        <div class="t-cheatsheet-row"><div class="t-cheatsheet-do">Tell Claude what you want</div><div class="t-cheatsheet-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg></div><div class="t-cheatsheet-dont">Don't list what to avoid</div></div>
+        <div class="t-cheatsheet-row"><div class="t-cheatsheet-do">Generate, then clean up in a second pass</div><div class="t-cheatsheet-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg></div><div class="t-cheatsheet-dont">Don't over-constrain pass one</div></div>
+        <div class="t-cheatsheet-row"><div class="t-cheatsheet-do">Use CLAUDE.md for persistent context</div><div class="t-cheatsheet-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg></div><div class="t-cheatsheet-dont">Don't re-explain every session</div></div>
+        <div class="t-cheatsheet-row"><div class="t-cheatsheet-do">Claude Code for file-based work</div><div class="t-cheatsheet-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 6l4 4-4 4"/></svg></div><div class="t-cheatsheet-dont">Don't copy-paste into browser chat</div></div>
       </div>
 
       <div class="t-closing">
-        <p>This page stays up as a reference. Bookmark it. Come back when you need a prompt starter or a refresher on the method.</p>
+        <p>This page stays up as a reference. Bookmark it. Come back when you need a prompt starter or a refresher.</p>
         <p>Pick one project from Section 4 and try it this week. That's the assignment.</p>
       </div>
     </section>
