@@ -14,7 +14,6 @@
   background: var(--accent);
   z-index: 300;
   width: 0;
-  transition: width 0.1s linear;
 }
 
 /* =====================================================================
@@ -906,6 +905,9 @@
   opacity: 0.5;
 }
 
+.t-quiz-opt.disabled.correct { opacity: 1; }
+.t-quiz-opt.disabled.wrong { opacity: 0.7; }
+
 .t-quiz-feedback {
   margin-top: 12px;
   font-size: 14px;
@@ -1568,6 +1570,94 @@
 .t-cheatsheet-dont { flex: 1; font-size: 14px; color: var(--muted); text-align: right; text-decoration: line-through; text-decoration-color: var(--border); }
 
 /* =====================================================================
+   SCHEDULE TABLE
+   ===================================================================== */
+.t-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 24px;
+}
+
+.t-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.t-schedule-table thead { background: var(--cream2); }
+
+.t-schedule-table th {
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.t-schedule-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+}
+
+.t-schedule-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.t-schedule-table code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--cream2);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+.t-schedule-compact td:first-child { min-width: 110px; }
+
+/* =====================================================================
+   BOUNDARY (Can/Can't, Automated/Human)
+   ===================================================================== */
+.t-boundary {
+  display: flex;
+  gap: 0;
+  margin: 16px 0 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.t-boundary-col {
+  flex: 1;
+  padding: 20px;
+}
+
+.t-boundary-col:first-child { background: var(--cream2); }
+
+.t-boundary-divider {
+  width: 1px;
+  background: var(--border);
+}
+
+.t-boundary-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.t-boundary-auto { color: var(--accent); }
+.t-boundary-human { color: var(--blue); }
+
+.t-boundary-col ul { margin: 0 0 0 16px; }
+.t-boundary-col ul li { font-size: 13px; color: var(--ink2); margin-bottom: 6px; line-height: 1.5; }
+
+/* =====================================================================
    CLOSING + FOOTER
    ===================================================================== */
 .t-closing {
@@ -1582,16 +1672,23 @@
 
 .t-footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
 
-/* =====================================================================
-   BUTTONS
-   ===================================================================== */
-.btn-primary { font-family: var(--sans); font-size: 14px; font-weight: 600; padding: 8px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
-.btn-primary:hover { opacity: 0.9; }
-.btn-primary:disabled { opacity: 0.4; cursor: default; }
+/* Utilities */
+.t-hidden { display: none; }
 
-.btn-secondary { font-family: var(--sans); font-size: 14px; font-weight: 600; padding: 8px 20px; background: transparent; color: var(--ink2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; }
-.btn-secondary:hover { border-color: var(--muted); color: var(--ink); }
-.btn-secondary:disabled { opacity: 0.4; cursor: default; }
+/* Spacing utilities */
+.t-mt-8 { margin-top: 8px; }
+.t-mt-16 { margin-top: 16px; }
+.t-mt-28 { margin-top: 28px; }
+
+/* Wireframe markdown example */
+.t-wf-md-heading { color: var(--accent); font-weight: 700; }
+.t-wf-body-code { font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--ink2); }
+
+/* Method comparison stacking */
+.t-method-comparison + .t-method-comparison { margin-top: 8px; }
+
+/* Buttons: inherit from styles.css, override border-radius only */
+.btn-primary, .btn-secondary { border-radius: 8px; }
 
 /* =====================================================================
    RESPONSIVE
@@ -1615,6 +1712,8 @@
   .t-first-run-step { flex-direction: column; gap: 4px; }
   .t-first-run-cmd { min-width: auto; }
   .t-timeline { flex-direction: column; }
+  .t-boundary { flex-direction: column; }
+  .t-boundary-divider { width: auto; height: 1px; }
   .t-tool-comparison, .t-tool-comparison-3 { grid-template-columns: 1fr; }
   .t-commands-grid { grid-template-columns: 1fr; }
   .t-resources { grid-template-columns: 1fr; }

@@ -434,22 +434,22 @@
           </div>
           <div class="t-wireframe" style="margin: 16px 0;">
             <div class="t-wf-titlebar">CLAUDE.md — example for a sales role</div>
-            <div class="t-wf-body" style="font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--ink2);">
-              <div style="color: var(--accent); font-weight: 700;"># My Role</div>
+            <div class="t-wf-body" class="t-wf-body-code">
+              <div class="t-wf-md-heading"># My Role</div>
               <div>Account Executive at Agility Ads. I sell to enterprise CMOs and VPs of Marketing with $5M+ ad budgets.</div>
               <br>
-              <div style="color: var(--accent); font-weight: 700;"># What I Need Help With</div>
+              <div class="t-wf-md-heading"># What I Need Help With</div>
               <div>- Prospect research briefs before meetings</div>
               <div>- Personalized outreach emails (cold + follow-up)</div>
               <div>- Competitive positioning against TTD, DV360, StackAdapt</div>
               <br>
-              <div style="color: var(--accent); font-weight: 700;"># Rules</div>
+              <div class="t-wf-md-heading"># Rules</div>
               <div>- Never mention competitor names positively</div>
               <div>- Lead with data and specific results</div>
               <div>- Write at a CMO reading level, not a marketer level</div>
               <div>- Reference our case studies when relevant</div>
               <br>
-              <div style="color: var(--accent); font-weight: 700;"># Key Stats I Use</div>
+              <div class="t-wf-md-heading"># Key Stats I Use</div>
               <div>- $6 ROI per $1 in brand advertising (Binet & Field)</div>
               <div>- National Fitness: $11.2M incremental revenue</div>
               <div>- 2.2x conversion lift vs placebo at 6 months</div>
@@ -512,7 +512,7 @@
                 <div class="t-formula-ex">File type, format, where to save</div>
               </div>
             </div>
-            <p style="margin-top:16px;">Examples — vague vs. specific:</p>
+            <p class="t-mt-16">Examples — vague vs. specific:</p>
           </div>
           <div class="t-method-comparison">
             <div class="t-method-bad">
@@ -524,7 +524,7 @@
               "Rewrite this follow-up email for a CMO who went dark after a demo. Reference the National Fitness case study. Under 100 words. Casual but direct."
             </div>
           </div>
-          <div class="t-method-comparison" style="margin-top:8px;">
+          <div class="t-method-comparison">
             <div class="t-method-bad">
               <div class="t-method-verdict">Vague</div>
               "Analyze this data"
@@ -534,7 +534,7 @@
               "Read this CSV of Q1 campaign metrics. Find the 3 campaigns with the highest cost-per-acquisition increase. Output a table ranked by severity."
             </div>
           </div>
-          <div class="t-method-comparison" style="margin-top:8px;">
+          <div class="t-method-comparison">
             <div class="t-method-bad">
               <div class="t-method-verdict">Vague</div>
               "Make a presentation"
@@ -615,7 +615,7 @@
               <div class="t-perm-desc">Claude works start to finish with no interruptions. Best when you trust the task completely.</div>
             </div>
           </div>
-          <div class="t-insight-box" style="margin-top:16px;">
+          <div class="t-insight-box" class="t-mt-16">
             <div class="t-insight-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             </div>
@@ -711,7 +711,7 @@
         <div class="t-quiz-q">You want Claude to write a client summary without jargon. Which approach produces better output?</div>
         <div class="t-quiz-options">
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, false)">Add "don't use jargon" to the prompt</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, true)">Write it, then ask Claude to replace any industry terms with plain language</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, true)" data-correct">Write it, then ask Claude to replace any industry terms with plain language</button>
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-2', this, false)">List every jargon word to avoid</button>
         </div>
         <div class="t-quiz-feedback"></div>
@@ -897,7 +897,7 @@
           </div>
         </div>
 
-        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this prospect's LinkedIn profile and give me 3 personalized opening lines"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Compare these two proposals and highlight the key differences in a table"</div>
@@ -910,7 +910,7 @@
           <div class="t-quiz-q">You need a case study for a QSR prospect meeting tomorrow. What's the fastest path?</div>
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, false)">Ask marketing to write one</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, true)">Submit the client win data through the Hub intake form — the pipeline writes it automatically</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, true)" data-correct">Submit the client win data through the Hub intake form — the pipeline writes it automatically</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-sales', this, false)">Search Google Docs for an old one</button>
           </div>
           <div class="t-quiz-feedback"></div>
@@ -1077,7 +1077,7 @@
           </div>
         </div>
 
-        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this campaign report into 5 bullet points for the client"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read these meeting notes and extract all action items with owners and due dates"</div>
@@ -1091,7 +1091,7 @@
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, false)">Pull data from 4 different dashboards, write slides manually</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, false)">Ask an analyst to compile a report</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, true)">Build a Claude Code automation that pulls the data and drafts the sections — then reuse it every quarter</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-strategy', this, true)" data-correct">Build a Claude Code automation that pulls the data and drafts the sections — then reuse it every quarter</button>
           </div>
           <div class="t-quiz-feedback"></div>
         </div>
@@ -1246,7 +1246,7 @@
           </div>
         </div>
 
-        <h3 style="margin-top:28px;">Daily prompts to try</h3>
+        <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Rewrite this blog intro to hook the reader in the first sentence. Lead with a surprising stat."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Turn this case study into 3 LinkedIn post variants — one data-driven, one storytelling, one contrarian take"</div>
@@ -1259,7 +1259,7 @@
           <div class="t-quiz-q">You want to generate social posts that match Agility's voice rules. What's the right approach?</div>
           <div class="t-quiz-options">
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, false)">List every word Claude shouldn't use in the prompt</button>
-            <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, true)">Write the posts, then run a second pass to check for banned patterns and tighten the copy</button>
+            <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, true)" data-correct">Write the posts, then run a second pass to check for banned patterns and tighten the copy</button>
             <button class="t-quiz-opt" onclick="checkQuiz('quiz-marketing', this, false)">Copy posts from last week and change the topic</button>
           </div>
           <div class="t-quiz-feedback"></div>
@@ -1362,7 +1362,7 @@
         </div>
         <div class="t-dt-result" id="dt-result"></div>
       </div>
-      <button class="btn-secondary t-dt-reset" id="dt-reset" onclick="dtReset()" style="display:none;">Try again</button>
+      <button class="btn-secondary t-dt-reset t-hidden" id="dt-reset" onclick="dtReset()">Try again</button>
 
       <!-- 3 rules -->
       <h3>Three rules</h3>
@@ -1395,7 +1395,7 @@
         <div class="t-quiz-q">You need to write a personalized pitch for 5 different prospects. Each one needs company-specific research. Which tool?</div>
         <div class="t-quiz-options">
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Claude Chat — paste each prospect's info one at a time</button>
-          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, true)">Claude Code — build a script that processes all 5 from a file, reuse it next week</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, true)" data-correct">Claude Code — build a script that processes all 5 from a file, reuse it next week</button>
           <button class="t-quiz-opt" onclick="checkQuiz('quiz-cc', this, false)">Write them manually</button>
         </div>
         <div class="t-quiz-feedback"></div>

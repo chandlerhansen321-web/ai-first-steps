@@ -29,21 +29,63 @@ function toggleTheme() {
 })();
 
 // =====================================================================
-// SCROLL PROGRESS BAR
+// SCROLL: Progress bar + sidebar tracking (single rAF-guarded handler)
 // =====================================================================
 (function() {
   var bar = document.getElementById('progress-bar');
-  if (!bar) return;
+  var sections = [];
+  var sidebarLinks = [];
+  var ticking = false;
 
-  function update() {
-    var scrollTop = window.scrollY;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct + '%';
+  function cachePositions() {
+    sidebarLinks = document.querySelectorAll('.t-sidebar ul li a');
+    sections = [];
+    sidebarLinks.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        var el = document.getElementById(href.substring(1));
+        if (el) sections.push({ el: el, link: link, top: el.offsetTop });
+      }
+    });
   }
 
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+  function onScroll() {
+    var scrollTop = window.scrollY;
+
+    // Progress bar
+    if (bar) {
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+    }
+
+    // Sidebar active tracking
+    var scrollY = scrollTop + 120;
+    var active = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].top <= scrollY) {
+        active = sections[i];
+        break;
+      }
+    }
+    sidebarLinks.forEach(function(link) { link.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
+
+    ticking = false;
+  }
+
+  function requestScroll() {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    cachePositions();
+    onScroll();
+    window.addEventListener('scroll', requestScroll, { passive: true });
+    window.addEventListener('resize', cachePositions, { passive: true });
+  });
 })();
 
 // =====================================================================
@@ -66,56 +108,13 @@ function setRole(role) {
 })();
 
 // =====================================================================
-// SIDEBAR SCROLL TRACKING
-// =====================================================================
-(function() {
-  var sections = [];
-  var sidebarLinks = [];
-
-  function init() {
-    sidebarLinks = document.querySelectorAll('.t-sidebar ul li a');
-    sections = [];
-    sidebarLinks.forEach(function(link) {
-      var href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        var el = document.getElementById(href.substring(1));
-        if (el) sections.push({ el: el, link: link });
-      }
-    });
-  }
-
-  function onScroll() {
-    var scrollY = window.scrollY + 120;
-    var active = null;
-
-    for (var i = sections.length - 1; i >= 0; i--) {
-      if (sections[i].el.offsetTop <= scrollY) {
-        active = sections[i];
-        break;
-      }
-    }
-
-    sidebarLinks.forEach(function(link) { link.classList.remove('active'); });
-    if (active) active.link.classList.add('active');
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    init();
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  });
-})();
-
-// =====================================================================
 // CALENDAR DAY TOGGLE
 // =====================================================================
+var _calDays;
 function toggleCalDay(el) {
+  if (!_calDays) _calDays = document.querySelectorAll('.t-cal-day');
   var wasOpen = el.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.t-cal-day').forEach(function(d) {
-    d.classList.remove('open');
-  });
-  // Toggle clicked
+  _calDays.forEach(function(d) { d.classList.remove('open'); });
   if (!wasOpen) el.classList.add('open');
 }
 
@@ -126,23 +125,20 @@ function checkQuiz(quizId, btn, isCorrect) {
   var quiz = document.getElementById(quizId);
   if (!quiz) return;
 
-  // Disable all options
-  quiz.querySelectorAll('.t-quiz-opt').forEach(function(opt) {
+  var opts = quiz.querySelectorAll('.t-quiz-opt');
+
+  // Disable all options and highlight correct
+  opts.forEach(function(opt) {
     opt.classList.add('disabled');
+    if (opt.hasAttribute('data-correct')) {
+      opt.classList.add('correct');
+    }
   });
 
   if (isCorrect) {
-    btn.classList.add('correct');
     showQuizFeedback(quiz, true);
   } else {
     btn.classList.add('wrong');
-    // Highlight the correct one
-    quiz.querySelectorAll('.t-quiz-opt').forEach(function(opt) {
-      // Find the correct one by checking its onclick
-      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').indexOf('true') !== -1) {
-        opt.classList.add('correct');
-      }
-    });
     showQuizFeedback(quiz, false);
   }
 }
@@ -262,7 +258,7 @@ function dtAnswer(step, answer) {
     var el = document.getElementById('dt-result');
     el.innerHTML = '<div class="t-dt-result-card"><h4>' + result.title + '</h4><p>' + result.desc + '</p></div>';
     el.classList.add('active');
-    document.getElementById('dt-reset').style.display = 'inline-block';
+    document.getElementById('dt-reset').classList.remove('t-hidden');
   }
 }
 
@@ -273,19 +269,7 @@ function dtReset() {
   var el = document.getElementById('dt-result');
   el.classList.remove('active');
   el.innerHTML = '';
-  document.getElementById('dt-reset').style.display = 'none';
+  document.getElementById('dt-reset').classList.add('t-hidden');
 }
 
-// =====================================================================
-// SMOOTH SCROLL
-// =====================================================================
-document.addEventListener('click', function(e) {
-  var link = e.target.closest('a[href^="#"]');
-  if (link) {
-    var target = document.getElementById(link.getAttribute('href').substring(1));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-});
+// Smooth scroll handled by CSS scroll-behavior: smooth in styles.css
