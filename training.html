@@ -365,6 +365,14 @@
           </div>
         </div>
 
+        <div class="t-insight-box t-mt-16">
+          <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+          <div class="t-insight-body">
+            <strong>Power move: add examples to CLAUDE.md</strong>
+            <p>Include 1-2 examples of good output in your CLAUDE.md. "Here's what a good prospect brief looks like: [example]." Claude mimics the format every time. This is called few-shot prompting — showing what you want is faster than describing it.</p>
+          </div>
+        </div>
+
         <div class="t-method-card">
           <div class="t-method-num">02</div>
           <div class="t-method-title">The prompt formula</div>
@@ -411,6 +419,14 @@
               <div class="t-method-verdict">Specific</div>
               "Read this CSV. Find the 3 campaigns with the highest CPA increase. Output a table ranked by severity."
             </div>
+          </div>
+        </div>
+
+        <div class="t-insight-box t-mt-16">
+          <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+          <div class="t-insight-body">
+            <strong>Use @ to point at files</strong>
+            <p>Instead of describing where data is, reference it directly: "Read <code>@proposals/q1-deck.pptx</code> and summarize the key metrics." Or: "Compare <code>@data/q1.csv</code> with <code>@data/q2.csv</code>." Claude reads the files directly — faster and more accurate than pasting content.</p>
           </div>
         </div>
 
@@ -571,6 +587,52 @@
           </div>
         </div>
 
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>Deal Analysis Dashboard</h3>
+            <p>Export your CRM pipeline as CSV. Get win rate analysis by segment, average deal cycle, and a list of stalled deals with recommended next actions.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">deal-analysis</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">CRM export (CSV)</div><div class="t-wf-field t-wf-tall">pipeline_export_q1.csv</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Win Rate by Segment</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Stalled Deals</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Recommended Actions</div><div class="t-wf-line w85"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Read @pipeline_export.csv. Analyze win rates by industry segment, average days-to-close, and identify any deals that have been in the same stage for more than 30 days. Output an .xlsx with three tabs: Win Rate Summary (with a bar chart), Deal Velocity (average cycle by segment), and Stalled Deals (sorted by days stuck, with recommended next action for each).</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~15 min</div>
+            <h3>Call Prep Sheet</h3>
+            <p>Paste a meeting invite and account notes. Get a one-page prep with recent news, account history, likely objections, and positioning.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">call-prep</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">Meeting invite + account notes</div><div class="t-wf-field t-wf-tall">Meeting with Sarah Chen, VP Marketing at Flywheel Brands. Account notes: running CTV + display...</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Recent News</div><div class="t-wf-line w75"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Likely Objections</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Recommended Positioning</div><div class="t-wf-line w85"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">I have a meeting with [name] at [company]. Here are my account notes: [paste]. Search for their recent news, earnings, and industry trends. Generate a one-page .docx call prep with: Recent Company News (3 bullets), Account History Summary, Top 3 Likely Objections with counter-positioning, and Recommended Discussion Agenda. Make it printable.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
         <div class="t-insight-box">
           <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
@@ -585,6 +647,9 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Compare these two proposals and highlight the key differences in a table"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Draft a follow-up email for [prospect] who hasn't responded in 2 weeks. Reference our last conversation about [topic]."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Pull the last 10 blog posts from published_posts.json and tell me which ones are most relevant for a [industry] prospect"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Analyze this list of 20 accounts and rank them by fit for our CTV measurement product. Explain your reasoning for the top 5."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this call transcript and extract: objections raised, competitors mentioned, next steps agreed, and buying signals."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Generate a territory plan for [region]. Pull the 10 biggest advertisers and map which ones need incrementality testing."</div>
         </div>
 
         <div class="t-quiz" id="quiz-sales">
@@ -707,12 +772,61 @@
           </div>
         </div>
 
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>Account Health Score Calculator</h3>
+            <p>Point at a usage data CSV. Get accounts flagged by health tier (green/yellow/red) based on usage trends, support tickets, and engagement.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">health-scorer</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">Usage data CSV</div><div class="t-wf-field">account_usage_q1.csv</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-result"><div class="t-wf-result-type" style="background:var(--green);">Green</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type" style="background:var(--yellow);">Yellow</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-result"><div class="t-wf-result-type" style="background:#e11d48;">Red</div><div class="t-wf-line w55"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Read @account_usage.csv. For each account, calculate a health score based on: usage trend (growing/flat/declining), support ticket count (low/medium/high), and last login recency. Flag each as Green (healthy), Yellow (watch), or Red (at risk). Output an .xlsx with color-coded rows, sorted red-first. Include a summary tab with total counts per tier and the top 5 at-risk accounts with specific reasons.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>Expansion Opportunity Finder</h3>
+            <p>Feed product usage data. Claude identifies cross-sell opportunities (uses Feature A but not B) and upsell signals (hitting limits).</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">expansion-finder</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">Product usage data</div><div class="t-wf-field">feature_usage_all_accounts.csv</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Cross-Sell Opportunities</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Upsell Signals</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Prioritized Outreach List</div><div class="t-wf-line w85"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Read @feature_usage.csv. Identify accounts that use CTV but not display (cross-sell opportunity), accounts approaching their impression cap (upsell signal), and accounts with increasing spend month-over-month (growth signal). Generate a .docx with three sections: Cross-Sell Opportunities, Upsell Signals, and Growth Accounts. Each entry should have the account name, current usage, opportunity description, and a suggested opening line for outreach.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
         <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this campaign report into 5 bullet points for the client"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read these meeting notes and extract all action items with owners and due dates"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"What are the top 3 risks in this account based on the usage data and support tickets?"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Draft a renewal talking track for [client]. They care about [specific metric]. Reference their Q1 results."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Compare this client's Q1 and Q4 campaign performance. What improved, what declined, what should we recommend for Q2?"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this support ticket export and identify the top 5 feature requests by frequency. Which clients are asking?"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Build a renewal risk assessment for [client]. Check usage trends, support history, and compare to benchmarks."</div>
         </div>
 
         <div class="t-quiz" id="quiz-strategy">
@@ -827,12 +941,60 @@
           </div>
         </div>
 
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~20 min</div>
+            <h3>Campaign Forensics Report</h3>
+            <p>Paste campaign performance data. Get a breakdown of what worked, what didn't, and the top 3 levers for improvement.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">campaign-forensics</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">Campaign data</div><div class="t-wf-field t-wf-tall">Channel | Spend | Impressions | Clicks | Conv | CPA...</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section"><div class="t-wf-heading">What Worked</div><div class="t-wf-line w80"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">What Didn't</div><div class="t-wf-line w70"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Top 3 Improvement Levers</div><div class="t-wf-line w85"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Analyze this campaign performance data across all channels. Identify: 1) Which channels had the best CPA and why, 2) Which channels underperformed vs benchmarks, 3) The top 3 specific levers to improve next month (not generic advice — reference specific numbers). Output a .docx forensics report with charts-ready data tables I can paste into a presentation.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
+        <div class="t-build-card">
+          <div class="t-build-header">
+            <div class="t-build-time">~10 min</div>
+            <h3>A/B Test Analyzer</h3>
+            <p>Paste test results. Get a plain-language verdict: which variant won, statistical significance, and confidence level.</p>
+          </div>
+          <div class="t-wireframe">
+            <div class="t-wf-titlebar">ab-test-analyzer</div>
+            <div class="t-wf-body">
+              <div class="t-wf-input"><div class="t-wf-label">Test results</div><div class="t-wf-field t-wf-tall">Variant A: 12,340 views, 847 clicks. Variant B: 12,120 views, 923 clicks.</div></div>
+              <div class="t-wf-divider"></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Winner: Variant B (+8.9% CTR)</div><div class="t-wf-line w85"></div></div>
+              <div class="t-wf-section"><div class="t-wf-heading">Confidence: 94.2%</div><div class="t-wf-line w60"></div></div>
+            </div>
+          </div>
+          <div class="t-prompt-block">
+            <div class="t-prompt-label">Start with this prompt in Claude Code</div>
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Analyze this A/B test. I'll paste the variant data (impressions, clicks, conversions for each). Tell me: which variant won, by how much (percentage), whether the result is statistically significant (run a chi-squared test), and the confidence level. Explain it in plain language so I can present to the team. Print the results to terminal — no file needed.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+
         <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Rewrite this blog intro to hook the reader in the first sentence. Lead with a surprising stat."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Turn this case study into 3 LinkedIn post variants — one data-driven, one storytelling, one contrarian take"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Check this email draft for banned words, brand voice issues, and competitor mentions"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read our last 5 blog posts and suggest 3 topics we haven't covered that match our keyword gaps"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Analyze this Google Analytics export and tell me which 3 blog posts drove the most conversions last month. What do they have in common?"</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this A/B test data and tell me if the winner is statistically significant. Explain it so I can present to the team."</div>
+          <div class="t-daily-prompt" onclick="copyPrompt(this)">"Audit our last 10 LinkedIn posts for engagement patterns. Which hooks, formats, and topics performed best?"</div>
         </div>
 
         <div class="t-quiz" id="quiz-marketing">
@@ -966,6 +1128,15 @@
         <div class="t-command"><div class="t-command-name"><code>claude --continue</code></div><div class="t-command-desc">Resume your last session with full context.</div></div>
         <div class="t-command"><div class="t-command-name">Custom skills</div><div class="t-command-desc">Save workflows as /slash-commands. A <code>/prospect-brief</code> skill runs your exact sequence every time.</div></div>
         <div class="t-command"><div class="t-command-name">75% rule</div><div class="t-command-desc">Sessions under 75% context produce better output. Run <code>/compact</code> at 50%, not when maxed.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>claude -p "..."</code></div><div class="t-command-desc">Headless mode. Runs a one-liner with no interactive session. Perfect for scripting: <code>claude -p "read prospects.csv and generate a brief for each company"</code></div></div>
+        <div class="t-command"><div class="t-command-name">Hooks</div><div class="t-command-desc">Automate before/after actions. "After Claude generates a .docx, open it in Word." Configure in settings.json via <code>/update-config</code>.</div></div>
+      </div>
+
+      <h3>Picking the right model</h3>
+      <div class="t-avoid-list">
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--cream2);color:var(--muted);border-color:var(--border);">H</div><div class="t-avoid-body"><strong>Haiku</strong> — Fast and cheap<p>Simple formatting, data extraction, quick lookups. Use for high-volume, low-complexity tasks.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--blue-light);color:var(--blue);border-color:#bfdbfe;">S</div><div class="t-avoid-body"><strong>Sonnet</strong> — The default<p>Most tasks. Good balance of speed and quality. Use <code>/model</code> to switch if you need something else.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--purple-light);color:var(--purple);border-color:#c4b5fd;">O</div><div class="t-avoid-body"><strong>Opus</strong> — Deep reasoning<p>Complex analysis, long documents, nuanced writing. When quality matters more than speed.</p></div></div>
       </div>
 
       <h3>Permission modes</h3>
@@ -994,6 +1165,13 @@
         <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Vague requests</strong><p>"Make this better" costs 3 rounds. "Rewrite the intro with the 47% stat, under 80 words" costs 1.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Overstuffed CLAUDE.md</strong><p>~150-200 instruction budget. If it's too long, rules get lost. Cut anything that doesn't prevent mistakes.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">5</div><div class="t-avoid-body"><strong>Skipping Plan Mode</strong><p>Jumping to execution causes 20-30% more token waste. Press Shift+Tab first.</p></div></div>
+      </div>
+
+      <h3>Three non-developer mistakes</h3>
+      <div class="t-avoid-list">
+        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>Treating Claude like Google</strong><p>Asking questions instead of giving tasks. "What's the best way to write cold emails?" costs you a generic answer. "Write 3 cold email variants for [prospect] using our CLAUDE.md positioning" gets you usable output.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>Describing files instead of pointing to them</strong><p>"I have a spreadsheet with columns A, B, C..." wastes context. "Read <code>@data/q1-campaigns.csv</code> and analyze column C" is faster and more accurate.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Starting fresh every time</strong><p>Opening a new session for each task instead of building a project folder. Use <code>claude --continue</code> to resume work. Keep your templates, data, and CLAUDE.md in one folder so Claude always has context.</p></div></div>
       </div>
 
       <h3>How to give Claude feedback</h3>
