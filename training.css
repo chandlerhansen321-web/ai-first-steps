@@ -489,6 +489,11 @@
 [data-theme="dark"] .t-role-callout.role-marketing { border-color: rgba(74,222,128,0.25); }
 .t-role-callout.role-marketing .t-role-callout-label { color: var(--green); }
 
+/* Generic role visibility — hide by default, show when role matches */
+.t-main .role-sales,
+.t-main .role-strategy,
+.t-main .role-marketing { display: none; }
+
 [data-role="sales"] .role-sales,
 [data-role="strategy"] .role-strategy,
 [data-role="marketing"] .role-marketing { display: block; }

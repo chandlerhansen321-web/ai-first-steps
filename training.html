@@ -410,24 +410,35 @@
               </div>
             </div>
           </div>
-          <div class="t-method-comparison">
-            <div class="t-method-bad">
-              <div class="t-method-verdict">Vague</div>
-              "Help me with this email"
+          <!-- Role-specific prompt examples -->
+          <div class="role-sales">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Help me with this email"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Rewrite this follow-up for a CMO who went dark after a demo. Reference the National Fitness case study. Under 100 words. Direct tone."</div>
             </div>
-            <div class="t-method-good">
-              <div class="t-method-verdict">Specific</div>
-              "Rewrite this follow-up for a CMO who went dark after a demo. Reference the National Fitness case. Under 100 words. Direct."
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Research this company"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Pull ad spend, tech stack, and recent news for Flywheel Brands. Output a one-page .docx brief with talking points for tomorrow's call."</div>
             </div>
           </div>
-          <div class="t-method-comparison">
-            <div class="t-method-bad">
-              <div class="t-method-verdict">Vague</div>
-              "Analyze this data"
+          <div class="role-strategy">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Summarize this campaign"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Read @national-fitness-q1.csv. Write a 5-bullet executive summary for the client. Lead with the $11.2M incremental revenue figure. CMO audience."</div>
             </div>
-            <div class="t-method-good">
-              <div class="t-method-verdict">Specific</div>
-              "Read this CSV. Find the 3 campaigns with the highest CPA increase. Output a table ranked by severity."
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Help me prep for this meeting"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Read my account notes for National Fitness. Search for their recent earnings and industry trends. Generate a .docx prep doc with 3 talking points and likely objections."</div>
+            </div>
+          </div>
+          <div class="role-marketing">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Analyze this data"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Read this CSV. Find the 3 campaigns with the highest CPA increase month-over-month. Output a ranked table with recommended fixes for each."</div>
+            </div>
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Vague</div>"Write some social posts"</div>
+              <div class="t-method-good"><div class="t-method-verdict">Specific</div>"Write 4 LinkedIn posts for this week. Each: hook under 15 words, body under 100 words, data-driven. Pillar: Measurement Science. Export as .xlsx."</div>
             </div>
           </div>
         </div>
@@ -448,14 +459,22 @@
             <p><strong>Pass 2:</strong> Review the output. Fix what's wrong. Or ask Claude to clean it up in a second pass.</p>
             <p>Stuffing a prompt with "don't do X" degrades quality. Generate freely, then clean up.</p>
           </div>
-          <div class="t-method-comparison">
-            <div class="t-method-bad">
-              <div class="t-method-verdict">Weak</div>
-              "Write a blog post. Don't be verbose. Don't use jargon. Don't mention competitors. Avoid cliches..."
+          <div class="role-sales">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Weak</div>"Write a cold email. Don't be salesy. Don't use jargon. Don't be too long. Don't mention competitors..."</div>
+              <div class="t-method-good"><div class="t-method-verdict">Strong</div>"Write a cold email for a VP Marketing at a QSR chain. Reference their recent CTV spend. 3 sentences. Include the $11.2M stat." Then: "Make it more casual — like a peer, not a vendor."</div>
             </div>
-            <div class="t-method-good">
-              <div class="t-method-verdict">Strong</div>
-              "Write a 2,000-word article for CMOs about CTV measurement. Active voice. Lead with data." Then: "Tighten any section over 3 paragraphs."
+          </div>
+          <div class="role-strategy">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Weak</div>"Write a client summary. Don't use jargon. Don't be too long. Make it professional..."</div>
+              <div class="t-method-good"><div class="t-method-verdict">Strong</div>"Write a 1-page Q1 summary for National Fitness. CMO audience. Lead with the 2.2x conversion lift. 5 bullets max." Then: "Replace any adtech terms with plain language."</div>
+            </div>
+          </div>
+          <div class="role-marketing">
+            <div class="t-method-comparison">
+              <div class="t-method-bad"><div class="t-method-verdict">Weak</div>"Write a blog post. Don't be verbose. Don't use jargon. Don't mention competitors. Avoid cliches..."</div>
+              <div class="t-method-good"><div class="t-method-verdict">Strong</div>"Write a 2,000-word article for CMOs about CTV measurement. Active voice. Lead with data." Then: "Tighten any section over 3 paragraphs."</div>
             </div>
           </div>
         </div>
@@ -1193,29 +1212,62 @@
 
       <h3>Four non-developer mistakes</h3>
       <div class="t-avoid-list">
-        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>Treating Claude like Google</strong><p>Asking questions instead of giving tasks. "What's the best way to write cold emails?" gets a generic answer. "Write 3 cold email variants for [prospect] using our CLAUDE.md positioning" gets usable output.</p></div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>Describing files instead of pointing to them</strong><p>"I have a spreadsheet with columns A, B, C..." wastes context. "Read <code>@data/q1-campaigns.csv</code> and analyze column C" is faster and more accurate.</p></div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Monolithic prompts</strong><p>Dumping 500+ words into one block produces inconsistent results 60% of the time. Break complex tasks into sequential steps: "First do X. Then do Y. Finally do Z." Not one giant paragraph.</p></div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Starting fresh every time</strong><p>Opening a new session for each task instead of building a project folder. Use <code>claude --continue</code> to resume work. Keep your templates, data, and CLAUDE.md in one folder so Claude always has context.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>Treating Claude like Google</strong><p>Asking questions instead of giving tasks.</p>
+          <div class="role-sales"><p>"What's the best way to write cold emails?" → "Write 3 cold email variants for [prospect] using our CLAUDE.md positioning."</p></div>
+          <div class="role-strategy"><p>"How do I prep for a QBR?" → "Read @national-fitness-q1.csv and draft 3 QBR slides with metrics, wins, and next-quarter recommendations."</p></div>
+          <div class="role-marketing"><p>"What makes a good LinkedIn post?" → "Write 4 LinkedIn posts about incrementality testing. Hook under 15 words. Data-driven. Export as .xlsx."</p></div>
+        </div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>Describing files instead of pointing to them</strong>
+          <div class="role-sales"><p>"I have a CRM export with deal stages..." → "Read <code>@pipeline_export.csv</code> and find stalled deals over 30 days."</p></div>
+          <div class="role-strategy"><p>"I have a spreadsheet with usage data..." → "Read <code>@account_usage.csv</code> and flag accounts with declining engagement."</p></div>
+          <div class="role-marketing"><p>"I have a spreadsheet with campaign data..." → "Read <code>@q1-campaigns.csv</code> and rank channels by CPA improvement."</p></div>
+        </div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Monolithic prompts</strong><p>500+ words in one block produces inconsistent results 60% of the time. Break complex tasks into steps: "First do X. Then do Y. Finally do Z."</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Starting fresh every time</strong><p>Opening a new session for each task instead of building a project folder. Use <code>claude --continue</code> to resume. Keep templates, data, and CLAUDE.md in one folder.</p></div></div>
       </div>
 
       <h3>How to give Claude feedback</h3>
       <p>Specific feedback gets fixed in one pass. Point to the problem. Say what you want instead.</p>
-      <div class="t-feedback-examples">
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"This isn't quite right"</div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Second paragraph too long. Cut to 2 sentences. Keep the 2.2x stat."</div>
+      <div class="role-sales">
+        <div class="t-feedback-examples">
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"This email isn't right"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Too long. Cut to 3 sentences. Keep the National Fitness reference. Remove the question at the end — use a direct CTA."</div>
+          </div>
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Make the battlecard better"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"The 'Where Agility Wins' section is too generic. Add the 2.2x conversion lift stat and the exposed-vs-control methodology."</div>
+          </div>
         </div>
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Make it better"</div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Too formal. Rewrite conversationally, like explaining to a colleague over coffee."</div>
+      </div>
+      <div class="role-strategy">
+        <div class="t-feedback-examples">
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"This summary isn't quite right"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"The exec summary is 8 sentences. Cut to 3. Lead with the $11.2M figure, not the campaign background."</div>
+          </div>
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Try again on the QBR slides"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Slide 2 needs specific wins, not general statements. Reference the 250% high-intent traffic increase and the brand lift study results."</div>
+          </div>
         </div>
-        <div class="t-feedback-row">
-          <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Try again"</div>
-          <div class="t-feedback-arrow">&#x2192;</div>
-          <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Structure is right but opening is weak. Lead with the $11.2M revenue stat."</div>
+      </div>
+      <div class="role-marketing">
+        <div class="t-feedback-examples">
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"These posts don't feel right"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Post 2's hook is too long — cut to under 15 words. Post 4 uses 'game-changing' which is on the banned list. Replace with a specific metric."</div>
+          </div>
+          <div class="t-feedback-row">
+            <div class="t-feedback-bad"><div class="t-feedback-label">Costs 3 rounds</div>"Make the email sequence better"</div>
+            <div class="t-feedback-arrow">&#x2192;</div>
+            <div class="t-feedback-good"><div class="t-feedback-label">Costs 1 round</div>"Email 1 is too generic. Open with the 60% stat about long-term brand effects. Email 3's CTA should be 'Book a measurement demo' not 'Learn more.'"</div>
+          </div>
         </div>
       </div>
 
