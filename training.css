@@ -1784,6 +1784,301 @@
 .btn-primary, .btn-secondary { border-radius: 8px; }
 
 /* =====================================================================
+   AGENTIC LOOP VISUAL
+   ===================================================================== */
+.t-loop-visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin: 24px 0 8px;
+  flex-wrap: wrap;
+}
+
+.t-loop-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-width: 100px;
+  max-width: 140px;
+  flex: 1;
+}
+
+.t-loop-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-light);
+  border-radius: 8px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.t-loop-label {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-loop-desc {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.t-loop-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  padding: 0 4px;
+  flex-shrink: 0;
+  margin-top: 20px;
+}
+
+.t-loop-return {
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* =====================================================================
+   MCP EXAMPLES
+   ===================================================================== */
+.t-mcp-examples {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.t-mcp-item {
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.t-mcp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.t-mcp-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.t-mcp-use {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* =====================================================================
+   IDEA GRID (lightweight project cards)
+   ===================================================================== */
+.t-idea-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.t-idea-card {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.t-idea-card h4 {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.t-idea-card p {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.t-idea-card .t-prompt-block {
+  margin: 0;
+}
+
+.t-idea-card .t-prompt-code {
+  font-size: 11px;
+  padding: 8px 10px;
+}
+
+/* =====================================================================
+   COLLAPSIBLE PROJECT CARDS
+   ===================================================================== */
+.t-build-more {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+}
+
+.t-build-more.t-expanded {
+  display: flex;
+}
+
+.t-build-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  margin: 8px 0 16px;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  width: 100%;
+}
+
+.t-build-toggle:hover {
+  background: var(--cream3);
+  color: var(--ink);
+}
+
+.t-build-toggle svg {
+  transition: transform 0.2s;
+}
+
+.t-build-toggle.t-expanded svg {
+  transform: rotate(180deg);
+}
+
+/* =====================================================================
+   TERMINAL MOCKUP
+   ===================================================================== */
+.t-terminal-mock {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin: 16px 0 24px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+.t-term-titlebar {
+  background: var(--cream2);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.t-term-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.t-term-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.t-term-dots span:first-child { background: #ef4444; }
+.t-term-dots span:nth-child(2) { background: #f59e0b; }
+.t-term-dots span:nth-child(3) { background: #22c55e; }
+
+.t-term-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  flex: 1;
+  text-align: center;
+}
+
+.t-term-body {
+  background: #1c1917;
+  padding: 14px 16px;
+  color: #e7e5e4;
+}
+
+.t-term-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.t-term-prompt {
+  color: #22c55e;
+  margin-right: 6px;
+}
+
+.t-term-you {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.t-term-claude {
+  color: #f97316;
+  font-weight: 600;
+}
+
+.t-term-system {
+  color: #a8a29e;
+}
+
+.t-term-tool {
+  color: #a8a29e;
+  font-style: italic;
+}
+
+.t-term-result {
+  color: #4ade80;
+}
+
+.t-term-dim {
+  color: #57534e;
+}
+
+[data-theme="dark"] .t-term-titlebar {
+  background: #292524;
+}
+
+[data-theme="dark"] .t-term-dots span {
+  background: #44403c;
+}
+
+/* =====================================================================
    RESPONSIVE
    ===================================================================== */
 @media (max-width: 860px) {
@@ -1815,6 +2110,29 @@
   .t-cheatsheet-dont { text-align: center; }
   .t-cheatsheet-arrow { transform: rotate(90deg); }
   .t-hero .t-role-toggle { flex-direction: column; width: 100%; max-width: 280px; margin-left: auto; margin-right: auto; }
+  .t-loop-visual {
+    gap: 8px;
+  }
+  .t-loop-step {
+    min-width: 70px;
+    padding: 10px 8px;
+  }
+  .t-loop-arrow {
+    display: none;
+  }
+  .t-loop-return {
+    display: none;
+  }
+  .t-mcp-examples {
+    grid-template-columns: 1fr 1fr;
+  }
+  .t-idea-grid {
+    grid-template-columns: 1fr;
+  }
+  .t-terminal-mock {
+    max-width: 100%;
+    font-size: 11px;
+  }
 }
 
 @media (max-width: 580px) {

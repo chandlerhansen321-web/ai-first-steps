@@ -25,6 +25,7 @@
     <a href="#method">The Method</a>
     <a href="#build">What You Build</a>
     <a href="#multiplier">The Multiplier</a>
+    <a href="#howitworks">Under the Hood</a>
     <a href="#reference">Reference</a>
   </nav>
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">&#x1F319;</button>
@@ -44,9 +45,9 @@
     <h1>Your Claude Code<br><em>playbook.</em></h1>
 
     <!-- Role-specific subtitles -->
-    <p class="t-hero-desc role-sales">Build tools that find prospects, personalize outreach, and prep meetings — in minutes instead of hours.</p>
-    <p class="t-hero-desc role-strategy">Build tools that prep QBRs, analyze client feedback, and generate deliverables — in minutes instead of hours.</p>
-    <p class="t-hero-desc role-marketing">Build tools that generate content calendars, email sequences, and keyword analysis — in minutes instead of hours.</p>
+    <p class="t-hero-desc role-sales">Build tools that find prospects, personalize outreach, and prep meetings — turning 45 minutes of research into 5.</p>
+    <p class="t-hero-desc role-strategy">Build tools that prep QBRs, analyze client feedback, and generate deliverables — turning a day of prep into 20 minutes.</p>
+    <p class="t-hero-desc role-marketing">Build tools that generate content calendars, email sequences, and brand-checked copy — turning a week of content into a morning.</p>
 
     <div class="t-role-toggle" id="role-toggle-hero">
       <button class="t-role-btn active" data-role="sales" onclick="setRole('sales')">Sales</button>
@@ -71,13 +72,14 @@
   <aside class="t-sidebar" id="sidebar">
     <div class="sidebar-label">Sections</div>
     <ul>
-      <li><a href="#tools" class="active"><span class="step-dot">1</span> Your Tools</a></li>
+      <li><a href="#tools"><span class="step-dot">1</span> Your Tools</a></li>
       <li><a href="#setup"><span class="step-dot">2</span> Get Set Up</a></li>
       <li><a href="#method"><span class="step-dot">3</span> The Method</a></li>
       <li><a href="#build"><span class="step-dot">4</span> What You Build</a></li>
       <li><a href="#multiplier"><span class="step-dot">5</span> The Multiplier</a></li>
-      <li><a href="#levelup"><span class="step-dot">6</span> Level Up</a></li>
-      <li><a href="#reference"><span class="step-dot">7</span> Reference</a></li>
+      <li><a href="#howitworks"><span class="step-dot">6</span> Under the Hood</a></li>
+      <li><a href="#levelup"><span class="step-dot">7</span> Level Up</a></li>
+      <li><a href="#reference"><span class="step-dot">8</span> Reference</a></li>
     </ul>
 
     <div class="sidebar-label">Your Role</div>
@@ -91,6 +93,44 @@
   <!-- MAIN CONTENT -->
   <main class="t-main">
 
+    <!-- Quick hook — show value immediately -->
+    <div class="t-insight-box" style="margin-bottom:0;border-radius:0;border-left:0;border-right:0;">
+      <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="t-insight-body">
+        <strong>By the end of this page, you'll know how to build:</strong>
+        <p class="role-sales">A prospect research tool that saves 45 minutes per meeting, a CRM hygiene checker that runs every Friday, and a proposal generator that ensures every pitch hits the same quality bar.</p>
+        <p class="role-strategy">A QBR section generator you reuse every quarter, a client health scorer that flags at-risk accounts, and a deliverable checker that catches issues before clients see them.</p>
+        <p class="role-marketing">A brand voice checker that catches off-brand copy instantly, a content repurposer that turns one blog post into 10 assets, and an editorial calendar enforcer that finds coverage gaps.</p>
+      </div>
+    </div>
+
+    <!-- Personal ROI calculator -->
+    <div class="t-roi-calc" id="roi-calc" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin:0 0 8px;">
+      <h3 style="font-size:16px;margin:0 0 4px;">How much time are you leaving on the table?</h3>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 16px;">Adjust the sliders to match your week. The math updates live.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px;" class="role-sales">Prospect research sessions per week</label>
+          <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px;" class="role-strategy">Client prep sessions per week</label>
+          <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px;" class="role-marketing">Content pieces produced per week</label>
+          <input type="range" id="roi-tasks" min="1" max="20" value="5" oninput="updateROI()" style="width:100%;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);"><span>1</span><span id="roi-tasks-val">5</span><span>20</span></div>
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px;">Minutes each one takes today</label>
+          <input type="range" id="roi-mins" min="5" max="120" value="30" step="5" oninput="updateROI()" style="width:100%;">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);"><span>5</span><span id="roi-mins-val">30</span><span>120</span></div>
+        </div>
+      </div>
+
+      <div id="roi-result" style="background:var(--accent-light);border-radius:8px;padding:14px 18px;text-align:center;">
+        <div style="font-size:24px;font-weight:800;color:var(--accent);" id="roi-hours">2.1 hours</div>
+        <div style="font-size:13px;color:var(--ink2);">saved per week — <strong id="roi-yearly">109 hours</strong> per year</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;" id="roi-context">That's 13 extra working days you get back.</div>
+      </div>
+    </div>
+
     <!-- ============================================================
          SECTION 1: YOUR TOOLS (Chat vs Cowork vs Code)
          ============================================================ -->
@@ -102,6 +142,8 @@
           <div class="step-sub">Three tools. Different jobs. Pick the right one.</div>
         </div>
       </div>
+
+      <p style="font-size:15px;color:var(--ink);font-weight:500;margin-bottom:12px;">You don't write code. You describe what you want in plain English — like briefing an extremely fast, extremely thorough intern. Claude does the technical work. The only new thing you learn is where to type.</p>
 
       <p>You already use Claude in the browser. That's Chat. But Claude comes in three forms, and each one is built for different work. Most of the team uses Chat for everything — that's expensive and slow for the kind of work you do.</p>
 
@@ -214,7 +256,15 @@
         <div class="step-badge">2</div>
         <div class="step-title-wrap">
           <h2>Get Set Up</h2>
-          <div class="step-sub">Four steps. Takes about 5 minutes.</div>
+          <div class="step-sub">Five steps. Takes about 5 minutes.</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box" style="margin-bottom:12px;">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="3"/><path d="M7 9l3 3-3 3"/><path d="M13 15h5"/></svg></div>
+        <div class="t-insight-body">
+          <strong>Never used Terminal before?</strong>
+          <p>Terminal is an app on every Mac. Open it with <strong>Spotlight</strong> (Cmd+Space, then type "Terminal") or find it in Applications &gt; Utilities. It's just a text window where you type commands. That's all Claude Code needs.</p>
         </div>
       </div>
 
@@ -222,53 +272,131 @@
         <div class="t-install-step">
           <div class="t-install-num">1</div>
           <div class="t-install-body">
-            <h4>Install Homebrew</h4>
-            <p>macOS package manager. Check if you have it: <code>brew --version</code></p>
-            <div class="t-install-code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+            <h4>Check prerequisites</h4>
+            <p>macOS 13.0 or later (System Settings &gt; General &gt; About). You need an Anthropic account — Pro ($20/mo) or Max (from $100/mo). Teams and Enterprise plans also work if your org provides one.</p>
           </div>
         </div>
         <div class="t-install-step">
           <div class="t-install-num">2</div>
           <div class="t-install-body">
-            <h4>Install cmux <span class="t-install-tag">Recommended</span></h4>
-            <p>Terminal app built for AI agents. Shows notifications when Claude finishes tasks.</p>
-            <div class="t-install-code">brew install cmux</div>
+            <h4>Install Claude Code <span class="t-install-tag">Zero dependencies</span></h4>
+            <p>One command. No Node.js, no npm, no Homebrew required.</p>
+            <div class="t-install-code">curl -fsSL https://claude.ai/install.sh | bash</div>
+            <p style="font-size:12px;color:var(--muted);margin-top:6px;">Alternative: <code>brew install --cask claude-code</code> (if you already use Homebrew)</p>
           </div>
         </div>
         <div class="t-install-step">
           <div class="t-install-num">3</div>
           <div class="t-install-body">
-            <h4>Install Claude Code</h4>
-            <p>The CLI itself. One command.</p>
-            <div class="t-install-code">npm install -g @anthropic-ai/claude-code</div>
+            <h4>Verify installation</h4>
+            <p>Confirm it installed correctly.</p>
+            <div class="t-install-code">claude --version</div>
           </div>
         </div>
         <div class="t-install-step">
           <div class="t-install-num">4</div>
           <div class="t-install-body">
             <h4>Log in</h4>
-            <p>Type <code>claude</code> in your terminal. A browser window opens. Sign in with your Anthropic account. Pick a plan (Pro $20/mo or Max $100/mo recommended).</p>
+            <p>Type <code>claude</code> in your terminal. A browser window opens. Sign in with your Anthropic account. Pick a plan if you haven't already (Pro $20/mo or Max $100/mo+ recommended).</p>
+          </div>
+        </div>
+        <div class="t-install-step">
+          <div class="t-install-num">5</div>
+          <div class="t-install-body">
+            <h4>Install cmux <span class="t-install-tag" style="background:var(--cream2);color:var(--muted);">Optional</span></h4>
+            <p>A macOS app for managing multiple Claude Code sessions with visual tabs, split panes, and notifications when tasks finish. Download from <a href="https://cmux.com" target="_blank" rel="noopener">cmux.com</a>.</p>
           </div>
         </div>
       </div>
 
-      <h3>Your first session</h3>
+      <h3>What it looks like</h3>
+      <p>This is Claude Code. It's a conversation in your terminal — you type in plain English, Claude responds and takes action.</p>
+      <div class="t-terminal-mock">
+        <div class="t-term-titlebar">
+          <div class="t-term-dots"><span></span><span></span><span></span></div>
+          <div class="t-term-title">Terminal — ai-tools</div>
+        </div>
+        <div class="t-term-body">
+          <div class="t-term-line"><span class="t-term-prompt">$</span> claude</div>
+          <div class="t-term-line t-term-system">╭─────────────────────────────────────────╮</div>
+          <div class="t-term-line t-term-system">│  Claude Code         v1.0.0            │</div>
+          <div class="t-term-line t-term-system">│  Model: claude-sonnet-4-6               │</div>
+          <div class="t-term-line t-term-system">╰─────────────────────────────────────────╯</div>
+          <div class="t-term-line"><span class="t-term-you">You:</span> I have a meeting with Flywheel Brands tomorrow. Search for their recent news and give me 3 talking points. Save as meeting-prep.docx</div>
+          <div class="t-term-line">&nbsp;</div>
+          <div class="t-term-line"><span class="t-term-claude">Claude:</span> I'll research Flywheel Brands and create your prep doc.</div>
+          <div class="t-term-line">&nbsp;</div>
+          <div class="t-term-line t-term-tool">  ⚡ WebSearch: "Flywheel Brands recent news 2026"</div>
+          <div class="t-term-line t-term-tool">  ⚡ WebSearch: "Flywheel Brands ad spend leadership"</div>
+          <div class="t-term-line t-term-tool">  📄 Write: meeting-prep.docx</div>
+          <div class="t-term-line">&nbsp;</div>
+          <div class="t-term-line"><span class="t-term-claude">Claude:</span> Done. I've saved <strong>meeting-prep.docx</strong> to your ai-tools folder with:</div>
+          <div class="t-term-line t-term-result">  1. Their Q1 earnings showed 23% YoY growth in digital ad spend</div>
+          <div class="t-term-line t-term-result">  2. New VP of Marketing hired in February from PepsiCo</div>
+          <div class="t-term-line t-term-result">  3. Expanding into CTV — mentioned in their investor call last week</div>
+          <div class="t-term-line">&nbsp;</div>
+          <div class="t-term-line t-term-dim">  ~/Desktop/ai-tools $</div>
+        </div>
+      </div>
+
+      <h3>Your first win (under 5 minutes)</h3>
+      <p>Don't just set up — build something useful in your first session. Here's a real deliverable you'll walk away with.</p>
       <div class="t-first-run">
         <div class="t-first-run-step">
-          <div class="t-first-run-cmd">cd ~/Documents/my-project</div>
-          <div class="t-first-run-desc">Navigate to any project folder</div>
+          <div class="t-first-run-cmd">mkdir ~/Desktop/ai-tools && cd ~/Desktop/ai-tools</div>
+          <div class="t-first-run-desc">Create a project folder on your Desktop</div>
         </div>
         <div class="t-first-run-step">
           <div class="t-first-run-cmd">claude</div>
-          <div class="t-first-run-desc">Start Claude Code</div>
+          <div class="t-first-run-desc">Start Claude Code — press Enter if it asks for permissions</div>
         </div>
-        <div class="t-first-run-step">
-          <div class="t-first-run-cmd">"What's in this folder? Walk me through it."</div>
-          <div class="t-first-run-desc">Your first prompt — Claude reads everything</div>
+        <div class="t-first-run-step role-sales">
+          <div class="t-first-run-cmd">"I have a meeting tomorrow with [company name]. Search for their recent news, leadership changes, and ad spend. Give me 5 talking points and save them as a .docx file called meeting-prep.docx."</div>
+          <div class="t-first-run-desc">Your first real prompt — Claude researches, writes, and saves a file you can print or email</div>
+        </div>
+        <div class="t-first-run-step role-strategy">
+          <div class="t-first-run-cmd">"I need to prep for a client meeting with [company name]. Search for their industry trends and recent news. Write a one-page prep doc with 3 talking points and 2 likely questions they'll ask. Save it as meeting-prep.docx."</div>
+          <div class="t-first-run-desc">Your first real prompt — Claude researches, writes, and saves a file you can print or email</div>
+        </div>
+        <div class="t-first-run-step role-marketing">
+          <div class="t-first-run-cmd">"Read any files in this folder. Then search for 3 trending topics in CTV advertising this week. Write a LinkedIn post about the most interesting one — hook under 15 words, body under 100 words. Save it as linkedin-draft.docx."</div>
+          <div class="t-first-run-desc">Your first real prompt — Claude researches, writes, and saves a file you can print or post</div>
         </div>
         <div class="t-first-run-step">
           <div class="t-first-run-cmd">/init</div>
-          <div class="t-first-run-desc">Auto-generate a CLAUDE.md for this project</div>
+          <div class="t-first-run-desc">Now generate a CLAUDE.md — Claude remembers your preferences next time</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="t-insight-body">
+          <strong>That file is real</strong>
+          <p>Open your Desktop → ai-tools folder. The .docx file is there — you can open it in Word, attach it to an email, or print it. Claude saved it to your computer. This is what "building" means: Claude creates real files you keep and reuse.</p>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="t-insight-body">
+          <strong>Claude will ask before acting</strong>
+          <p>By default, Claude Code asks permission before reading files, running commands, or making changes. You'll see a prompt — press <strong>Enter</strong> or type <strong>y</strong> to approve. You can also press <strong>a</strong> to approve all similar actions for the session. This keeps you in control while you learn.</p>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div>
+        <div class="t-insight-body">
+          <strong>What if something goes wrong?</strong>
+          <p>Press <strong>Ctrl+C</strong> at any time to stop Claude mid-action. Claude asks permission before editing files, so you can always say no. If a file gets changed incorrectly, Claude can undo its own edits — just tell it "undo that last change." You won't break anything by experimenting.</p>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="t-insight-body">
+          <strong>What does this cost?</strong>
+          <p>Your Pro ($20/mo) or Max plan includes Claude Code usage. There's no per-prompt charge — it's included in your subscription. Type <code>/cost</code> anytime to see how much you've used in the current session. Most work sessions use a small fraction of your daily allowance.</p>
         </div>
       </div>
 
@@ -443,7 +571,7 @@
           <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
             <strong>Use @ to point at files</strong>
-            <p>Instead of describing where data is, reference it directly: "Read <code>@proposals/q1-deck.pptx</code> and summarize the key metrics." Or: "Compare <code>@data/q1.csv</code> with <code>@data/q2.csv</code>." Claude reads the files directly — faster and more accurate than pasting content.</p>
+            <p>Instead of describing where data is, reference it directly: "Read <code>@proposals/q1-deck.pptx</code> and summarize the key metrics." Or: "Compare <code>@data/q1.csv</code> with <code>@data/q2.csv</code>." Claude reads the files directly — faster and more accurate than pasting content. Just type @ followed by the filename — Claude auto-completes it for you.</p>
           </div>
         </div>
 
@@ -505,6 +633,14 @@
         <div class="step-title-wrap">
           <h2>What You Can Build</h2>
           <div class="step-sub">Practical projects for your role. Each takes 30 minutes or less.</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box" style="margin-bottom:20px;">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        <div class="t-insight-body">
+          <strong>What "build a script" actually means</strong>
+          <p>When this page says "build a script," it means Claude creates a file that does a job. You run it by typing one command in the terminal. Think of it like a recipe that cooks itself — you wrote it once, and now you just say "go." You don't need to understand the code. You just need to describe what you want. To reuse it later, open the same folder, type <code>claude</code>, and say 'run the prospect research script' — Claude remembers what it built.</p>
         </div>
       </div>
 
@@ -573,6 +709,12 @@
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
+
+        <button class="t-build-toggle" onclick="toggleBuildMore(this)">
+          <span>Show 4 more projects</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="t-build-more">
 
         <div class="t-build-card">
           <div class="t-build-header">
@@ -669,10 +811,12 @@
         <div class="t-insight-box">
           <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
-            <strong>Real result</strong>
-            <p>One SDR increased response rate from 8% to 23% by having Claude reference each prospect's recent posts and career transitions in outreach.</p>
+            <strong>Real results from the team</strong>
+            <p>Meeting prep that used to take 45 minutes now takes 5. One AE runs a prospect research script before every call — the VP of Sales noticed prospects commenting on how prepared the team seemed. The script took 20 minutes to build and has been reused 50+ times.</p>
           </div>
         </div>
+
+        </div><!-- end t-build-more -->
 
         <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
@@ -683,6 +827,42 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Analyze this list of 20 accounts and rank them by fit for our CTV measurement product. Explain your reasoning for the top 5."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this call transcript and extract: objections raised, competitors mentioned, next steps agreed, and buying signals."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Generate a territory plan for [region]. Pull the 10 biggest advertisers and map which ones need incrementality testing."</div>
+        </div>
+
+        <h3 class="t-mt-28">Build systems, not just reports</h3>
+        <div class="t-idea-grid">
+          <div class="t-idea-card">
+            <h4>Proposal Standardizer</h4>
+            <p>Every proposal follows the same structure, hits the same quality bar, includes the right stats. Build once, enforce forever.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a proposal generator. It takes a prospect name, industry, and challenge. It outputs a 2-page .docx proposal using our standard format: Executive Summary, Their Challenge, Our Approach (customized to their industry using web research), Expected Results (with relevant case study stats), and Next Steps. Every proposal should look professional and consistent — same sections, same tone, same quality.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>CRM Hygiene Checker</h4>
+            <p>Export your pipeline. Find deals with missing fields, stale stages, duplicate contacts, and wrong formatting — automatically.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Read @crm_export.csv. Check every deal for: missing close date, no next step logged, same stage for over 30 days, missing contact email, and duplicate company names. Output a cleanup .xlsx with two tabs — "Issues Found" (sorted by severity) and "Recommended Fixes" (specific action for each). I want to run this every Friday before pipeline review.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Win/Loss Tracker</h4>
+            <p>Log every deal outcome with the reason. Over time, Claude spots patterns — which objections kill deals, which angles win.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a win/loss logging tool. Create a simple HTML form: deal name, outcome (won/lost), reason, competitor involved, deal size. Save each entry to a wins_losses.json file. Also build an analysis script that reads the JSON and reports: win rate by competitor, most common loss reasons, average deal size for wins vs losses, and trends over time. I'll fill in the form after every deal closes.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Competitive Intel Monitor</h4>
+            <p>A script that checks competitor websites weekly and tells you what changed — pricing, features, positioning, leadership.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a competitive monitoring script. It takes a list of competitor URLs, checks each for pricing changes, new product announcements, and leadership updates. Compare against the last run (save snapshots to a competitors/ folder) and highlight what changed. I want to schedule this weekly and get a summary emailed to me.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
         </div>
 
         <div class="t-quiz" id="quiz-sales">
@@ -751,6 +931,12 @@
           </div>
         </div>
 
+        <button class="t-build-toggle" onclick="toggleBuildMore(this)">
+          <span>Show 4 more projects</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="t-build-more">
+
         <div class="t-build-card">
           <div class="t-build-header">
             <div class="t-build-time">~30 min</div>
@@ -800,8 +986,8 @@
         <div class="t-insight-box">
           <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
           <div class="t-insight-body">
-            <strong>Why this matters</strong>
-            <p>Claude's 1M context window reads every response in a single pass. It typically surfaces 3-4 at-risk accounts that nobody caught because nobody reads 500 NPS responses in one sitting.</p>
+            <strong>Real results from the team</strong>
+            <p>One strategist ran 500 NPS responses through Claude in a single pass and surfaced 4 at-risk accounts that nobody had flagged. The same analysis used to take 3 days of manual reading. The account team saved 2 of those clients by reaching out that week.</p>
           </div>
         </div>
 
@@ -851,6 +1037,8 @@
           </div>
         </div>
 
+        </div><!-- end t-build-more -->
+
         <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Summarize this campaign report into 5 bullet points for the client"</div>
@@ -860,6 +1048,42 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Compare this client's Q1 and Q4 campaign performance. What improved, what declined, what should we recommend for Q2?"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this support ticket export and identify the top 5 feature requests by frequency. Which clients are asking?"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Build a renewal risk assessment for [client]. Check usage trends, support history, and compare to benchmarks."</div>
+        </div>
+
+        <h3 class="t-mt-28">Build systems, not just reports</h3>
+        <div class="t-idea-grid">
+          <div class="t-idea-card">
+            <h4>Client Onboarding Tracker</h4>
+            <p>A web page that tracks every onboarding step for each client. Flags overdue items. Every client gets the same experience.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a client onboarding tracker as a single HTML page. It takes a client name and shows 12 standard onboarding steps (kickoff call, pixel setup, creative brief, reporting setup, etc). Each step has a checkbox, owner field, due date, and status. Save state to localStorage. Add a progress bar at the top and a red highlight on anything overdue. I want to open this every morning and see where every client stands.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Client Communication Log</h4>
+            <p>Log every client interaction. Over time, Claude spots patterns — which accounts are going quiet, which need attention.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a client communication logger. Create an HTML form: client name, date, type (call/email/meeting), summary, next action, sentiment (positive/neutral/concern). Save to a comms_log.json file. Also build an analysis script that flags: accounts with no contact in 14+ days, accounts with 2+ "concern" sentiments, and accounts with overdue next actions. Print the at-risk list to terminal.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Deliverable Quality Checker</h4>
+            <p>Run any client-facing document through a checklist before sending: required sections, data accuracy, formatting, tone.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a deliverable checker. It reads any .docx client document and validates: all required sections present (Exec Summary, Key Metrics, Recommendations), no placeholder text left in, all stats have sources cited, no jargon without explanation, formatting matches our template (headers, bullet structure). Print a pass/fail checklist. I want to run this on every deliverable before it leaves our team.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Automated Weekly Report</h4>
+            <p>Drop in a fresh CSV every Monday. The script formats, calculates trends, and generates a client-ready .docx — same format every time.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a weekly reporting script. It reads the newest CSV in my data/ folder, calculates week-over-week changes for impressions, clicks, conversions, and CPA, flags anything that moved more than 15%, and generates a .docx client report with a summary table, trend arrows, and 3 key takeaways. Same format every week. I want to schedule this for Monday 8am.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
         </div>
 
         <div class="t-quiz" id="quiz-strategy">
@@ -927,6 +1151,12 @@
             <div class="t-prompt-copied">Copied!</div>
           </div>
         </div>
+
+        <button class="t-build-toggle" onclick="toggleBuildMore(this)">
+          <span>Show 4 more projects</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="t-build-more">
 
         <div class="t-build-card">
           <div class="t-build-header">
@@ -1019,6 +1249,8 @@
           </div>
         </div>
 
+        </div><!-- end t-build-more -->
+
         <h3 class="t-mt-28">Daily prompts to try</h3>
         <div class="t-daily-prompts">
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Rewrite this blog intro to hook the reader in the first sentence. Lead with a surprising stat."</div>
@@ -1028,6 +1260,42 @@
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Analyze this Google Analytics export and tell me which 3 blog posts drove the most conversions last month. What do they have in common?"</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Read this A/B test data and tell me if the winner is statistically significant. Explain it so I can present to the team."</div>
           <div class="t-daily-prompt" onclick="copyPrompt(this)">"Audit our last 10 LinkedIn posts for engagement patterns. Which hooks, formats, and topics performed best?"</div>
+        </div>
+
+        <h3 class="t-mt-28">Build systems, not just content</h3>
+        <div class="t-idea-grid">
+          <div class="t-idea-card">
+            <h4>Brand Voice Checker</h4>
+            <p>Paste any draft — blog, email, social post. Get instant feedback on banned words, voice violations, and off-brand patterns.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a brand voice compliance checker. It reads any text file and checks for: banned words (game-changing, synergy, leverage, cutting-edge), passive voice, sentences over 25 words, competitor mentions, missing CTA, and em dashes. Output a pass/fail report with specific fixes for each issue. I want to run this on every piece of content before it ships — blog posts, emails, social copy, everything.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Content Repurposer Pipeline</h4>
+            <p>One blog post goes in. A LinkedIn post, 3 email snippets, an Instagram card, and a newsletter blurb come out — automatically.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a content repurposer. It reads a blog post .docx and generates: 1) a LinkedIn post (hook under 15 words, body under 100 words), 2) 3 email snippet variants for nurture sequences, 3) an Instagram card caption with hashtags, 4) a 2-sentence newsletter blurb with link. Output each to a separate file in an output/ folder named by the blog title. I want to run this every time we publish a blog.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Campaign Landing Page Builder</h4>
+            <p>Describe a campaign in 3 sentences. Get a complete, branded landing page — headline, benefits, social proof, CTA — deployable in minutes.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Build a landing page for our [campaign theme] campaign targeting [audience]. Include: a headline with a specific stat, 3 benefit blocks, a customer quote section, and a "Book a Demo" CTA. Output as a single .html file with inline CSS I can deploy to Vercel. Use our brand colors (orange accent, dark text on light background). Mobile responsive. I want to reuse this script for every new campaign — just change the inputs.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
+          <div class="t-idea-card">
+            <h4>Editorial Calendar Enforcer</h4>
+            <p>Check your planned content against coverage gaps, pillar balance, and keyword targets. Flag what's missing before the month starts.</p>
+            <div class="t-prompt-block">
+              <div class="t-prompt-code" onclick="copyPrompt(this)">Read @content_calendar.xlsx and @published_posts.json. Check: is each of our 4 content pillars represented at least once? Are there any keywords from our target list that haven't been covered in 3+ months? Are there duplicate topics within the same month? Flag gaps and suggest specific topics to fill them. Print a calendar health report.</div>
+              <div class="t-prompt-copied">Copied!</div>
+            </div>
+          </div>
         </div>
 
         <div class="t-quiz" id="quiz-marketing">
@@ -1040,6 +1308,107 @@
           <div class="t-quiz-feedback"></div>
         </div>
       </div>
+
+      <!-- Cross-role ideas (visible to all roles) -->
+      <h3 class="t-mt-28">Build systems, not answers</h3>
+      <p>The projects above generate output. The projects below build <strong>systems</strong> — tools that enforce consistency, automate recurring work, or eliminate manual steps entirely. These are what make Claude Code worth the investment.</p>
+
+      <div class="t-insight-box" style="margin-bottom:16px;">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        <div class="t-insight-body">
+          <strong>The rule of three</strong>
+          <p>If you do something more than three times, build a tool for it. If you do it every week, schedule it. The first run takes 20 minutes to build. Every run after that takes zero.</p>
+        </div>
+      </div>
+
+      <h4>Process &amp; consistency tools</h4>
+      <div class="t-idea-grid">
+        <div class="t-idea-card">
+          <h4>Quality Gate Checker</h4>
+          <p>Scan any email, proposal, or doc for compliance issues — banned terms, missing disclaimers, wrong formatting — before you send it.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a quality checker script. It reads any .docx file I point at and checks for: banned words (list: "game-changing", "synergy", "leverage"), missing CTA, competitor mentions, sections over 200 words, and formatting issues. Print a pass/fail report with specific line-by-line fixes. I want to run this on every document before it goes to a client.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Template Enforcer</h4>
+          <p>Check any document against your team's format standards. Flag deviations, missing sections, wrong fonts — automatically.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a template compliance checker. Our standard proposal has 6 required sections: Executive Summary, Challenge, Approach, Expected Results, Timeline, Investment. Read any .docx and tell me which sections are missing, which are too long (over 300 words), and whether the file uses our standard format (bullet points for key stats, no walls of text). Print results to terminal.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Form-to-Document Pipeline</h4>
+          <p>Build a web form where anyone fills in 5 fields and gets a standardized, branded document — proposals, briefs, reports.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build an HTML form with fields: client name, industry, challenge, budget range, and timeline. When submitted, generate a one-page proposal .docx using our standard template — executive summary, approach (customized to their industry), and next steps. Every proposal should look the same and hit the same quality bar, no matter who fills in the form.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Weekly Auto-Report</h4>
+          <p>A script that runs every Monday: pulls data from your CSV exports, formats a report, and emails it to your team. Zero manual work.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a weekly reporting script I can schedule. It reads the most recent .csv in my data/ folder, calculates week-over-week changes for key metrics (impressions, clicks, conversions, CPA), flags anything that moved more than 15%, and generates a formatted .html email summary. I want to run this every Monday at 8am and have it email the results to my team.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+      </div>
+
+      <h4>Everyday tools</h4>
+      <div class="t-idea-grid">
+        <div class="t-idea-card">
+          <h4>CSV Data Analyzer</h4>
+          <p>Drop any CSV file. Get patterns, outliers, and a visual summary — without opening Excel.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Read @data.csv. Tell me: how many rows, what the columns are, any missing values, and the top 3 interesting patterns you see. Then create an HTML file with summary charts I can open in a browser.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Meeting Prep Automation</h4>
+          <p>Paste a calendar invite. Get a one-page briefing doc with attendee background, company news, and talking points.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">I have a meeting with [name] at [company]. Search for their recent news, LinkedIn activity, and company updates. Generate a one-page .docx prep doc with: attendee background, 3 recent company developments, and 3 talking points relevant to our business.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>File Organization Tool</h4>
+          <p>Point at a messy folder. Claude renames, sorts, and organizes files by date, type, or your custom rules.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Look at the files in @messy-folder/. Rename them to follow this pattern: YYYY-MM-DD_description_type.ext. Sort into subfolders by type (reports/, presentations/, data/). Show me the plan before moving anything.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Personal Metrics Dashboard</h4>
+          <p>One HTML page with your key numbers — pipeline value, meetings booked, content published — auto-updating.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a personal dashboard as a single HTML page. Include cards for: [metric 1], [metric 2], [metric 3]. Read the data from a metrics.json file I'll update weekly. Add sparkline charts for trends. Make it look clean — dark background, card layout, large numbers. I want to keep this open on a browser tab.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>UTM Link Builder</h4>
+          <p>Generate campaign URLs with consistent UTM parameters. No more typos in source/medium/campaign tags.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Build a UTM link generator as a single HTML page. I type the base URL, campaign name, source, and medium. It generates the full UTM URL and copies it to clipboard. Enforce our naming convention: lowercase, hyphens not underscores, source must be one of [linkedin, google, email, direct]. Save a log of all generated links to a .csv file.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+        <div class="t-idea-card">
+          <h4>Expense Report Builder</h4>
+          <p>Paste a CSV of transactions. Get them auto-categorized into a formatted expense report.</p>
+          <div class="t-prompt-block">
+            <div class="t-prompt-code" onclick="copyPrompt(this)">Read @transactions.csv. Categorize each expense (meals, travel, software, office supplies, etc). Flag anything over $200 for review. Output an .xlsx expense report with category subtotals, a pie chart tab, and a flagged items list. Sort by date.</div>
+            <div class="t-prompt-copied">Copied!</div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ============================================================
@@ -1184,11 +1553,145 @@
     </section>
 
     <!-- ============================================================
-         SECTION 6: LEVEL UP (advanced tips)
+         SECTION 6: UNDER THE HOOD
+         ============================================================ -->
+    <section id="howitworks">
+      <div class="step-header">
+        <div class="step-badge">6</div>
+        <div class="step-title-wrap">
+          <h2>Under the Hood</h2>
+          <div class="step-sub">How the technology works. Read this when you're curious.</div>
+        </div>
+      </div>
+
+      <p>Now that you've used the tools, it helps to understand what's actually happening when you type a prompt. This isn't computer science class — just the mental model that makes everything click.</p>
+
+      <h3>The prediction engine</h3>
+      <p>An LLM (Large Language Model) is a text prediction engine. It was trained on most of the internet and learned patterns in language — how sentences flow, how arguments are structured, how code works. When you type a prompt, it predicts the most useful response token by token. Think of it as autocomplete that went to graduate school.</p>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>Tokens and the context window</strong>
+          <p>Claude thinks in <strong>tokens</strong>, not words. A token is roughly 3/4 of a word. Claude's working memory — the <strong>context window</strong> — holds about 1 million tokens. That's roughly 3,000 pages of text. Everything in your conversation plus every file Claude reads takes up space in that window. When it fills up, Claude summarizes earlier messages to make room.</p>
+        </div>
+      </div>
+
+      <h3>Chatbot vs. agent</h3>
+      <p>ChatGPT and Claude Chat are <strong>chatbots</strong> — you ask a question, they answer. Claude Code is an <strong>agent</strong>. The difference: an agent doesn't just talk. It takes action.</p>
+
+      <div class="t-loop-visual">
+        <div class="t-loop-step">
+          <div class="t-loop-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h10"/></svg></div>
+          <div class="t-loop-label">Read</div>
+          <div class="t-loop-desc">Understand your request and read files</div>
+        </div>
+        <div class="t-loop-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M15 8l4 4-4 4"/></svg></div>
+        <div class="t-loop-step">
+          <div class="t-loop-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M10 7v3l2 2"/></svg></div>
+          <div class="t-loop-label">Plan</div>
+          <div class="t-loop-desc">Decide what to do next</div>
+        </div>
+        <div class="t-loop-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M15 8l4 4-4 4"/></svg></div>
+        <div class="t-loop-step">
+          <div class="t-loop-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 13l4 4 8-10"/></svg></div>
+          <div class="t-loop-label">Act</div>
+          <div class="t-loop-desc">Run a command or write a file</div>
+        </div>
+        <div class="t-loop-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M15 8l4 4-4 4"/></svg></div>
+        <div class="t-loop-step">
+          <div class="t-loop-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg></div>
+          <div class="t-loop-label">Check</div>
+          <div class="t-loop-desc">Verify it worked, then repeat</div>
+        </div>
+      </div>
+      <div class="t-loop-return">
+        <svg width="100%" height="24" viewBox="0 0 400 24" fill="none" preserveAspectRatio="none"><path d="M380 4 C 380 20, 20 20, 20 4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity="0.3"/><path d="M24 8l-4-4-4 4" stroke="currentColor" stroke-width="1.5" opacity="0.3"/></svg>
+      </div>
+
+      <p>This loop — read, plan, act, check — runs continuously until the job is done. Claude might read 10 files, run 5 commands, and edit 3 documents before responding. That's what makes it useful for real work, not just answering questions.</p>
+
+      <h3>Ask vs. Build</h3>
+      <p>Most people use AI to <strong>ask questions and get answers</strong>. That's useful, but it's the smallest thing Claude Code can do. The real power is <strong>building things that keep working after you close the tab</strong>.</p>
+
+      <div class="t-method-comparison">
+        <div class="t-method-bad"><div class="t-method-verdict">Ask</div>"Analyze this CSV and tell me which deals are stalled." <br><span style="font-size:12px;color:var(--muted);">You get an answer. Next week, you ask again. And again.</span></div>
+        <div class="t-method-good"><div class="t-method-verdict">Build</div>"Build me a script that reads my pipeline export, flags stalled deals, and emails me a summary every Monday." <br><span style="font-size:12px;color:var(--muted);">You build it once. It runs forever. You never ask again.</span></div>
+      </div>
+
+      <p>Scripts, tools, dashboards, quality checks, automated reports — these are real files on your computer that you run whenever you need them. That's the difference between using AI as a search engine and using it as a builder.</p>
+
+      <h3>What Claude Code can do</h3>
+      <p>Claude Code uses <strong>tools</strong> to take real action — the same way you use apps on your phone. Here's what it can work with:</p>
+
+      <div class="t-commands-grid">
+        <div class="t-command"><div class="t-command-name">Run commands</div><div class="t-command-desc">Install software, process data, start servers, run your scripts — anything you'd type in a terminal.</div></div>
+        <div class="t-command"><div class="t-command-name">Read files</div><div class="t-command-desc">Opens and understands any file in your project — documents, spreadsheets, PDFs, images, data files.</div></div>
+        <div class="t-command"><div class="t-command-name">Create files</div><div class="t-command-desc">Writes new files from scratch — scripts, reports, web pages, spreadsheets, presentations.</div></div>
+        <div class="t-command"><div class="t-command-name">Edit files</div><div class="t-command-desc">Makes precise changes to existing files without rewriting the whole thing.</div></div>
+        <div class="t-command"><div class="t-command-name">Search your project</div><div class="t-command-desc">Finds files by name or searches inside files for specific text — across hundreds of files instantly.</div></div>
+        <div class="t-command"><div class="t-command-name">Search the web</div><div class="t-command-desc">Pulls current information from the internet — company news, market data, competitor updates.</div></div>
+      </div>
+
+      <h3>Your files, your computer</h3>
+      <p>Claude Code works inside a <strong>folder on your computer</strong>. It reads files, creates new ones, and saves everything locally. When Claude "builds" something — a script, a report, a web page — it's writing actual files to your hard drive. Not generating text that disappears when you close the tab. That's why you navigate to a project folder before starting Claude Code: that folder is where everything lives.</p>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="t-insight-body">
+          <strong>How your data is handled</strong>
+          <p>Files Claude reads are sent securely to Anthropic's servers for processing over encrypted connections, then discarded. Files Claude doesn't access stay entirely on your machine. Code execution and file writing happen locally. On Pro, Max, Team, and Enterprise plans, your data is never used to train AI models. For sensitive client data, check with your admin about your organization's data policies.</p>
+        </div>
+      </div>
+
+      <h3>Integrations (MCP)</h3>
+      <p><strong>MCP</strong> (Model Context Protocol) is how Claude connects to external services. Think of it as USB-C for AI — one standard plug that connects to anything. Your admin configures the integrations; you just use them.</p>
+
+      <div class="t-mcp-examples">
+        <div class="t-mcp-item">
+          <div class="t-mcp-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="16" height="16" rx="3"/><path d="M6 7h8M6 10h8M6 13h5"/></svg></div>
+          <div class="t-mcp-name">HubSpot</div>
+          <div class="t-mcp-use">Pull CRM data, create contacts, manage deals</div>
+        </div>
+        <div class="t-mcp-item">
+          <div class="t-mcp-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l7 4 7-4M3 5v10l7 4 7-4V5"/></svg></div>
+          <div class="t-mcp-name">Slack</div>
+          <div class="t-mcp-use">Read channels, send messages, search history</div>
+        </div>
+        <div class="t-mcp-item">
+          <div class="t-mcp-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M7 4V2M13 4V2"/></svg></div>
+          <div class="t-mcp-name">Google Calendar</div>
+          <div class="t-mcp-use">Check schedules, create events, find free time</div>
+        </div>
+        <div class="t-mcp-item">
+          <div class="t-mcp-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 3"/></svg></div>
+          <div class="t-mcp-name">SimilarWeb</div>
+          <div class="t-mcp-use">Competitive traffic data, keyword analysis</div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="t-quiz" id="quiz-howitworks">
+        <div class="t-quiz-q">Claude Code built you a prospect research script that searches the web and saves a .docx to your computer. Where did that file go?</div>
+        <div class="t-quiz-options">
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-howitworks', this, false)">It's in the cloud — you need to download it</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-howitworks', this, true)" data-correct>To the project folder on your hard drive — it's a real file you can open, email, or edit</button>
+          <button class="t-quiz-opt" onclick="checkQuiz('quiz-howitworks', this, false)">It disappears when you close Claude Code</button>
+        </div>
+        <div class="t-quiz-feedback"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7: LEVEL UP (advanced tips)
          ============================================================ -->
     <section id="levelup">
       <div class="step-header">
-        <div class="step-badge">6</div>
+        <div class="step-badge">7</div>
         <div class="step-title-wrap">
           <h2>Level Up</h2>
           <div class="step-sub">Once you're comfortable, these make you faster.</div>
@@ -1205,14 +1708,14 @@
         <div class="t-command"><div class="t-command-name"><code>claude --continue</code></div><div class="t-command-desc">Resume your last session with full context.</div></div>
         <div class="t-command"><div class="t-command-name">Custom skills</div><div class="t-command-desc">Save workflows as /slash-commands. A <code>/prospect-brief</code> skill runs your exact sequence every time.</div></div>
         <div class="t-command"><div class="t-command-name">75% rule</div><div class="t-command-desc">Sessions under 75% context produce better output. Run <code>/compact</code> at 50%, not when maxed.</div></div>
-        <div class="t-command"><div class="t-command-name"><code>claude -p "..."</code></div><div class="t-command-desc">Headless mode. Runs a one-liner with no interactive session. Perfect for scripting: <code>claude -p "read prospects.csv and generate a brief for each company"</code></div></div>
+        <div class="t-command"><div class="t-command-name"><code>claude -p "..."</code></div><div class="t-command-desc">One-shot mode. Run a single task without starting a full session. Perfect for scripting: <code>claude -p "read prospects.csv and generate a brief for each company"</code></div></div>
         <div class="t-command"><div class="t-command-name"><code>/rc</code></div><div class="t-command-desc">Remote Control. Continue your terminal session from your phone, tablet, or any browser. Code stays local.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/loop 5m /task</code></div><div class="t-command-desc">Run a task on a recurring interval. Monitor deploys, poll for new data, babysit a long process.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/effort high</code></div><div class="t-command-desc">Control thinking depth: low (quick formatting), medium (default), high (complex analysis). Saves tokens on simple tasks.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/context</code></div><div class="t-command-desc">Shows where your tokens are going — which files, tools, and MCP servers consume the most. Find and fix token drains.</div></div>
-        <div class="t-command"><div class="t-command-name"><code>.claudeignore</code></div><div class="t-command-desc">File that excludes folders from context (like node_modules). Stops Claude from reading irrelevant files. Put one in every project.</div></div>
-        <div class="t-command"><div class="t-command-name">Hooks</div><div class="t-command-desc">Automate before/after actions. "After Claude generates a .docx, open it in Word." Configure via <code>/update-config</code>.</div></div>
-        <div class="t-command"><div class="t-command-name"><code>/statusline</code></div><div class="t-command-desc">Custom terminal HUD showing model, context %, git status, and session cost. Always know where you stand.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>.claudeignore</code></div><div class="t-command-desc">Tells Claude which folders to skip. Keeps it focused on your actual work files, not system junk. Put one in every project.</div></div>
+        <div class="t-command"><div class="t-command-name">Hooks</div><div class="t-command-desc">Auto-run actions when Claude does something. Example: automatically open a .docx in Word after Claude creates it. Configure via <code>/update-config</code>.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>/statusline</code></div><div class="t-command-desc">Shows your model, usage, and session cost at the bottom of the screen. Like a dashboard for your session.</div></div>
       </div>
 
       <h3>Picking the right model</h3>
@@ -1241,28 +1744,38 @@
         </div>
       </div>
 
+      <h3>The automation ladder</h3>
+      <p>Most people stay on rung 1. Each step up saves more time — permanently.</p>
+      <div class="t-avoid-list">
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--cream2);color:var(--muted);border-color:var(--border);">1</div><div class="t-avoid-body"><strong>Ask a question, get an answer</strong><p>You type, Claude responds, you copy-paste. Most people stop here. <em>This is using Claude Code as ChatGPT.</em></p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--blue-light);color:var(--blue);border-color:#bfdbfe;">2</div><div class="t-avoid-body"><strong>Build a tool, reuse it</strong><p>"Build me a script that does X." You run it next week with fresh data. Same output quality, zero re-prompting. <em>This is where ROI starts.</em></p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--green-light);color:var(--green);border-color:#bbf7d0;">3</div><div class="t-avoid-body"><strong>Chain tools into a workflow</strong><p>The prospect research script feeds the outreach drafter. The outreach drafter feeds the CRM logger. One input triggers a chain. <em>This is where one person does the work of three.</em></p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num" style="background:var(--accent-light);color:var(--accent);border-color:#fed7aa;">4</div><div class="t-avoid-body"><strong>Schedule it — fully automated</strong><p>The script runs every Monday at 8am without you touching it. Reports land in your inbox. Quality checks run on every document. <em>This is the multiplier effect from Section 5.</em></p></div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;">Ask yourself: "Am I asking Claude questions, or am I building things?" If you're still on rung 1 after a week, you're leaving the biggest value on the table.</p>
+
       <h3>Five things that hurt your output</h3>
       <div class="t-avoid-list">
         <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>The kitchen sink session</strong><p>Mixing unrelated tasks in one conversation. Fix: <code>/clear</code> between topics.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>The correction spiral</strong><p>3+ corrections on the same issue. Fix: <code>/clear</code> and rewrite the prompt.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Vague requests</strong><p>"Make this better" costs 3 rounds. "Rewrite the intro with the 47% stat, under 80 words" costs 1.</p></div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Overstuffed CLAUDE.md</strong><p>~150-200 instruction budget. If it's too long, rules get lost. Cut anything that doesn't prevent mistakes.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Overstuffed CLAUDE.md</strong><p>Keep it under 150-200 lines. If it's too long, rules get lost. Cut anything that doesn't prevent mistakes.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">5</div><div class="t-avoid-body"><strong>Skipping Plan Mode</strong><p>Jumping to execution causes 20-30% more token waste. Press Shift+Tab first.</p></div></div>
       </div>
 
       <h3>Four non-developer mistakes</h3>
       <div class="t-avoid-list">
-        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>Treating Claude like Google</strong><p>Asking questions instead of giving tasks.</p>
-          <div class="role-sales"><p>"What's the best way to write cold emails?" → "Write 3 cold email variants for [prospect] using our CLAUDE.md positioning."</p></div>
-          <div class="role-strategy"><p>"How do I prep for a QBR?" → "Read @national-fitness-q1.csv and draft 3 QBR slides with metrics, wins, and next-quarter recommendations."</p></div>
-          <div class="role-marketing"><p>"What makes a good LinkedIn post?" → "Write 4 LinkedIn posts about incrementality testing. Hook under 15 words. Data-driven. Export as .xlsx."</p></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">1</div><div class="t-avoid-body"><strong>Asking instead of building</strong><p>Getting a one-time answer when you could build a reusable tool.</p>
+          <div class="role-sales"><p>"What's the best way to write cold emails?" → "Build a cold email generator that takes a prospect name, researches them, and outputs 3 personalized variants using our CLAUDE.md positioning. I'll reuse this for every prospect."</p></div>
+          <div class="role-strategy"><p>"How do I prep for a QBR?" → "Build a QBR prep tool. It reads a client CSV and draft 3 QBR slides with metrics, wins, and next-quarter recommendations. Same format every quarter."</p></div>
+          <div class="role-marketing"><p>"What makes a good LinkedIn post?" → "Build a social post generator script. 4 LinkedIn posts per run, hook under 15 words, data-driven, exports as .xlsx. I'll run this every Monday."</p></div>
         </div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>Describing files instead of pointing to them</strong>
           <div class="role-sales"><p>"I have a CRM export with deal stages..." → "Read <code>@pipeline_export.csv</code> and find stalled deals over 30 days."</p></div>
           <div class="role-strategy"><p>"I have a spreadsheet with usage data..." → "Read <code>@account_usage.csv</code> and flag accounts with declining engagement."</p></div>
           <div class="role-marketing"><p>"I have a spreadsheet with campaign data..." → "Read <code>@q1-campaigns.csv</code> and rank channels by CPA improvement."</p></div>
         </div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Monolithic prompts</strong><p>500+ words in one block produces inconsistent results 60% of the time. Break complex tasks into steps: "First do X. Then do Y. Finally do Z."</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Giant prompts</strong><p>500+ words in one block produces inconsistent results 60% of the time. Break complex tasks into steps: "First do X. Then do Y. Finally do Z."</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Starting fresh every time</strong><p>Opening a new session for each task instead of building a project folder. Use <code>claude --continue</code> to resume. Keep templates, data, and CLAUDE.md in one folder.</p></div></div>
       </div>
 
@@ -1319,14 +1832,44 @@
         <div class="t-timeline-item"><div class="t-timeline-day">Day 5</div><div class="t-timeline-task">Save a workflow as a custom skill</div></div>
         <div class="t-timeline-item"><div class="t-timeline-day">Day 7</div><div class="t-timeline-task">Run your first automation end-to-end</div></div>
       </div>
+
+      <h3>Make it stick</h3>
+      <p>Completing this page is step one. Actually using Claude Code daily is where the value compounds. Research shows most people finish training and never open the tool again. Here's how to beat that.</p>
+
+      <div class="t-commands-grid">
+        <div class="t-command">
+          <div class="t-command-name">Start a #ai-wins channel</div>
+          <div class="t-command-desc">Share what you built, how long it took, and what it replaced. When your teammates see real results from peers (not a training page), adoption spreads. One team saw daily usage jump from 38% to 61% after starting this.</div>
+        </div>
+        <div class="t-command">
+          <div class="t-command-name">Manager 1:1 question</div>
+          <div class="t-command-desc">"How did you use AI this week?" — one question in your weekly 1:1. Teams where managers ask this adopt 2x faster. It signals permission and priority without mandating usage.</div>
+        </div>
+        <div class="t-command">
+          <div class="t-command-name">48-hour rule</div>
+          <div class="t-command-desc">Use Claude Code for one real task within 48 hours of reading this page. Not a practice exercise — a real deliverable for a real meeting. If you don't use it in the first 2 days, the odds of ever adopting drop to under 20%.</div>
+        </div>
+        <div class="t-command">
+          <div class="t-command-name">Build, don't browse</div>
+          <div class="t-command-desc">If you catch yourself asking Claude Code questions like it's Google, stop and reframe: "Build me a tool that answers this question every time I need it." The first approach gives you one answer. The second gives you a permanent capability.</div>
+        </div>
+      </div>
+
+      <div class="t-insight-box">
+        <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="t-insight-body">
+          <strong>The compound effect</strong>
+          <p>Week 1: you save 30 minutes on meeting prep. Week 2: you add a pipeline checker that runs every Friday. Week 3: you build a proposal standardizer. By month 2, you have a personal toolkit of 5-10 automations that save you 5+ hours per week — and they run whether you're thinking about them or not.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ============================================================
-         SECTION 7: REFERENCE
+         SECTION 8: REFERENCE
          ============================================================ -->
     <section id="reference">
       <div class="step-header">
-        <div class="step-badge">7</div>
+        <div class="step-badge">8</div>
         <div class="step-title-wrap">
           <h2>Quick Reference</h2>
           <div class="step-sub">Bookmark this section.</div>
@@ -1395,12 +1938,12 @@
         <div class="t-boundary-col">
           <div class="t-boundary-label t-boundary-human">Can't</div>
           <ul>
-            <li>Browse the web in real-time</li>
+            <li>Access private websites or logged-in sessions</li>
             <li>See your screen</li>
-            <li>Run on your phone</li>
-            <li>Access files outside your project folder</li>
+            <li>Run as a native phone app (but <code>/rc</code> continues sessions in any browser)</li>
+            <li>Access files you haven't given it permission to read</li>
             <li>Guarantee perfect output every time</li>
-            <li>Remember anything without CLAUDE.md</li>
+            <li>Retain context across sessions without CLAUDE.md or memory setup</li>
           </ul>
         </div>
       </div>
@@ -1409,7 +1952,7 @@
         <div class="t-insight-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
         <div class="t-insight-body">
           <strong>Integrations (MCP servers)</strong>
-          <p>Claude Code connects to Slack, HubSpot, Google Calendar, Ahrefs, and more via integrations called MCP servers. Ask your admin to set up the ones relevant to your role.</p>
+          <p>Claude Code connects to Slack, HubSpot, Google Calendar, Figma, and more via integrations called MCP servers. Ask your admin to set up the ones relevant to your role.</p>
         </div>
       </div>
 
@@ -1434,6 +1977,30 @@
   <p>Agility Ads &middot; Revenue Team AI Training &middot; Built with Claude Code</p>
 </footer>
 
+<script>
+function updateROI() {
+  var tasks = document.getElementById('roi-tasks').value;
+  var mins = document.getElementById('roi-mins').value;
+  document.getElementById('roi-tasks-val').textContent = tasks;
+  document.getElementById('roi-mins-val').textContent = mins;
+  // Claude Code typically reduces task time by 80-90%
+  var currentMinsWeek = tasks * mins;
+  var savedMinsWeek = currentMinsWeek * 0.85;
+  var savedHoursWeek = (savedMinsWeek / 60).toFixed(1);
+  var savedHoursYear = Math.round(savedHoursWeek * 52);
+  var savedDays = Math.round(savedHoursYear / 8);
+  document.getElementById('roi-hours').textContent = savedHoursWeek + ' hours';
+  document.getElementById('roi-yearly').textContent = savedHoursYear + ' hours';
+  document.getElementById('roi-context').textContent = "That's " + savedDays + " extra working days you get back.";
+}
+
+function toggleBuildMore(btn) {
+  var wrapper = btn.nextElementSibling;
+  var isExpanded = wrapper.classList.toggle('t-expanded');
+  btn.classList.toggle('t-expanded', isExpanded);
+  btn.querySelector('span').textContent = isExpanded ? 'Show fewer projects' : 'Show 4 more projects';
+}
+</script>
 <script src="training.js"></script>
 </body>
 </html>
