@@ -498,6 +498,11 @@
 [data-role="strategy"] .role-strategy,
 [data-role="marketing"] .role-marketing { display: block; }
 
+/* Preserve flex layout on elements that use role visibility */
+[data-role="sales"] .t-first-run-step.role-sales,
+[data-role="strategy"] .t-first-run-step.role-strategy,
+[data-role="marketing"] .t-first-run-step.role-marketing { display: flex; }
+
 .t-role-callout-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
 
 /* =====================================================================
