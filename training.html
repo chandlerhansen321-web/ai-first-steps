@@ -1702,7 +1702,7 @@
       <div class="t-commands-grid">
         <div class="t-command"><div class="t-command-name"><code>/init</code></div><div class="t-command-desc">Auto-generates a CLAUDE.md from your project. Run this first.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/compact</code></div><div class="t-command-desc">Compresses conversation history. Add instructions: <code>/compact Focus on key decisions</code></div></div>
-        <div class="t-command"><div class="t-command-name"><code>Shift+Tab</code></div><div class="t-command-desc">Plan Mode. Claude plans but doesn't change files. Reduces trial-and-error waste by 20-30%.</div></div>
+        <div class="t-command"><div class="t-command-name"><code>Shift+Tab</code></div><div class="t-command-desc">Cycle permission modes: Ask first &rarr; Accept edits &rarr; Plan Mode. In Plan Mode, Claude plans but doesn't change files.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/clear</code></div><div class="t-command-desc">Resets context. Use between unrelated tasks.</div></div>
         <div class="t-command"><div class="t-command-name"><code>/btw</code></div><div class="t-command-desc">Side question that never enters history. Zero context cost.</div></div>
         <div class="t-command"><div class="t-command-name"><code>claude --continue</code></div><div class="t-command-desc">Resume your last session with full context.</div></div>
@@ -1733,14 +1733,14 @@
           <div class="t-perm-desc">Claude explains each action and waits for approval. Best while learning.</div>
         </div>
         <div class="t-perm-mode">
-          <div class="t-perm-icon">&#x1F4CB;</div>
-          <div class="t-perm-name">Plan first <span class="t-perm-shortcut">Shift+Tab</span></div>
-          <div class="t-perm-desc">Shows the full plan. You approve once. It runs. Best for multi-step tasks.</div>
+          <div class="t-perm-icon">&#x1F680;</div>
+          <div class="t-perm-name">Accept edits <span class="t-perm-shortcut">Shift+Tab</span></div>
+          <div class="t-perm-desc">File edits auto-approved; bigger actions still ask. Best once you trust the task.</div>
         </div>
         <div class="t-perm-mode">
-          <div class="t-perm-icon">&#x1F680;</div>
-          <div class="t-perm-name">Full auto <span class="t-perm-shortcut">Shift+Tab ×2</span></div>
-          <div class="t-perm-desc">No interruptions. Best when you trust the task completely.</div>
+          <div class="t-perm-icon">&#x1F4CB;</div>
+          <div class="t-perm-name">Plan mode <span class="t-perm-shortcut">Shift+Tab ×2</span></div>
+          <div class="t-perm-desc">Shows the full plan first. You approve once. It runs. Best for multi-step tasks.</div>
         </div>
       </div>
 
@@ -1760,7 +1760,7 @@
         <div class="t-avoid-item"><div class="t-avoid-num">2</div><div class="t-avoid-body"><strong>The correction spiral</strong><p>3+ corrections on the same issue. Fix: <code>/clear</code> and rewrite the prompt.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">3</div><div class="t-avoid-body"><strong>Vague requests</strong><p>"Make this better" costs 3 rounds. "Rewrite the intro with the 47% stat, under 80 words" costs 1.</p></div></div>
         <div class="t-avoid-item"><div class="t-avoid-num">4</div><div class="t-avoid-body"><strong>Overstuffed CLAUDE.md</strong><p>Keep it under 150-200 lines. If it's too long, rules get lost. Cut anything that doesn't prevent mistakes.</p></div></div>
-        <div class="t-avoid-item"><div class="t-avoid-num">5</div><div class="t-avoid-body"><strong>Skipping Plan Mode</strong><p>Jumping to execution causes 20-30% more token waste. Press Shift+Tab first.</p></div></div>
+        <div class="t-avoid-item"><div class="t-avoid-num">5</div><div class="t-avoid-body"><strong>Skipping Plan Mode</strong><p>Jumping to execution causes 20-30% more token waste. Press Shift+Tab twice to plan first.</p></div></div>
       </div>
 
       <h3>Four non-developer mistakes</h3>
@@ -1914,7 +1914,7 @@
 
       <h3>Keyboard shortcuts</h3>
       <div class="t-shortcuts">
-        <div class="t-shortcut"><kbd>Shift+Tab</kbd> <span>Toggle Plan Mode</span></div>
+        <div class="t-shortcut"><kbd>Shift+Tab</kbd> <span>Cycle permission modes</span></div>
         <div class="t-shortcut"><kbd>Ctrl+C</kbd> <span>Stop current action</span></div>
         <div class="t-shortcut"><kbd>Esc Esc</kbd> <span>Cancel and go back</span></div>
         <div class="t-shortcut"><kbd>Tab</kbd> <span>Accept suggestion</span></div>

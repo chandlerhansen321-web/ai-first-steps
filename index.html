@@ -1176,7 +1176,7 @@ brew install --cask cmux</code></pre>
           </div>
           <pre><code>claude --version</code></pre>
         </div>
-        <p>You should see something like <code>claude 1.x.x</code>. If so, move on.</p>
+        <p>You should see something like <code>claude 2.x.x</code>. If so, move on.</p>
         <div class="define">
           <div class="define-label">What does that command do?</div>
           <p><strong>curl</strong> downloads a file from the internet. <strong>bash</strong> runs it. Together, it's like clicking "Download" then "Run" in a standard installer — just compressed into one step.</p>
@@ -1213,7 +1213,7 @@ brew install --cask cmux</code></pre>
           <thead><tr><th>Plan</th><th>Best for</th><th>Cost</th></tr></thead>
           <tbody>
             <tr><td>Claude Pro</td><td>Personal use, getting started</td><td>~$20/mo</td></tr>
-            <tr><td>Claude Max</td><td>Heavy daily use, long sessions</td><td>~$100/mo</td></tr>
+            <tr><td>Claude Max</td><td>Heavy daily use, long sessions</td><td>from ~$100/mo</td></tr>
             <tr><td>API (Console)</td><td>Teams, pay-as-you-go, automation at scale</td><td>Usage-based</td></tr>
           </tbody>
         </table>
@@ -1522,21 +1522,21 @@ open index.html</code></pre>
             <div class="mode-desc">Claude explains each action and waits for you to approve it. <strong>Default.</strong> Best when you're learning or doing something new.</div>
           </div>
           <div class="mode-card">
-            <div class="mode-icon">📋</div>
-            <div class="mode-name">Plan first</div>
-            <div class="mode-desc">Claude shows you the full plan, you approve it once, then it executes everything without interruption. Press <code>Shift+Tab</code> to switch.</div>
+            <div class="mode-icon">🚀</div>
+            <div class="mode-name">Accept edits</div>
+            <div class="mode-desc">Claude's file edits are approved automatically — it only pauses for bigger actions like running commands. Press <code>Shift+Tab</code> once to switch.</div>
           </div>
           <div class="mode-card">
-            <div class="mode-icon">🚀</div>
-            <div class="mode-name">Full auto</div>
-            <div class="mode-desc">Claude works start-to-finish without any prompts. Press <code>Shift+Tab</code> twice to switch into this mode.</div>
+            <div class="mode-icon">📋</div>
+            <div class="mode-name">Plan mode</div>
+            <div class="mode-desc">Claude researches and shows you a full plan <em>before</em> touching anything — you approve the plan, then it executes. Press <code>Shift+Tab</code> twice. Great for bigger tasks.</div>
           </div>
         </div>
         <div class="callout tip">
           <div class="icon">💡</div>
           <div class="body">
             <strong>Start with "Ask first" while you're learning</strong>
-            <p>Reading Claude's explanations before it acts is a great way to understand what it's doing and build trust in its judgment. Once you're comfortable, switch to Plan or Full auto for faster results.</p>
+            <p>Reading Claude's explanations before it acts is a great way to understand what it's doing and build trust in its judgment. Once you're comfortable, <code>Shift+Tab</code> cycles between the three modes — and for big or unfamiliar tasks, Plan mode is the pro move.</p>
           </div>
         </div>
       </section>
@@ -1737,6 +1737,7 @@ open index.html</code></pre>
             <ul>
               <li>Read and write any file in your project folder</li>
               <li>Run terminal commands on your behalf</li>
+              <li>Search the web and fetch pages (built-in web search)</li>
               <li>Search and understand your entire codebase</li>
               <li>Build multi-step automations that run on a schedule</li>
               <li>Call external APIs (Slack, HubSpot, OpenAI, etc.)</li>
@@ -1748,10 +1749,9 @@ open index.html</code></pre>
           <div class="limits-col cant">
             <div class="limits-col-header">✗ &nbsp;It can't</div>
             <ul>
-              <li>Browse the web in real-time (no live internet access by default)</li>
-              <li>See your screen or interact with your mouse and keyboard</li>
-              <li>Run on a phone or tablet — terminal only</li>
-              <li>Work on files outside the folder you launched it from</li>
+              <li>Access your accounts or private apps unless you connect them (via MCP integrations)</li>
+              <li>See your screen or control your mouse without an extension (e.g. Claude in Chrome)</li>
+              <li>Work on files outside your project folder unless you grant access</li>
               <li>Guarantee perfect code on the first try — review and iterate</li>
               <li>Replace your judgment on business decisions or ethics</li>
               <li>Remember anything between sessions without CLAUDE.md or auto-memory</li>
