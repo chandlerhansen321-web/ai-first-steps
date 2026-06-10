@@ -17,7 +17,7 @@ Interactive educational site teaching non-coders how to build AI apps. Two-tab e
 index.html          # HTML structure (~1740 lines)
 styles.css          # All CSS (~3530 lines)
 app.js              # All JavaScript (~1190 lines)
-api/chat.js         # Vercel SSE endpoint → claude-sonnet-4-20250514
+api/chat.js         # Vercel SSE endpoint → claude-sonnet-4-6
 package.json        # anthropic SDK dependency
 vercel.json         # maxDuration: 30 for api/chat.js
 .vercel/            # Vercel project link (prj_giBVAapqxM9PFa0sAN6ciXn7zaee)
@@ -89,7 +89,7 @@ Supports both single message and conversation history:
 ```bash
 vercel --prod    # deploy from /Users/chandlerhansen/Downloads/Personal/ai-first-steps/
 ```
-No git repo. Vercel project linked via `.vercel/project.json`.
+Git repo with remote at github.com/chandlerhansen321-web/ai-first-steps. Vercel project linked via `.vercel/project.json` — deploys via `vercel --prod`, not git push.
 
 ## Known quirks / decisions
 - `opts.param` in `makeBuild2Session` for the rewriter/emaildrafter is raw HTML for two colored params — intentional, hardcoded only
