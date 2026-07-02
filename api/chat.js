@@ -4,9 +4,10 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // Abuse guards. This is a public demo backed by the owner's Anthropic key, so
 // every cost lever is clamped server-side and the endpoint is locked to the
-// site's own origin. (A per-IP rate limit via Upstash/Vercel KV is still
-// recommended for full protection — these caps bound per-request cost + block
-// casual cross-origin/script abuse.)
+// site's own origin. Rate limiting is in-memory per warm instance — best
+// effort (resets on cold start, not shared across instances), but combined
+// with the per-request cost caps it bounds worst-case spend without adding
+// an external store.
 const ALLOWED_ORIGINS = [
   "https://ai-first-steps-self.vercel.app",
   "http://localhost:3000",
@@ -14,6 +15,36 @@ const ALLOWED_ORIGINS = [
 const MAX_OUTPUT_TOKENS = 4096; // generator projects legitimately request 4096
 const MAX_MESSAGES = 20;
 const MAX_TOTAL_CHARS = 24000;
+
+// Fixed-window rate limits (per warm serverless instance).
+const RATE_WINDOW_MS = 60_000;
+const RATE_MAX_PER_IP = 20; // generous for one human clicking through the demo
+const RATE_MAX_GLOBAL = 200; // backstop against distributed / rotating-IP abuse
+const rateBuckets = new Map(); // ip -> { count, windowStart }
+let globalBucket = { count: 0, windowStart: 0 };
+
+function rateLimited(ip) {
+  const now = Date.now();
+  if (now - globalBucket.windowStart >= RATE_WINDOW_MS) {
+    globalBucket = { count: 0, windowStart: now };
+  }
+  globalBucket.count += 1;
+  if (globalBucket.count > RATE_MAX_GLOBAL) return true;
+
+  // Prune stale buckets so the map can't grow unbounded.
+  if (rateBuckets.size > 1000) {
+    for (const [key, bucket] of rateBuckets) {
+      if (now - bucket.windowStart >= RATE_WINDOW_MS) rateBuckets.delete(key);
+    }
+  }
+  const entry = rateBuckets.get(ip);
+  if (!entry || now - entry.windowStart >= RATE_WINDOW_MS) {
+    rateBuckets.set(ip, { count: 1, windowStart: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > RATE_MAX_PER_IP;
+}
 
 export default async function handler(req, res) {
   // CORS — lock to the site's own origin (no wildcard); echo only allowed origins.
@@ -36,6 +67,17 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: "Forbidden" });
   }
 
+  // Per-IP rate limit. On Vercel, x-real-ip / the first x-forwarded-for hop
+  // is set by the platform and reflects the real client.
+  const ip =
+    req.headers["x-real-ip"] ||
+    String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() ||
+    "unknown";
+  if (rateLimited(ip)) {
+    res.setHeader("Retry-After", "60");
+    return res.status(429).json({ error: "Too many requests — try again in a minute" });
+  }
+
   const { message, messages, systemPrompt, maxTokens } = req.body || {};
 
   if (!message && (!messages || !messages.length)) {
@@ -45,16 +87,39 @@ export default async function handler(req, res) {
   // Support both single message and conversation history.
   const chatMessages = messages || [{ role: "user", content: message }];
 
+  // Shape validation: the site only ever sends plain-text turns. Rejecting
+  // anything else (content blocks, images, odd roles) keeps the cost surface
+  // to text and fails bad requests before they hit the API.
+  if (!Array.isArray(chatMessages)) {
+    return res.status(400).json({ error: "messages must be an array" });
+  }
+  for (const m of chatMessages) {
+    const valid =
+      m &&
+      (m.role === "user" || m.role === "assistant") &&
+      typeof m.content === "string" &&
+      m.content.length > 0;
+    if (!valid) {
+      return res.status(400).json({ error: "Invalid message format" });
+    }
+  }
+  if (systemPrompt !== undefined && typeof systemPrompt !== "string") {
+    return res.status(400).json({ error: "systemPrompt must be a string" });
+  }
+
   // Cost caps: bound message count, total payload size, and output tokens.
   if (chatMessages.length > MAX_MESSAGES) {
     return res.status(413).json({ error: "Too many messages" });
   }
   const totalChars =
-    JSON.stringify(chatMessages).length + (systemPrompt ? String(systemPrompt).length : 0);
+    JSON.stringify(chatMessages).length + (systemPrompt ? systemPrompt.length : 0);
   if (totalChars > MAX_TOTAL_CHARS) {
     return res.status(413).json({ error: "Request too large" });
   }
-  const cappedTokens = Math.min(Number(maxTokens) || 1024, MAX_OUTPUT_TOKENS);
+  const cappedTokens = Math.min(
+    Math.max(Math.floor(Number(maxTokens)) || 1024, 1),
+    MAX_OUTPUT_TOKENS
+  );
 
   try {
     // Set up SSE streaming
